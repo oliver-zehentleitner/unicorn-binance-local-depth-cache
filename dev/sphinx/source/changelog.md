@@ -9,7 +9,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.7.0.dev (development stage/unreleased/unstable)
+## 2.8.1.dev (development stage/unreleased/unstable)
+
+## 2.8.1
+### Added
+- build_wheels.yml:  
+  CIBW_ARCHS_LINUX: "x86_64 aarch64"
+  CIBW_ARCHS_MACOS: "x86_64 arm64 universal2"
+  CIBW_ARCHS_WINDOWS: "AMD64"
+  CIBW_MUSLLINUX_X86_64_IMAGE: "musllinux_1_1"
+### Changed
+- Moved from https://github.com/LUCIT-Systems-and-Development/ to https://github.com/oliver-zehentleitner
+### Removed
+- LUCIT Licensing Manager
 
 ## 2.8.0
 ### Changed

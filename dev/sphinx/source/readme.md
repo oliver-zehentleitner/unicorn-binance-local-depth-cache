@@ -1,37 +1,30 @@
-[![Get a UNICORN Binance Suite License](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/logo/LUCIT-UBS-License-Offer.png)](https://shop.lucit.services)
 
-[![Anaconda Release](https://img.shields.io/conda/v/lucit/unicorn-binance-local-depth-cache?color=blue)](https://anaconda.org/lucit/unicorn-binance-local-depth-cache)
 [![GitHub Release](https://img.shields.io/github/release/oliver-zehentleitner/unicorn-binance-local-depth-cache.svg?label=github)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases)
+[![GitHub Downloads](https://img.shields.io/github/downloads/oliver-zehentleitner/unicorn-binance-local-depth-cache/total?color=blue)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases)
 [![PyPi Release](https://img.shields.io/pypi/v/unicorn-binance-local-depth-cache?color=blue)](https://pypi.org/project/unicorn-binance-local-depth-cache/)
-[![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_local_depth_cache.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-LSOSL-blue)](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/license.html)
 [![PyPi Downloads](https://pepy.tech/badge/unicorn-binance-local-depth-cache)](https://pepy.tech/project/unicorn-binance-local-depth-cache)
-[![PyPi Downloads](https://pepy.tech/badge/unicorn-binance-local-depth-cache/month)](https://pepy.tech/project/unicorn-binance-local-depth-cache)
-[![PyPi Downloads](https://pepy.tech/badge/unicorn-binance-local-depth-cache/week)](https://pepy.tech/project/unicorn-binance-local-depth-cache)
+[![License](https://img.shields.io/github/license/oliver-zehentleitner/unicorn-binance-local-depth-cache.svg?color=blue)](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/license.html)
+[![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_local_depth_cache.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_local_depth_cache.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues)
 [![codecov](https://codecov.io/gh/oliver-zehentleitner/unicorn-binance-local-depth-cache/branch/master/graph/badge.svg?token=5I03AZ3F5S)](https://codecov.io/gh/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 [![CodeQL](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml)
 [![Unit Tests](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/unit-tests.yml)
 [![Build and Publish GH+PyPi](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml)
-[![Build and Publish Anaconda](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_conda.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_conda.yml)
 [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/)
 [![Read How To`s](https://img.shields.io/badge/read-%20howto-yellow)](https://technopathy.club)
 [![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 [![Telegram](https://img.shields.io/badge/community-telegram-41ab8c)](https://t.me/unicorndevs)
-[![Gitter](https://img.shields.io/badge/community-gitter-41ab8c)](https://gitter.im/unicorn-binance-suite/unicorn-binance-local-depth-cache?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Get Free Professional Support](https://img.shields.io/badge/chat-lucit%20support-004166)](https://www.lucit.tech/get-support.html)
 
 [![LUCIT-UBLDC-Banner](https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/master/images/logo/LUCIT-UBLDC-Banner-Readme.png)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 
 # UNICORN Binance Local Depth Cache 
 
-[Description](#description) | [Live Demo](#live-demo) | [Installation](#installation-and-upgrade) | [How To](#howto) | [Documentation](#documentation) | 
+[Description](#description) | [Installation](#installation-and-upgrade) | [How To](#howto) | [Documentation](#documentation) | 
 [Examples](#examples) | [Change Log](#change-log) | [Wiki](#wiki) | [Social](#social) | 
 [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
-[Contributing](#contributing) |[Disclaimer](#disclaimer) | 
-[Commercial Support](#commercial-support)
+[Contributing](#contributing) |[Disclaimer](#disclaimer)
 
-A Python SDK by [LUCIT](https://www.lucit.tech) for accessing and managing multiple local Binance 
+A Python SDK for accessing and managing multiple local Binance 
 [order books](https://academy.binance.com/en/glossary/order-book) with Python in a simple, fast, flexible, robust 
 and fully functional way. 
 
@@ -40,12 +33,6 @@ full stack of the UBS modules (REST, WebSocket and DepthCache) can be downloaded
 as a Python C extension for maximum performance.
 
 Part of '[UNICORN Binance Suite](https://github.com/oliver-zehentleitner/unicorn-binance-suite)'.
-
-[Get help](https://www.lucit.tech/get-support.html) with the integration of the `UNICORN Binance Suite` modules!
-
-## Get a UNICORN Binance Suite License
-
-To run modules of the *UNICORN Binance Suite* you need a [valid license](https://technopathy.club/how-to-obtain-and-use-a-unicorn-binance-suite-license-key-and-run-the-ubs-module-according-to-best-87b0088124a8#4ca4)!
 
 ## Using a DepthCache
 
@@ -232,18 +219,10 @@ If you like the project, please
 [![star](https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/master/images/misc/star.png)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/stargazers) it on 
 [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)! 
 
-## Live Demo
-This live demo script runs DepthCaches from [binance.com-futures](https://www.binance.com) and runs on a *CCX13* virtual 
-machine of [HETZNER CLOUD](https://hetzner.cloud/?ref=rKgYRMq0l8fd).
-
-[Open live monitor!](https://www.lucit.tech/unicorn-binance-local-depth-cache-live-demo.html)
-
-[![live-demo](https://ubldc-demo.lucit.tech/ps.png)](https://www.lucit.tech/unicorn-binance-local-depth-cache-live-demo.html)
-
-(Refresh update once a minute!)
-
 ## Installation and Upgrade
-The module requires Python 3.8 and runs smoothly up to and including Python 3.12.
+The module requires Python 3.8 and runs smoothly up to and including Python 3.13.
+
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
 
 For the PyPy interpreter we offer packages only from Python version 3.9 and higher.
 
@@ -256,7 +235,7 @@ If you run into errors during the installation take a look [here](https://github
 ### Packages are created automatically with GitHub Actions
 When a new release is to be created, we start two GitHubActions: 
 
-- [Build and Publish Anaconda](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_conda.yml)
+- [Build and Publish Anaconda](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
 - [Build and Publish GH+PyPi](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml) 
 
 Both start virtual Windows/Linux/Mac servers provided by GitHub in the cloud with preconfigured environments and 
@@ -287,6 +266,8 @@ configuration.
 `pip install unicorn-binance-local-depth-cache --upgrade`
 
 ### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
+
 The `unicorn-binance-local-depth-cache` package is also available as a Cython version for the `linux-64`, `osx-64` 
 and `win-64` architectures with [Conda](https://docs.conda.io/en/latest/) through the 
 [`lucit` channel](https://anaconda.org/lucit). 
@@ -295,6 +276,8 @@ For optimal compatibility and performance, it is recommended to source the neces
 [`conda-forge` channel](https://anaconda.org/conda-forge). 
 
 #### Installation
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
+
 ```
 conda config --add channels conda-forge
 conda config --add channels lucit
@@ -302,6 +285,8 @@ conda install -c lucit unicorn-binance-local-depth-cache
 ```
 
 #### Update
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
+
 `conda update -c lucit unicorn-binance-local-depth-cache`
 
 ### From source of the latest release with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
@@ -311,10 +296,10 @@ Run in bash:
 `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 2.8.0) you determined 
+Use the below command with the version (such as 2.8.1) you determined 
 [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.8.0.tar.gz --upgrade`
+`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.8.1.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 This is not a release version and can not be considered to be stable!
@@ -354,9 +339,6 @@ the repository on [GitHub](https://github.com/oliver-zehentleitner/unicorn-binan
 [own script](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/examples/ubldc_package_update_check) 
 with using 
 [`is_update_available()`](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html?highlight=is_update_available#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.is_update_available).
-
-Follow us on [LinkedIn](https://www.linkedin.com/company/lucit-systems-and-development), 
-[X](https://twitter.com/LUCIT_SysDev) or [Facebook](https://www.facebook.com/lucit.systems.and.development)!
 
 To receive news (like inspection windows/maintenance) about the Binance API`s subscribe to their telegram groups: 
 
@@ -399,9 +381,3 @@ jurisdiction.
 
 Under no circumstances will we be responsible or liable for any claims, damages, losses, expenses, costs or liabilities 
 of any kind, including but not limited to direct or indirect damages for loss of profits.
-
-## Commercial Support
-
-[![Get professional and fast support](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/support/LUCIT-get-professional-and-fast-support.png)](https://www.lucit.tech/get-support.html)
-
-***Do you need a developer, operator or consultant?*** [Contact us](https://www.lucit.tech/contact.html) for a non-binding initial consultation!

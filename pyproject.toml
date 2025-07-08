@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "unicorn-binance-local-depth-cache"
-version = "2.8.0"
+version = "2.8.1"
 description = "A Python SDK for accessing and managing multiple local Binance order books with Python in a simple, fast, flexible, robust and fully featured way."
-authors = ["LUCIT Systems and Development <info@lucit.tech>"]
-license = "LSOSL - LUCIT Synergetic Open Source License"
+authors = ["Oliver Zehentleitner"]
+license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache"
 documentation = "https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache"
@@ -13,20 +13,16 @@ repository = "https://github.com/oliver-zehentleitner/unicorn-binance-local-dept
 'Howto' = 'https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache#howto'
 'Documentation' = 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache'
 'Wiki' = 'https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/wiki'
-'Author' = 'https://www.lucit.tech'
+'Author' = 'https://www.linkedin.com/in/oliver-zehentleitner'
 'Changes' = 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/changelog.html'
 'License' = 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/license.html'
 'Issue Tracker' = 'https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues'
 'Telegram' = 'https://t.me/unicorndevs'
-'Chat' = 'https://app.gitter.im/#/room/#unicorn-binance-suite_unicorn-binance-local-depth-cache:gitter.im'
-'Get Support' = 'https://www.lucit.tech/get-support.html'
-'LUCIT Online Shop' = 'https://shop.lucit.services/software/unicorn-binance-suite'
 
 [tool.poetry.dependencies]
 python = ">=3.8.0"
 aiohttp = "*"
 Cython = "*"
-lucit-licensing-python = ">=1.8.2"
 requests = ">=2.31.0"
 unicorn-binance-rest-api = ">=2.8.1"
 unicorn-binance-websocket-api = ">=2.10.2"

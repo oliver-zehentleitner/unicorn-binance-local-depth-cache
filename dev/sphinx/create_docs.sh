@@ -37,5 +37,5 @@ cd dev/sphinx
 rm build/html
 ln -s ../../../docs build/html
 make html -d
-echo "Creating CNAME file for GitHub."
-echo "oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache" >> build/html/CNAME
+#echo "Creating CNAME file for GitHub."
+#echo "oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache" >> build/html/CNAME

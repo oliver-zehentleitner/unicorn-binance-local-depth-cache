@@ -1,5 +1,5 @@
 {% set name = "unicorn-binance-local-depth-cache" %}
-{% set version = "2.8.0" %}
+{% set version = "2.8.1" %}
 
 package:
   name: {{ name|lower }}
@@ -28,14 +28,12 @@ requirements:
     - pip
     - mypy
     - aiohttp
-    - lucit::lucit-licensing-python >=1.8.2
     - lucit::unicorn-binance-rest-api >=2.8.1
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - Cython
     - requests >=2.31.0
   run:
     - python
-    - lucit::lucit-licensing-python >=1.8.2
     - lucit::unicorn-binance-rest-api >=2.8.1
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - aiohttp
@@ -368,10 +366,10 @@ about:
     `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
     #### Windows
-    Use the below command with the version (such as 2.8.0) you determined 
+    Use the below command with the version (such as 2.8.1) you determined 
     [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-    `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.8.0.tar.gz --upgrade`
+    `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.8.1.tar.gz --upgrade`
 
     ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
     This is not a release version and can not be considered to be stable!

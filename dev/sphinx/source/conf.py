@@ -21,13 +21,13 @@ sys.path.insert(0, os.path.abspath('../../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'unicorn-binance-local-depth-cache'
-copyright = '2022-2023, LUCIT Systems and Development. All Rights Reserved.'
-author = 'LUCIT Systems and Development'
+copyright = '2019-2025, Oliver Zehentleitner All Rights Reserved.'
+author = 'Oliver Zehentleitner'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '2.8.0'
+release = '2.8.1'
 
 html_last_updated_fmt = "%b %d %Y at %H:%M (CET)"
 
@@ -84,10 +84,8 @@ pygments_style = None
 # a list of builtin themes.
 
 html_theme = 'python_docs_theme_lucit'
-html_context = {'github_user_name': 'LUCIT-Systems-and-Development',
+html_context = {'github_user_name': 'oliver-zehentleitner',
                 'github_repo_name': 'unicorn-binance-local-depth-cache',
-                'matomo_url': "https://webmon.lucit.services/matomo.php?idsite=6&amp;rec=1",
-                'freshchat_src': "//eu.fw-cdn.com/10659511/361973.js",
                 'project_name': project,
                 'lucit': True}
 
@@ -146,7 +144,7 @@ latex_elements = {
 latex_documents = [
     (master_doc, 'unicorn-binance-local-depth-cache.tex',
      'unicorn-binance-local-depth-cache Documentation',
-     'LUCIT Systems and Development', 'manual'),
+     'Oliver Zehentleitner', 'manual'),
 ]
 
 

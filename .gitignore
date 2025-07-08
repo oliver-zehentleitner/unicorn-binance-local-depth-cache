@@ -1,4 +1,5 @@
 .idea
+docs/.buildinfo.bak
 
 dev/unicorn_binance_local_depth_cache
 examples/unicorn_depthcache_cluster_for_binance/unicorn_binance_local_depth_cache
