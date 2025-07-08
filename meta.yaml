@@ -56,7 +56,7 @@ test:
 
 about:
   summary: | 
-    A Python SDK by LUCIT for accessing and managing multiple local Binance order books with Python in a simple, fast, 
+    A Python SDK for accessing and managing multiple local Binance order books with Python in a simple, fast, 
     flexible, robust and fully featured way.
   description: |
     [![Get a UNICORN Binance Suite License](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/logo/LUCIT-UBS-License-Offer.png)](https://shop.lucit.services)

@@ -40,7 +40,6 @@
 
 from .cluster import Cluster
 from .exceptions import *
-from .licensing_manager import LucitLicensingManager, NoValidatedLucitLicense
 from requests import ConnectionError
 from unicorn_binance_rest_api import BinanceRestApiManager, BinanceAPIException, AlreadyStoppedError
 from unicorn_binance_websocket_api import BinanceWebSocketApiManager

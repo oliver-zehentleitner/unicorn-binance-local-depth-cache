@@ -66,7 +66,7 @@ setup(
      author="LUCIT Systems and Development",
      author_email='info@lucit.tech',
      url="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache",
-     description="A Python SDK by LUCIT for accessing and managing multiple local Binance order books with Python in a "
+     description="A Python SDK for accessing and managing multiple local Binance order books with Python in a "
                  "simple, fast, flexible, robust and fully featured way. .",
      long_description=long_description,
      long_description_content_type="text/markdown",

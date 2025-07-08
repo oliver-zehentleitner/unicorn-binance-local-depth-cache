@@ -19,11 +19,10 @@
 
 # UNICORN Binance Local Depth Cache 
 
-[Description](#description) | [Live Demo](#live-demo) | [Installation](#installation-and-upgrade) | [How To](#howto) | [Documentation](#documentation) | 
+[Description](#description) | [Installation](#installation-and-upgrade) | [How To](#howto) | [Documentation](#documentation) | 
 [Examples](#examples) | [Change Log](#change-log) | [Wiki](#wiki) | [Social](#social) | 
 [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
-[Contributing](#contributing) |[Disclaimer](#disclaimer) | 
-[Commercial Support](#commercial-support)
+[Contributing](#contributing) |[Disclaimer](#disclaimer)
 
 A Python SDK for accessing and managing multiple local Binance 
 [order books](https://academy.binance.com/en/glossary/order-book) with Python in a simple, fast, flexible, robust 
@@ -223,6 +222,8 @@ If you like the project, please
 ## Installation and Upgrade
 The module requires Python 3.8 and runs smoothly up to and including Python 3.13.
 
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
+
 For the PyPy interpreter we offer packages only from Python version 3.9 and higher.
 
 Anaconda packages are available from Python version 3.8 and higher, but only in the latest version!
@@ -265,6 +266,8 @@ configuration.
 `pip install unicorn-binance-local-depth-cache --upgrade`
 
 ### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
+
 The `unicorn-binance-local-depth-cache` package is also available as a Cython version for the `linux-64`, `osx-64` 
 and `win-64` architectures with [Conda](https://docs.conda.io/en/latest/) through the 
 [`lucit` channel](https://anaconda.org/lucit). 
@@ -273,6 +276,8 @@ For optimal compatibility and performance, it is recommended to source the neces
 [`conda-forge` channel](https://anaconda.org/conda-forge). 
 
 #### Installation
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
+
 ```
 conda config --add channels conda-forge
 conda config --add channels lucit
@@ -280,6 +285,8 @@ conda install -c lucit unicorn-binance-local-depth-cache
 ```
 
 #### Update
+[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
+
 `conda update -c lucit unicorn-binance-local-depth-cache`
 
 ### From source of the latest release with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
