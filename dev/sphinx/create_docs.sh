@@ -4,14 +4,13 @@
 # File: dev/sphinx/create_docs.sh
 #
 # Part of ‘UNICORN Binance Local Depth Cache’
-# Project website: https://www.lucit.tech/unicorn-binance-local-depth-cache.html
-# Github: https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache
-# Documentation: https://unicorn-binance-local-depth-cache.docs.lucit.tech
+# Project website: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+# Github: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+# Documentation: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache
 # PyPI: https://pypi.org/project/unicorn-binance-local-depth-cache
-# LUCIT Online Shop: https://shop.lucit.services/software
 #
-# License: LSOSL - LUCIT Synergetic Open Source License
-# https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/blob/master/LICENSE
+# License: MIT
+# https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/LICENSE
 #
 # Author: LUCIT Systems and Development
 #
@@ -39,4 +38,4 @@ rm build/html
 ln -s ../../../docs build/html
 make html -d
 echo "Creating CNAME file for GitHub."
-echo "unicorn-binance-local-depth-cache.docs.lucit.tech" >> build/html/CNAME
+echo "oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache" >> build/html/CNAME

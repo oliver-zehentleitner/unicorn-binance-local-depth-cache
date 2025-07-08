@@ -5,9 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to 
 [Semantic Versioning](http://semver.org/).
 
-[Discussions about unicorn-binance-local-depth-cache releases!](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/discussions/categories/releases)
+[Discussions about unicorn-binance-local-depth-cache releases!](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/discussions/categories/releases)
 
-[How to upgrade to the latest version!](https://unicorn-binance-local-depth-cache.docs.lucit.tech/readme.html#installation-and-upgrade)
+[How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
 ## 2.7.0.dev (development stage/unreleased/unstable)
 
@@ -22,12 +22,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Holding the thread lock is now in the more abstract functions.
 ### Fixed
 - 'Uncontrolling growth of elements in lists of asks and bids in Depth Cache Manager' 
-  [issue#45](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/issues/45)
+  [issue#45](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/45)
   Thanks to [@chubatrik](https://github.com/chubatrik) for finding and reporting it!
 - 'error' and 'result' messages are now processed separately with corresponding log levels.
 - In `_get_book_side()` only the thread lock of 'bid' was used by mistake, also for 'asks'. This has now been corrected.
 - 'stop_depth_cache returns "error_msg: stream_id is missing!"'
-  [issue#46](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/issues/46)
+  [issue#46](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/46)
 
 ## 2.6.0
 ### Added
@@ -100,7 +100,7 @@ stream up to the max subscription limit of the endpoint and use the new UBWA `as
   `ubwa.create_stream()` can be used normally, only the `stream_signals` are only accessible for UBLDC.
 - Updated description text in all files.
 ### Fixed
-- Ip ban when using `create_depth_cache` with many symbols [issue#30](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/issues/30)
+- Ip ban when using `create_depth_cache` with many symbols [issue#30](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/30)
 - Import in `licensing_manager.py`.
 - Type of global `logger` variable.
 ### Security
@@ -156,7 +156,7 @@ Set higher minimum version `2.4.0` for `unicorn-binance-rest-api` are affected b
 - Integration of the `lucit-licensing-python` library for verifying the UNICORN Binance Suite license. A license can be 
   purchased in the LUCIT Online Shop: https://shop.lucit.services/software/unicorn-binance-suite
 - License change from MIT to LSOSL - LUCIT Synergetic Open Source License:
-  https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/blob/master/LICENSE
+  https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/LICENSE
 - Conversion to a C++ compiled Cython package with precompiled as well as PyPy and source code wheels.
 - Setup of a "Trusted Publisher" deployment chain. The source code is transparently packaged into wheels directly from
   the GitHub repository by a GitHub action for all possible platforms and published directly as a new release on GitHub
@@ -167,7 +167,7 @@ Set higher minimum version `2.4.0` for `unicorn-binance-rest-api` are affected b
 
 ## 0.7.3
 ### Fixed 
-- TypeError exception in `_init_depth_cache` [issue#27](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/issues/27
+- TypeError exception in `_init_depth_cache` [issue#27](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/27
 
 ## 0.7.2
 Codebase equal to 0.7.0, testing azure pipe

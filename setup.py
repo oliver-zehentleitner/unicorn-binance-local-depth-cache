@@ -4,14 +4,13 @@
 # File: setup.py
 #
 # Part of ‘UNICORN Binance Local Depth Cache’
-# Project website: https://www.lucit.tech/unicorn-binance-local-depth-cache.html
-# Github: https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache
-# Documentation: https://unicorn-binance-local-depth-cache.docs.lucit.tech
+# Project website: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+# Github: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+# Documentation: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache
 # PyPI: https://pypi.org/project/unicorn-binance-local-depth-cache
-# LUCIT Online Shop: https://shop.lucit.services/software
 #
-# License: LSOSL - LUCIT Synergetic Open Source License
-# https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/blob/master/LICENSE
+# License: MIT
+# https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/LICENSE
 #
 # Author: LUCIT Systems and Development
 #
@@ -66,26 +65,23 @@ setup(
      version="2.8.0",
      author="LUCIT Systems and Development",
      author_email='info@lucit.tech',
-     url="https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache",
+     url="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache",
      description="A Python SDK by LUCIT for accessing and managing multiple local Binance order books with Python in a "
                  "simple, fast, flexible, robust and fully featured way. .",
      long_description=long_description,
      long_description_content_type="text/markdown",
-     license='LSOSL - LUCIT Synergetic Open Source License',
-     install_requires=['aiohttp', 'lucit-licensing-python>=1.8.2', 'Cython>=3.0.10', 'requests>=2.32.3',
-                       'unicorn-binance-websocket-api>=2.8.1', 'unicorn-binance-rest-api>=2.6.1'],
+     license='MIT',
+     install_requires=['aiohttp', 'Cython>=3.0.10', 'requests>=2.32.3',
+                       'unicorn-binance-websocket-api>=2.10.2', 'unicorn-binance-rest-api>=2.8.1'],
      keywords='binance, depth cache',
      project_urls={
-         'Documentation': 'https://unicorn-binance-local-depth-cache.docs.lucit.tech',
-         'Wiki': 'https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/wiki',
-         'Author': 'https://www.lucit.tech',
-         'Changes': 'https://unicorn-binance-local-depth-cache.docs.lucit.tech/changelog.html',
-         'License': 'https://unicorn-binance-local-depth-cache.docs.lucit.tech/license.html',
-         'Issue Tracker': 'https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/issues',
-         'Chat': 'https://gitter.im/unicorn-binance-suite/unicorn-binance-local-depth-cache',
+         'Documentation': 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache',
+         'Wiki': 'https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/wiki',
+         'Author': 'https://www.linkedin.com/in/oliver-zehentleitner',
+         'Changes': 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/changelog.html',
+         'License': 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/license.html',
+         'Issue Tracker': 'https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues',
          'Telegram': 'https://t.me/unicorndevs',
-         'Get Support': 'https://www.lucit.tech/get-support.html',
-         'LUCIT Online Shop': 'https://shop.lucit.services/software',
      },
      packages=find_packages(exclude=[f"dev/{source_dir}"], include=[source_dir]),
      ext_modules=cythonize(extensions, compiler_directives={'language_level': "3"}),
@@ -99,7 +95,7 @@ setup(
          "Programming Language :: Python :: 3.10",
          "Programming Language :: Python :: 3.11",
          "Programming Language :: Python :: 3.12",
-         "License :: Other/Proprietary License",
+         "Programming Language :: Python :: 3.13",
          'Intended Audience :: Developers',
          "Intended Audience :: Financial and Insurance Industry",
          "Intended Audience :: Information Technology",

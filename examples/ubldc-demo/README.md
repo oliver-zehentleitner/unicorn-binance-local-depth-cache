@@ -28,4 +28,4 @@ The script employs logging to provide insights into its operation and to assist 
 file named after the script with a .log extension.
 
 For further assistance or to report issues, please [contact our support team](https://www.lucit.tech/get-support.html) 
-or [visit our GitHub repository](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache).
+or [visit our GitHub repository](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache).

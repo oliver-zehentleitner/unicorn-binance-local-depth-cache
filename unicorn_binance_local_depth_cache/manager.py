@@ -5,19 +5,38 @@
 # File: unicorn_binance_local_depth_cache/manager.py
 #
 # Part of ‘UNICORN Binance Local Depth Cache’
-# Project website: https://www.lucit.tech/unicorn-binance-local-depth-cache.html
-# Github: https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache
-# Documentation: https://unicorn-binance-local-depth-cache.docs.lucit.tech
+# Project website: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+# Github: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+# Documentation: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache
 # PyPI: https://pypi.org/project/unicorn-binance-local-depth-cache
-# LUCIT Online Shop: https://shop.lucit.services/software
 #
-# License: LSOSL - LUCIT Synergetic Open Source License
-# https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/blob/master/LICENSE
+# License: MIT
+# https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/LICENSE
 #
-# Author: LUCIT Systems and Development
+# Author: Oliver Zehentleitner
 #
-# Copyright (c) 2022-2024, LUCIT Systems and Development - https://www.lucit.tech
+# Copyright (c) 2019-2025, Oliver Zehentleitner (https://about.me/oliver-zehentleitner)
+#
 # All rights reserved.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish, dis-
+# tribute, sublicense, and/or sell copies of the Software, and to permit
+# persons to whom the Software is furnished to do so, subject to the fol-
+# lowing conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABIL-
+# ITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+# SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
 
 from .cluster import Cluster
 from .exceptions import *
@@ -44,7 +63,7 @@ logger = __logger__
 
 class BinanceLocalDepthCacheManager(threading.Thread):
     """
-    A Python SDK by LUCIT  to access and manage multiple local Binance DepthCaches with Python in a simple, fast,
+    A Python SDK to access and manage multiple local Binance DepthCaches with Python in a simple, fast,
     flexible, robust and fully-featured way.
 
     Binance API documentation:
@@ -70,7 +89,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                                               should be automatically and completely deleted.
     :type auto_data_cleanup_stopped_streams: bool
     :param depth_cache_update_interval: Update speed of the depth stream in milliseconds. More info:
-                                        https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache/wiki/update_intervals
+                                        https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/wiki/update_intervals
     :type depth_cache_update_interval: int
     :param websocket_close_timeout: The `close_timeout` parameter defines a maximum wait time in seconds for
                                     completing the closing handshake and terminating the TCP connection.
@@ -98,17 +117,6 @@ class BinanceLocalDepthCacheManager(threading.Thread):
     :type ubra_manager: BinanceRestApiManager
     :param warn_on_update: set to `False` to disable the update warning
     :type warn_on_update: bool
-    :param lucit_api_secret: The `api_secret` of your UNICORN Binance Suite license from
-                             https://shop.lucit.services/software/unicorn-binance-suite
-    :type lucit_api_secret:  str
-    :param lucit_license_ini: Specify the path including filename to the config file (ex: `~/license_a.ini`). If not
-                              provided lucitlicmgr tries to load a `lucit_license.ini` from `/home/oliver/.lucit/`.
-    :type lucit_license_ini:  str
-    :param lucit_license_profile: The license profile to use. Default is 'LUCIT'.
-    :type lucit_license_profile:  str
-    :param lucit_license_token: The `license_token` of your UNICORN Binance Suite license from
-                                https://shop.lucit.services/software/unicorn-binance-suite
-    :type lucit_license_token:  str
     """
 
     def __init__(self, exchange: str = "binance.com",
@@ -125,11 +133,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                  ubdcc_address: str = None,
                  ubdcc_port: int = 80,
                  ubra_manager: BinanceRestApiManager = None,
-                 warn_on_update: bool = True,
-                 lucit_api_secret: str = None,
-                 lucit_license_ini: str = None,
-                 lucit_license_profile: str = None,
-                 lucit_license_token: str = None):
+                 warn_on_update: bool = True):
         super().__init__()
         self.name = __app_name__
         self.version = __version__
@@ -155,21 +159,6 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         self.stop_request: bool = False
         self.threading_lock_ask: dict = {}
         self.threading_lock_bid: dict = {}
-        self.lucit_api_secret = lucit_api_secret
-        self.lucit_license_ini = lucit_license_ini
-        self.lucit_license_profile = lucit_license_profile
-        self.lucit_license_token = lucit_license_token
-        self.llm = LucitLicensingManager(api_secret=self.lucit_api_secret,
-                                         license_ini=self.lucit_license_ini,
-                                         license_profile=self.lucit_license_profile,
-                                         license_token=self.lucit_license_token,
-                                         parent_shutdown_function=self.stop_manager,
-                                         program_used=self.name,
-                                         needed_license_type="UNICORN-BINANCE-SUITE",
-                                         start=True)
-        licensing_exception = self.llm.get_license_exception()
-        if licensing_exception is not None:
-            raise NoValidatedLucitLicense(licensing_exception)
         if self.ubdcc_address is not None:
             self.cluster = Cluster(address=self.ubdcc_address, port=self.ubdcc_port)
         else:
@@ -178,11 +167,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
             try:
                 self.ubra = BinanceRestApiManager(exchange=self.exchange,
                                                   disable_colorama=disable_colorama,
-                                                  warn_on_update=warn_on_update,
-                                                  lucit_api_secret=self.lucit_api_secret,
-                                                  lucit_license_ini=self.lucit_license_ini,
-                                                  lucit_license_profile=self.lucit_license_profile,
-                                                  lucit_license_token=self.lucit_license_token)
+                                                  warn_on_update=warn_on_update)
             except requests.exceptions.ConnectionError as error_msg:
                 error_msg = (f"Can not initialize BinanceLocalDepthCacheManager() - No internet connection? - "
                              f"{error_msg}")
@@ -211,7 +196,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
 
         if warn_on_update is True and self.is_update_available() is True:
             update_msg = (f"Release {self.name}_{self.get_latest_version()} is available, please consider updating! "
-                          f"Changelog: https://unicorn-binance-local-depth-cache.docs.lucit.tech/changelog.html")
+                          f"Changelog: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/changelog.html")
             print(update_msg)
             logger.warning(update_msg)
 
@@ -263,7 +248,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         :param market: Specify the market for the used DepthCaches
         :type market: str
         :param refresh_interval: The refresh interval in seconds, default is the `default_refresh_interval` of
-        `BinanceLocalDepthCache <https://unicorn-binance-local-depth-cache.docs.lucit.tech/unicorn_binance_local_depth_cache.html?highlight=default_refresh_interval#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager>`__.
+        `BinanceLocalDepthCache <https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html?highlight=default_refresh_interval#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager>`__.
         The DepthCaches is reset and reinitialized at this interval.
         :type refresh_interval: int
         :return: bool
@@ -892,7 +877,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         :param markets: Specify the market symbols for caches to be created
         :type markets: str or list
         :param refresh_interval: The refresh interval in seconds, default is the `default_refresh_interval` of
-                                 `BinanceLocalDepthCache <https://unicorn-binance-local-depth-cache.docs.lucit.tech/unicorn_binance_local_depth_cache.html?highlight=default_refresh_interval#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager>`__.
+                                 `BinanceLocalDepthCache <https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html?highlight=default_refresh_interval#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager>`__.
                                  The DepthCache is reset and reinitialized at this interval.
         :type refresh_interval: int
 
@@ -1222,11 +1207,11 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         Create a PNG image file with the console output of `print_summary()`
 
         *LINUX ONLY* It should not be hard to make it OS independent:
-        https://github.com/LUCIT-Systems-and-Development/unicorn-binance-websocket-api/issues/61
+        https://github.com/oliver-zehentleitner/unicorn-binance-websocket-api/issues/61
 
         :param print_summary_export_path: If you want to export the output of print_summary() to an image,
                                          please provide a path like "/var/www/html/". `View the Wiki!
-                                         <https://github.com/LUCIT-Systems-and-Development/unicorn-binance-websocket-api/wiki/How-to-export-print_summary()-stdout-to-PNG%3F>`__
+                                         <https://github.com/oliver-zehentleitner/unicorn-binance-websocket-api/wiki/How-to-export-print_summary()-stdout-to-PNG%3F>`__
         :type print_summary_export_path: str
         :param height_per_row: set the height per row for the image height calculation
         :type height_per_row: float
@@ -1319,7 +1304,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                        f"'stop_depthcache()' instead!")
         return self.stop_depthcache(markets=markets)
 
-    def stop_manager(self, close_api_session: bool = True) -> bool:
+    def stop_manager(self) -> bool:
         """
         Stop unicorn-binance-local-depth-cache with all sub routines
 
@@ -1329,6 +1314,4 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         self.stop_request = True
         self.ubra.stop_manager()
         self.ubwa.stop_manager()
-        if close_api_session is True:
-            self.llm.close()
         return True

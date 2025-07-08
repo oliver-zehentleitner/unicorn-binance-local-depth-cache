@@ -20,4 +20,4 @@ python ubldc_package_update_check.py
 ```
 
 For further assistance or to report issues, please [contact our support team](https://www.lucit.tech/get-support.html) 
-or [visit our GitHub repository](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache).
+or [visit our GitHub repository](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache).

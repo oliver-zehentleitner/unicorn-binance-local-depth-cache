@@ -10,10 +10,14 @@ jobs:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     env:
-      CIBW_SKIP: "pp36-* pp37-* pp38-*"
+      CIBW_BUILD: "cp38-* cp39-* cp310-* cp311-* cp312-* cp313-*"
+      CIBW_ARCHS_LINUX: "x86_64"
+      CIBW_ARCHS_MACOS: "x86_64 arm64 universal2"
+      CIBW_ARCHS_WINDOWS: "AMD64"
+      CIBW_MUSLLINUX_X86_64_IMAGE: "quay.io/pypa/musllinux_1_2_x86_64:2025.06.08-1"
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-12]
+        os: [ubuntu-24.04, windows-2025, macos-14]
     steps:
       - name: GitHub Checkout
         uses: actions/checkout@v4
@@ -25,26 +29,33 @@ jobs:
         run: echo "CIBW_SKIP=pp36-* pp37-*" >> $GITHUB_ENV
 
       - name: Check ENV
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-24.04'
         run: echo $PATH
 
+      - name: Setup Python 3.13+ for non-Windows
+        if: matrix.os != 'windows-2025'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
       - name: Build wheels Linux
-        if: matrix.os == 'ubuntu-20.04'
-        uses: pypa/cibuildwheel@v2.16.5
+        if: matrix.os == 'ubuntu-24.04'
+        uses: pypa/cibuildwheel@v3.0.0
 
       - name: Build wheels Mac
-        if: matrix.os == 'macos-12'
-        uses: pypa/cibuildwheel@v2.16.5
+        if: matrix.os == 'macos-14'
+        uses: pypa/cibuildwheel@v3.0.0
 
       - name: Build wheels Windows
-        if: matrix.os == 'windows-2019'
-        uses: pypa/cibuildwheel@v2.16.5
+        if: matrix.os == 'windows-2025'
+        uses: pypa/cibuildwheel@v3.0.0
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
+          name: artifact-${{ matrix.os }}
           path: ./wheelhouse/*.whl
-          overwrite: true
+          #overwrite: true
 
   build_sdist:
     name: Build source distribution
@@ -77,16 +88,23 @@ jobs:
           name: artifact
           path: dist
 
+      - name: Move all artifacts into dist_upload/
+        run: |
+          rm -rf dist_upload
+          mkdir -p dist_upload
+          find dist -name '*.whl' -exec cp {} dist_upload/ \;
+          find dist -name '*.tar.gz' -exec cp {} dist_upload/ \;
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           body: |
-            Please read the [CHANGELOG](https://unicorn-binance-local-depth-cache.docs.lucit.tech/changelog.html) for further information.
+            Please read the [CHANGELOG](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/changelog.html) for further information.
           discussion_category_name: releases
           draft: false
           files: | 
-            dist/*.tar.gz
-            dist/*.whl
+            dist_upload/*.tar.gz
+            dist_upload/*.whl
           generate_release_notes: true
           name: unicorn-binance-local-depth-cache
           prerelease: false
