@@ -182,11 +182,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                                                close_timeout_default=self.websocket_close_timeout,
                                                ping_timeout_default=self.websocket_ping_interval,
                                                ping_interval_default=self.websocket_ping_timeout,
-                                               warn_on_update=warn_on_update,
-                                               lucit_api_secret=self.lucit_api_secret,
-                                               lucit_license_ini=self.lucit_license_ini,
-                                               lucit_license_profile=self.lucit_license_profile,
-                                               lucit_license_token=self.lucit_license_token)
+                                               warn_on_update=warn_on_update)
 
         if self.high_performance is True:
             logger.info(f"Using `high_performance` ...")
