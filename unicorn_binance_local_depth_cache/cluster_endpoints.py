@@ -47,5 +47,4 @@ class ClusterEndpoints:
     get_depthcache_list: str = "get_depthcache_list"
     get_depthcache_info: str = "get_depthcache_info"
     stop_depthcache: str = "stop_depthcache"
-    submit_license: str = "submit_license"
     test: str = "test"

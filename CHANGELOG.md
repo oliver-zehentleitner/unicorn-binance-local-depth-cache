@@ -18,6 +18,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - setup.py: Fixed author from "LUCIT Systems and Development" to "Oliver Zehentleitner"
 ### Removed
 - Dropped Python 3.8 support
+- Removed `Cluster.submit_license()` and `Cluster.submit_license_async()` — LUCIT licensing is gone
+- Removed `ClusterEndpoints.submit_license` endpoint definition
+- Removed `examples/unicorn_depthcache_cluster_for_binance/submit-license*.py`
 
 ## 2.8.1
 ### Added

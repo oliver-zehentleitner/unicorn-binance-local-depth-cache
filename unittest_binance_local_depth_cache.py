@@ -852,16 +852,6 @@ class TestCluster(unittest.TestCase):
         self.assertIn('error', result)
 
     @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
-    def test_submit_license_missing_params(self, mock_get):
-        mock_get.return_value = unittest.mock.MagicMock(
-            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
-            raise_for_status=unittest.mock.MagicMock()
-        )
-        cluster = Cluster(address="mock-cluster.local", port=80)
-        with self.assertRaises(ValueError):
-            cluster.submit_license(api_secret="secret")
-
-    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
     def test_test_connection_false(self, mock_get):
         mock_get.return_value = unittest.mock.MagicMock(
             json=unittest.mock.MagicMock(side_effect=[
