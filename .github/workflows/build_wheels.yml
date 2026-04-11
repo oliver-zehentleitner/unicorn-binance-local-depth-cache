@@ -40,15 +40,15 @@ jobs:
 
       - name: Build wheels Linux
         if: matrix.os == 'ubuntu-24.04'
-        uses: pypa/cibuildwheel@v3.0.0
+        uses: pypa/cibuildwheel@v3.4.1
 
       - name: Build wheels Mac
         if: matrix.os == 'macos-14'
-        uses: pypa/cibuildwheel@v3.0.0
+        uses: pypa/cibuildwheel@v3.4.1
 
       - name: Build wheels Windows
         if: matrix.os == 'windows-2025'
-        uses: pypa/cibuildwheel@v3.0.0
+        uses: pypa/cibuildwheel@v3.4.1
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
