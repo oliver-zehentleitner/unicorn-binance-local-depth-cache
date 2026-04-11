@@ -10,8 +10,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
 ## 2.8.1.dev (development stage/unreleased/unstable)
+### Added
+- Added Python 3.14 support
+- Added mocked unit tests for `Cluster` class (cluster.py)
 ### Changed
 - build_wheels.yml: Upgraded `cibuildwheel` from `v3.0.0` to `v3.4.1`
+- setup.py: Fixed author from "LUCIT Systems and Development" to "Oliver Zehentleitner"
+### Removed
+- Dropped Python 3.8 support
 
 ## 2.8.1
 ### Added

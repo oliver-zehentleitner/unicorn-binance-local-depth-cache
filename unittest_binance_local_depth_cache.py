@@ -39,8 +39,11 @@
 # IN THE SOFTWARE.
 
 from unicorn_binance_local_depth_cache import *
+from unicorn_binance_local_depth_cache.cluster import Cluster
+from unicorn_binance_local_depth_cache.exceptions import DepthCacheClusterNotReachableError
 import logging
 import unittest
+import unittest.mock
 import os
 import time
 import threading
@@ -676,6 +679,200 @@ class TestUbldc(unittest.TestCase):
     def test_with(self):
         with BinanceLocalDepthCacheManager(exchange="binance.us") as ubldc:
             ubldc.get_latest_release_info()
+
+
+_CLUSTER_TEST_RESPONSE_OK = {'app': {'name': 'lucit-ubdcc-restapi'}, 'result': 'OK'}
+_CLUSTER_ASKS_RESPONSE = {'asks': [['50000.00', '1.5'], ['50001.00', '0.3']]}
+_CLUSTER_BIDS_RESPONSE = {'bids': [['49999.00', '2.0'], ['49998.00', '0.8']]}
+_CLUSTER_INFO_RESPONSE = {'cluster': {'nodes': 3, 'status': 'healthy'}}
+_CLUSTER_LIST_RESPONSE = {'depthcaches': ['binance.com_BTCUSDT']}
+_CLUSTER_DC_INFO_RESPONSE = {'depthcache': {'market': 'BTCUSDT', 'exchange': 'binance.com'}}
+
+
+def _make_cluster(mock_get):
+    """Helper: create a Cluster instance with mocked HTTP."""
+    mock_get.return_value.__enter__ = mock_get.return_value
+    mock_response = unittest.mock.MagicMock()
+    mock_response.json.return_value = _CLUSTER_TEST_RESPONSE_OK
+    mock_response.raise_for_status = unittest.mock.MagicMock()
+    mock_get.return_value = mock_response
+    return Cluster(address="mock-cluster.local", port=80)
+
+
+class TestCluster(unittest.TestCase):
+    """Unit tests for Cluster (cluster.py) — all HTTP calls are mocked."""
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_instantiation_success(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        self.assertEqual(cluster.url, "http://mock-cluster.local/")
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_instantiation_unreachable(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value={'result': 'FAIL'}),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        with self.assertRaises(DepthCacheClusterNotReachableError):
+            Cluster(address="dead-host.local", port=80)
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_build_url_with_port(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=8080)
+        self.assertEqual(cluster.url, "http://mock-cluster.local:8080/")
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_create_depthcache(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, {'result': 'OK'}]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.create_depthcache(exchange="binance.com", market="BTCUSDT")
+        self.assertEqual(result, {'result': 'OK'})
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_create_depthcache_missing_params(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        with self.assertRaises(ValueError):
+            cluster.create_depthcache(exchange="binance.com")
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_create_depthcaches(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, {'result': 'OK'}]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.create_depthcaches(exchange="binance.com", markets=["BTCUSDT", "ETHUSDT"])
+        self.assertEqual(result, {'result': 'OK'})
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_get_asks(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, _CLUSTER_ASKS_RESPONSE]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.get_asks(exchange="binance.com", market="BTCUSDT")
+        self.assertIn('asks', result)
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_get_asks_missing_params(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        with self.assertRaises(ValueError):
+            cluster.get_asks(exchange="binance.com")
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_get_bids(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, _CLUSTER_BIDS_RESPONSE]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.get_bids(exchange="binance.com", market="BTCUSDT")
+        self.assertIn('bids', result)
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_get_cluster_info(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, _CLUSTER_INFO_RESPONSE]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.get_cluster_info()
+        self.assertIn('cluster', result)
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_get_depthcache_list(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, _CLUSTER_LIST_RESPONSE]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.get_depthcache_list()
+        self.assertIn('depthcaches', result)
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_get_depthcache_info(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, _CLUSTER_DC_INFO_RESPONSE]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.get_depthcache_info(exchange="binance.com", market="BTCUSDT")
+        self.assertIn('depthcache', result)
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_stop_depthcache(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, {'result': 'OK'}]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.stop_depthcache(exchange="binance.com", market="BTCUSDT")
+        self.assertEqual(result, {'result': 'OK'})
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_stop_depthcache_missing_params(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        with self.assertRaises(ValueError):
+            cluster.stop_depthcache(exchange="binance.com")
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_request_network_error(self, mock_get):
+        import requests as req
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        mock_get.side_effect = req.exceptions.ConnectionError("mocked network error")
+        result = cluster.get_cluster_info()
+        self.assertIn('error', result)
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_submit_license_missing_params(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        with self.assertRaises(ValueError):
+            cluster.submit_license(api_secret="secret")
+
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
+    def test_test_connection_false(self, mock_get):
+        mock_get.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(side_effect=[
+                _CLUSTER_TEST_RESPONSE_OK,
+                {'app': {'name': 'other-app'}, 'result': 'OK'}
+            ]),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        cluster = Cluster(address="mock-cluster.local", port=80)
+        result = cluster.test_connection()
+        self.assertFalse(result)
 
 
 if __name__ == '__main__':
