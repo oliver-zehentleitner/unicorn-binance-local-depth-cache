@@ -681,7 +681,7 @@ class TestUbldc(unittest.TestCase):
             ubldc.get_latest_release_info()
 
 
-_CLUSTER_TEST_RESPONSE_OK = {'app': {'name': 'lucit-ubdcc-restapi'}, 'result': 'OK'}
+_CLUSTER_TEST_RESPONSE_OK = {'app': {'name': 'ubdcc-restapi'}, 'result': 'OK'}
 _CLUSTER_ASKS_RESPONSE = {'asks': [['50000.00', '1.5'], ['50001.00', '0.3']]}
 _CLUSTER_BIDS_RESPONSE = {'bids': [['49999.00', '2.0'], ['49998.00', '0.8']]}
 _CLUSTER_INFO_RESPONSE = {'cluster': {'nodes': 3, 'status': 'healthy'}}

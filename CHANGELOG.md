@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Removed `Cluster.submit_license()` and `Cluster.submit_license_async()` — LUCIT licensing is gone
 - Removed `ClusterEndpoints.submit_license` endpoint definition
 - Removed `examples/unicorn_depthcache_cluster_for_binance/submit-license*.py`
+- `Cluster.test_connection()`: updated app name check from `lucit-ubdcc-restapi` to `ubdcc-restapi`
 
 ## 2.8.1
 ### Added

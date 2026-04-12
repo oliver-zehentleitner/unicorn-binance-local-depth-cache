@@ -319,13 +319,13 @@ class Cluster:
     def test_connection(self) -> bool:
         test = self._request(self.endpoints.test, method="get")
         if test.get('app') is not None and test.get('result') is not None:
-            if test['app']['name'] == "lucit-ubdcc-restapi" and test['result'] == "OK":
+            if test['app']['name'] == "ubdcc-restapi" and test['result'] == "OK":
                 return True
         return False
 
     async def test_connection_async(self) -> bool:
         test = await self._request_async(self.endpoints.test, method="get")
         if test.get('app') is not None and test.get('result') is not None:
-            if test['app']['name'] == "lucit-ubdcc-restapi" and test['result'] == "OK":
+            if test['app']['name'] == "ubdcc-restapi" and test['result'] == "OK":
                 return True
         return False
