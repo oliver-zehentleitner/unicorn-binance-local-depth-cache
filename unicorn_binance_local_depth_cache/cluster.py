@@ -302,20 +302,6 @@ class Cluster:
     async def get_test_async(self) -> dict:
         return await self._request_async(self.endpoints.test, method="get")
 
-    def submit_license(self, api_secret: str = None, license_token: str = None, debug: bool = False) -> dict:
-        if api_secret is None or license_token is None:
-            raise ValueError("Missing mandatory parameter: api_secret, license_token")
-        params = {"api_secret": api_secret,
-                  "license_token": license_token}
-        return self._request(self.endpoints.submit_license, method="get", params=params, debug=debug)
-
-    async def submit_license_async(self, api_secret: str = None, license_token: str = None, debug: bool = False) -> dict:
-        if api_secret is None or license_token is None:
-            raise ValueError("Missing mandatory parameter: api_secret, license_token")
-        params = {"api_secret": api_secret,
-                  "license_token": license_token}
-        return await self._request_async(self.endpoints.submit_license, method="get", params=params, debug=debug)
-
     def stop_depthcache(self, exchange: str = None, market: str = None, debug: bool = False) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
@@ -333,13 +319,13 @@ class Cluster:
     def test_connection(self) -> bool:
         test = self._request(self.endpoints.test, method="get")
         if test.get('app') is not None and test.get('result') is not None:
-            if test['app']['name'] == "lucit-ubdcc-restapi" and test['result'] == "OK":
+            if test['app']['name'] == "ubdcc-restapi" and test['result'] == "OK":
                 return True
         return False
 
     async def test_connection_async(self) -> bool:
         test = await self._request_async(self.endpoints.test, method="get")
         if test.get('app') is not None and test.get('result') is not None:
-            if test['app']['name'] == "lucit-ubdcc-restapi" and test['result'] == "OK":
+            if test['app']['name'] == "ubdcc-restapi" and test['result'] == "OK":
                 return True
         return False
