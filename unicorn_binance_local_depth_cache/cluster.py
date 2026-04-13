@@ -88,8 +88,7 @@ class Cluster:
             if method == "get":
                 response = requests.get(self.url+endpoint, params=params, headers=headers, timeout=timeout)
             elif method == "post":
-                response = requests.post(self.url+endpoint, json=json.dumps(params),
-                                         headers={"Content-Type": "application/json"})
+                response = requests.post(self.url+endpoint, json=params)
             else:
                 raise ValueError("Allowed 'method' values: get, post")
             response.raise_for_status()
