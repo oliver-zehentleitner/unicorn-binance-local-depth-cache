@@ -1047,11 +1047,13 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         :return: str or None
         """
         logger.debug(f"BinanceWebSocketApiManager.get_latest_version() - Started ...")
-        # Do a fresh request if status is None or last timestamp is older 1 hour
-        if self.last_update_check_github['status'].get('tag_name') is None or \
+        # Do a fresh request if status is not a dict, has no tag_name, or last timestamp is older 1 hour
+        if not isinstance(self.last_update_check_github['status'], dict) or \
+                self.last_update_check_github['status'].get('tag_name') is None or \
                 (self.last_update_check_github['timestamp'] + (60 * 60) < time.time()):
             self.last_update_check_github['status'] = self.get_latest_release_info()
-        if self.last_update_check_github['status'].get('tag_name') is not None:
+        if isinstance(self.last_update_check_github['status'], dict) and \
+                self.last_update_check_github['status'].get('tag_name') is not None:
             try:
                 return self.last_update_check_github['status']['tag_name']
             except KeyError as error_msg:
