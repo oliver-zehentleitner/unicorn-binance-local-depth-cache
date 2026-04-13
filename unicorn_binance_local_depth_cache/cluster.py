@@ -41,7 +41,7 @@
 import aiohttp
 import asyncio
 import logging
-import json
+import orjson as json
 import requests
 import time
 from .cluster_endpoints import ClusterEndpoints

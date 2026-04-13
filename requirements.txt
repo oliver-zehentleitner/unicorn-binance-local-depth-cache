@@ -6,6 +6,7 @@
 
 aiohttp
 Cython>=3.0.10
+orjson
 requests>=2.32.3
 unicorn-binance-rest-api>=2.8.1
 unicorn-binance-websocket-api>=2.10.2
