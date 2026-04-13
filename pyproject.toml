@@ -23,6 +23,7 @@ repository = "https://github.com/oliver-zehentleitner/unicorn-binance-local-dept
 python = ">=3.9.0"
 aiohttp = "*"
 Cython = "*"
+orjson = "*"
 requests = ">=2.31.0"
 unicorn-binance-rest-api = ">=2.9.0"
 unicorn-binance-websocket-api = ">=2.10.2"

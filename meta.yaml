@@ -31,6 +31,7 @@ requirements:
     - lucit::unicorn-binance-rest-api >=2.9.0
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - Cython
+    - orjson
     - requests >=2.31.0
   run:
     - python
@@ -38,6 +39,7 @@ requirements:
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - aiohttp
     - Cython
+    - orjson
     - requests >=2.31.0
 
 dependencies:
