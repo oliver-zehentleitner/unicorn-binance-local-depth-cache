@@ -420,6 +420,12 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                          f"snapshot for the depth_cache with market {market} - requests.exceptions.ReadTimeout - "
                          f"error_msg: {error_msg}")
             return None
+        if 'lastUpdateId' not in order_book:
+            hint = (" - Note: TRBinance requires api_key/api_secret even for public REST endpoints"
+                    if self.exchange == "trbinance.com" else "")
+            logger.error(f"BinanceLocalDepthCacheManager._get_order_book_from_rest() - Received error response "
+                         f"instead of order_book for market {market}: {order_book}{hint}")
+            return None
         logger.debug(f"BinanceLocalDepthCacheManager._init_depth_get_order_book_from_rest_cache() - Downloaded "
                      f"order_book snapshot for the depth_cache with market {market}")
         return order_book

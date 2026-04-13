@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added Python 3.14 support
 - Added mocked unit tests for `Cluster` class (cluster.py)
 ### Fixed
+- manager.py: detect REST API error responses in `_get_order_book_from_rest()` and log clearly instead of failing silently with a `KeyError` — includes hint for `trbinance.com` about required API key
 - cluster.py: replaced `print()` with proper `logger` calls in `_request()` and `_request_async()` — `error` for network/client failures, `warning` for timeouts and cancellations
 ### Changed
 - build_wheels.yml: Upgraded `cibuildwheel` from `v3.0.0` to `v3.4.1`
