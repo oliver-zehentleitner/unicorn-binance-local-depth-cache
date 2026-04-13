@@ -40,7 +40,6 @@
 
 import aiohttp
 import asyncio
-import base64
 import logging
 import json
 import requests
@@ -164,7 +163,7 @@ class Cluster:
                   "desired_quantity": desired_quantity,
                   "update_interval": update_interval,
                   "refresh_interval": refresh_interval}
-        return self._request(self.endpoints.create_depthcache, method="get", params=params, debug=debug)
+        return self._request(self.endpoints.create_depthcache, method="post", params=params, debug=debug)
 
     async def create_depthcache_async(self,
                                       exchange: str = None,
@@ -180,7 +179,7 @@ class Cluster:
                   "desired_quantity": desired_quantity,
                   "update_interval": update_interval,
                   "refresh_interval": refresh_interval}
-        return await self._request_async(self.endpoints.create_depthcache, method="get", params=params, debug=debug)
+        return await self._request_async(self.endpoints.create_depthcache, method="post", params=params, debug=debug)
 
     def create_depthcaches(self,
                            exchange: str = None,
@@ -192,11 +191,11 @@ class Cluster:
         if exchange is None or markets is None:
             raise ValueError("Missing mandatory parameter: exchange, markets")
         params = {"exchange": exchange,
-                  "markets": base64.b64encode(json.dumps(markets).encode('utf-8')).decode('utf-8'),
+                  "markets": markets,
                   "desired_quantity": desired_quantity,
                   "update_interval": update_interval,
                   "refresh_interval": refresh_interval}
-        return self._request(self.endpoints.create_depthcaches, method="get", params=params, debug=debug)
+        return self._request(self.endpoints.create_depthcaches, method="post", params=params, debug=debug)
 
     async def create_depthcaches_async(self,
                                        exchange: str = None,
@@ -208,11 +207,11 @@ class Cluster:
         if exchange is None or markets is None:
             raise ValueError("Missing mandatory parameter: exchange, markets")
         params = {"exchange": exchange,
-                  "markets": base64.b64encode(json.dumps(markets).encode('utf-8')).decode('utf-8'),
+                  "markets": markets,
                   "desired_quantity": desired_quantity,
                   "update_interval": update_interval,
                   "refresh_interval": refresh_interval}
-        return await self._request_async(self.endpoints.create_depthcaches, method="get", params=params, debug=debug)
+        return await self._request_async(self.endpoints.create_depthcaches, method="post", params=params, debug=debug)
 
     def get_asks(self,
                  exchange: str = None,
