@@ -479,7 +479,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
             return False
         self._reset_depth_cache(market=market)
         self.depth_caches[market]['last_refresh_time'] = int(time.time())
-        self.depth_caches[market]['last_update_time'] = int(time.time())
+        self.depth_caches[market]['last_update_time'] = int(time.time() * 1000)
         try:
             self.depth_caches[market]['last_update_id'] = int(order_book['lastUpdateId'])
         except TypeError as error_msg:
@@ -619,7 +619,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                              f"{stream_data['data']['U']} - {stream_data['data']['u']}")
                 self._apply_updates(asks=stream_data['data']['a'], bids=stream_data['data']['b'], market=market)
                 self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])
-                self.depth_caches[market]['last_update_time'] = int(time.time())
+                self.depth_caches[market]['last_update_time'] = int(time.time() * 1000)
                 self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
                 continue
             else:
@@ -651,7 +651,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                         # Init (refresh) finished
                         last_sync_time = time.time()
                         self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])
-                        self.depth_caches[market]['last_update_time'] = int(last_sync_time)
+                        self.depth_caches[market]['last_update_time'] = int(last_sync_time * 1000)
                         self.depth_caches[market]['last_refresh_time'] = int(last_sync_time)
                         self.depth_caches[market]['is_synchronized'] = True
                         self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
@@ -673,7 +673,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                         # Init (refresh) finished
                         last_sync_time = time.time()
                         self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])
-                        self.depth_caches[market]['last_update_time'] = int(last_sync_time)
+                        self.depth_caches[market]['last_update_time'] = int(last_sync_time * 1000)
                         self.depth_caches[market]['is_synchronized'] = True
                         self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
                         continue
@@ -956,13 +956,13 @@ class BinanceLocalDepthCacheManager(threading.Thread):
 
     def get_last_update_time(self, market: str = None) -> Optional[int]:
         """
-        Get the Unix timestamp of the last processed depth update for a market.
+        Get the Unix timestamp in milliseconds of the last processed depth update for a market.
 
         Returns ``None`` if the DepthCache exists but has not yet received its first update.
 
         :param market: Specify the market symbol for the used DepthCache
         :type market: str
-        :return: Unix timestamp (int) or None
+        :return: Unix timestamp in milliseconds (int) or None
         :raises DepthCacheNotFound: if the market is unknown
         """
         if market is None:
