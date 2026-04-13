@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added support for exchange `trbinance.com` (closes #13)
 - Added Python 3.14 support
 - Added mocked unit tests for `Cluster` class (cluster.py)
+### Fixed
+- cluster.py: replaced `print()` with proper `logger` calls in `_request()` and `_request_async()` — `error` for network/client failures, `warning` for timeouts and cancellations
 ### Changed
 - build_wheels.yml: Upgraded `cibuildwheel` from `v3.0.0` to `v3.4.1`
 - setup.py: Fixed author from "LUCIT Systems and Development" to "Oliver Zehentleitner"

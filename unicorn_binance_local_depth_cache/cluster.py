@@ -101,7 +101,7 @@ class Cluster:
                 result['debug']['transmission_time'] = request_time - result['debug']['cluster_execution_time']
             return result
         except requests.exceptions.RequestException as error_msg:
-            print(f"An error occurred: {error_msg}")
+            logger.error(f"Cluster._request() - {self.url+endpoint} - {error_msg}")
             return {"error": error_msg}
 
     async def _request_async(self,
@@ -141,13 +141,13 @@ class Cluster:
                     request_time - result['debug']['cluster_execution_time']
             return result
         except asyncio.CancelledError as error_msg:
-            print(f"An error occurred: asyncio.CancelledError - {self.url+endpoint} - {error_msg}")
+            logger.warning(f"Cluster._request_async() - asyncio.CancelledError - {self.url+endpoint} - {error_msg}")
             return {"error": f"asyncio.CancelledError - {self.url+endpoint} - {str(error_msg)}"}
         except asyncio.TimeoutError:
-            print(f"An error occurred: asyncio.TimeoutError - {self.url+endpoint}")
+            logger.warning(f"Cluster._request_async() - asyncio.TimeoutError - {self.url+endpoint}")
             return {"error": f"asyncio.TimeoutError - {self.url+endpoint}"}
         except aiohttp.ClientError as error_msg:
-            print(f"An error occurred: aiohttp.ClientError- {self.url+endpoint} - {error_msg}")
+            logger.error(f"Cluster._request_async() - aiohttp.ClientError - {self.url+endpoint} - {error_msg}")
             return {"error": f"aiohttp.ClientError - {self.url+endpoint} - {str(error_msg)}"}
 
     def create_depthcache(self,
