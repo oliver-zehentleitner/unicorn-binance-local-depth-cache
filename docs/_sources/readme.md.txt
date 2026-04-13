@@ -19,7 +19,7 @@
 
 # UNICORN Binance Local Depth Cache 
 
-[Description](#description) | [Installation](#installation-and-upgrade) | [How To](#howto) | [Documentation](#documentation) | 
+[Description](#description) | [Installation](#installation-and-upgrade) | [Documentation](#documentation) | 
 [Examples](#examples) | [Change Log](#change-log) | [Wiki](#wiki) | [Social](#social) | 
 [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
 [Contributing](#contributing) |[Disclaimer](#disclaimer)
@@ -150,7 +150,8 @@ The Python package [UNICORN Binance Local Depth Cache](https://github.com/oliver
 provides local order books for the Binance Exchanges 
 [Binance](https://github.com/binance-exchange/binance-official-api-docs) ([+Testnet](https://testnet.binance.vision/)), 
 [Binance Futures](https://binance-docs.github.io/apidocs/futures/en/#websocket-market-streams) 
-([+Testnet](https://testnet.binancefuture.com)) and [Binance US](https://www.binance.us/).
+([+Testnet](https://testnet.binancefuture.com)), [Binance US](https://www.binance.us/) and 
+[TRBinance](https://www.binance.tr/).
 
 ***The algorithm of the DepthCache management was designed according to these instructions:***
 
@@ -161,6 +162,7 @@ Since, according to Binance's predefined algorithm,
 - [Binance Spot: "How to manage a local order book correctly"](https://binance-docs.github.io/apidocs/spot/en/#how-to-manage-a-local-order-book-correctly)
 - [Binance Futures: "How to manage a local order book correctly"](https://binance-docs.github.io/apidocs/futures/en/#diff-book-depth-streams)
 - [Binance US: "Managing a Local Order Book"](https://docs.binance.us/#order-book-depth-diff-stream)
+- [TRBinance: "Diff. Depth Stream"](https://www.binance.tr/apidocs/#diff-depth-stream)
 
 With [create_depthcache()`](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html?highlight=create_depthcache#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.create_depthcaches) 
 the DepthCache is started and initialized, i.e. for each DepthCache that is to be created, a separate 
@@ -198,6 +200,10 @@ is thrown or ask with [`is_depth_cache_synchronized()`](https://oliver-zehentlei
 | [Binance USD-M Futures](https://www.binance.com)                   | `binance.com-futures`         |
 | [Binance USD-M Futures Testnet](https://testnet.binancefuture.com) | `binance.com-futures-testnet` |
 | [Binance US](https://www.binance.us/)                              | `binance.us`                  |
+| [TRBinance](https://www.binance.tr/)                               | `trbinance.com` ¹             |
+
+  ¹ TRBinance requires an API key even for public REST endpoints (e.g. order book snapshots). 
+  Pass `api_key` and `api_secret` to `BinanceRestApiManager` when using `exchange="trbinance.com"`.
 
 - Create multiple depth caches within a single object instance. 
 
@@ -296,10 +302,10 @@ Run in bash:
 `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 2.8.1) you determined 
+Use the below command with the version (such as 2.9.0) you determined 
 [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.8.1.tar.gz --upgrade`
+`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.9.0.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 This is not a release version and can not be considered to be stable!
@@ -316,9 +322,6 @@ This is not a release version and can not be considered to be stable!
 ## Examples
 - [Look here!](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/)
 
-## Howto
-- [How to Obtain and Use a Unicorn Binance Suite License Key and Run the UBS Module According to Best Practice](https://technopathy.club/how-to-obtain-and-use-a-unicorn-binance-suite-license-key-and-run-the-ubs-module-according-to-best-87b0088124a8)
-
 ## Project Homepage
 [https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 
@@ -327,10 +330,9 @@ This is not a release version and can not be considered to be stable!
 
 ## Social
 - [Discussions](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/discussions)
-- [Gitter](https://gitter.im/unicorn-binance-suite/unicorn-binance-local-depth-cache)
 - [https://t.me/unicorndevs](https://t.me/unicorndevs)
 - [https://dev.binance.vision](https://dev.binance.vision)
-- [https://community.binance.org](https://community.binance.org)
+
 
 ## Receive Notifications
 To receive notifications on available updates you can 
@@ -344,7 +346,6 @@ To receive news (like inspection windows/maintenance) about the Binance API`s su
 
 - [https://t.me/binance_api_announcements](https://t.me/binance_api_announcements)
 - [https://t.me/binance_api_english](https://t.me/binance_api_english)
-- [https://t.me/Binance_JEX_EN](https://t.me/Binance_JEX_EN)
 - [https://t.me/Binance_USA](https://t.me/Binance_USA)
 - [https://t.me/TRBinanceTR](https://t.me/TRBinanceTR)
 - [https://t.me/BinanceExchange](https://t.me/BinanceExchange)

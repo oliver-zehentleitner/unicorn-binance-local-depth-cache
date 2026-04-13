@@ -19,7 +19,7 @@
 
 # UNICORN Binance Local Depth Cache 
 
-[Description](#description) | [Installation](#installation-and-upgrade) | [How To](#howto) | [Documentation](#documentation) | 
+[Description](#description) | [Installation](#installation-and-upgrade) | [Documentation](#documentation) | 
 [Examples](#examples) | [Change Log](#change-log) | [Wiki](#wiki) | [Social](#social) | 
 [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
 [Contributing](#contributing) |[Disclaimer](#disclaimer)
@@ -302,10 +302,10 @@ Run in bash:
 `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 2.8.1) you determined 
+Use the below command with the version (such as 2.9.0) you determined 
 [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.8.1.tar.gz --upgrade`
+`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.9.0.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 This is not a release version and can not be considered to be stable!

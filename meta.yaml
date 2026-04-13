@@ -1,5 +1,5 @@
 {% set name = "unicorn-binance-local-depth-cache" %}
-{% set version = "2.8.1" %}
+{% set version = "2.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -28,13 +28,13 @@ requirements:
     - pip
     - mypy
     - aiohttp
-    - lucit::unicorn-binance-rest-api >=2.8.1
+    - lucit::unicorn-binance-rest-api >=2.9.0
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - Cython
     - requests >=2.31.0
   run:
     - python
-    - lucit::unicorn-binance-rest-api >=2.8.1
+    - lucit::unicorn-binance-rest-api >=2.9.0
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - aiohttp
     - Cython
@@ -57,7 +57,7 @@ about:
     A Python SDK for accessing and managing multiple local Binance order books with Python in a simple, fast, 
     flexible, robust and fully featured way.
   description: |
-    [![Get a UNICORN Binance Suite License](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/logo/LUCIT-UBS-License-Offer.png)](https://shop.lucit.services)
+    [![Get a UNICORN Binance Suite License](https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-suite/master/images/logo/LUCIT-UBS-License-Offer.png)](https://shop.lucit.services)
 
     [![Anaconda Release](https://img.shields.io/conda/v/lucit/unicorn-binance-local-depth-cache?color=blue)](https://anaconda.org/lucit/unicorn-binance-local-depth-cache)
     [![GitHub Release](https://img.shields.io/github/release/oliver-zehentleitner/unicorn-binance-local-depth-cache.svg?label=github)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases)
@@ -366,10 +366,10 @@ about:
     `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
     #### Windows
-    Use the below command with the version (such as 2.8.1) you determined 
+    Use the below command with the version (such as 2.9.0) you determined 
     [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-    `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.8.1.tar.gz --upgrade`
+    `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.9.0.tar.gz --upgrade`
 
     ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
     This is not a release version and can not be considered to be stable!
@@ -410,7 +410,7 @@ about:
     with using 
     [`is_update_available()`](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html?highlight=is_update_available#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.is_update_available).
 
-    Follow us on [LinkedIn](https://www.linkedin.com/company/lucit-systems-and-development), 
+    Follow us on [LinkedIn](https://www.linkedin.com/company/oliver-zehentleitner), 
     [X](https://twitter.com/LUCIT_SysDev) or [Facebook](https://www.facebook.com/lucit.systems.and.development)!
 
     To receive news (like inspection windows/maintenance) about the Binance API`s subscribe to their telegram groups: 
@@ -457,7 +457,7 @@ about:
 
     ## Commercial Support
 
-    [![Get professional and fast support](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/support/LUCIT-get-professional-and-fast-support.png)](https://www.lucit.tech/get-support.html)
+    [![Get professional and fast support](https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-suite/master/images/support/LUCIT-get-professional-and-fast-support.png)](https://www.lucit.tech/get-support.html)
 
     ***Do you need a developer, operator or consultant?*** [Contact us](https://www.lucit.tech/contact.html) for a non-binding initial consultation!
 

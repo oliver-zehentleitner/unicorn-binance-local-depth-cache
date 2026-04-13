@@ -62,7 +62,7 @@ with open("README.md", "r") as fh:
 
 setup(
      name=name,
-     version="2.8.1",
+     version="2.9.0",
      author="Oliver Zehentleitner",
      author_email='',
      url="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache",
@@ -72,7 +72,7 @@ setup(
      long_description_content_type="text/markdown",
      license='MIT',
      install_requires=['aiohttp', 'Cython>=3.0.10', 'requests>=2.32.3',
-                       'unicorn-binance-websocket-api>=2.10.2', 'unicorn-binance-rest-api>=2.8.1'],
+                       'unicorn-binance-websocket-api>=2.10.2', 'unicorn-binance-rest-api>=2.9.0'],
      keywords='binance, depth cache',
      project_urls={
          'Documentation': 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache',

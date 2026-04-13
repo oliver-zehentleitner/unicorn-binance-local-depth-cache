@@ -54,7 +54,7 @@ import threading
 
 
 __app_name__: str = "unicorn-binance-local-depth-cache"
-__version__: str = "2.8.1"
+__version__: str = "2.9.0"
 __logger__: logging.getLogger = logging.getLogger("unicorn_binance_local_depth_cache")
 
 logger = __logger__
@@ -1031,7 +1031,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         """
         logger.debug(f"BinanceLocalDepthCacheManager.get_latest_release_info() - Starting the request")
         try:
-            respond = requests.get(f"https://api.github.com/repos/LUCIT-Systems-and-Development/"
+            respond = requests.get(f"https://api.github.com/repos/oliver-zehentleitner/"
                                    f"unicorn-binance-local-depth-cache/releases/latest")
             latest_release_info = respond.json()
             return latest_release_info

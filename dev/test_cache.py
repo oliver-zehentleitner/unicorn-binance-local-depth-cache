@@ -9,7 +9,7 @@ import logging
 import os
 import time
 
-exchange = "binance.com-futures"
+exchange = "trbinance.com"
 update_interval_ms = None
 
 logging.getLogger("unicorn_binance_local_depth_cache")
@@ -24,7 +24,7 @@ show_offers = False
 async def main():
     exclude_markets: list = ['BCCUSDT', 'VENUSDT', 'TRXUSDT', 'NULSUSDT', 'TUSDUSDT', 'PAXUSDT', 'BCHABCUSDT',
                              'BCHSVUSDT', 'BTTUSDT', 'USDSUSDT', 'USDCUSDT', 'TFUELUSDT', 'MITHUSDT', 'NANOUSDT',
-                             'DASHUSDT', 'NEOUSDT', 'ICXUSDT']
+                             'DASHUSDT', 'NEOUSDT', 'ICXUSDT', 'WAVESUSDT', 'EOSUSDT', 'USDSOLDUSDT']
     all_markets: list = [item['symbol'] for item in ubra.get_all_tickers() if item['symbol'].endswith("USDT")]
     markets: list = []
 
@@ -48,7 +48,8 @@ async def main():
             if show_offers is True:
                 depth = (f"depth_cache '{market}' is in sync: {ubldc.is_depth_cache_synchronized(market=market)}\r\n " 
                          f"top 4 asks: {top_asks}\r\n "
-                         f"top 4 bids: {top_bids}")
+                         f"top 4 bids: {top_bids}\r\n "
+                         f"last update: {ubldc.get_last_update_time(market=market)}")
             else:
                 depth = f"depth_cache '{market}' is in sync: {ubldc.is_depth_cache_synchronized(market=market)}"
             add_string = f"{add_string}\r\n {depth}"
@@ -59,7 +60,7 @@ async def main():
 
 ubra = BinanceRestApiManager(exchange=exchange)
 with BinanceLocalDepthCacheManager(exchange=exchange,
-                                   init_time_window=15,
+                                   init_time_window=2,
                                    ubra_manager=ubra,
                                    websocket_ping_interval=10,
                                    websocket_ping_timeout=15,

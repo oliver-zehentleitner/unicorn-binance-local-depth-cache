@@ -9,7 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.8.1.dev (development stage/unreleased/unstable)
+## 2.9.0.dev (development stage/unreleased/unstable)
+
+## 2.9.0
 ### Added
 - Added `get_last_update_time(market)` — returns Unix timestamp in milliseconds of the last processed depth update, or `None` if not yet synced (closes #35)
 - Added support for exchange `trbinance.com` (closes #13) — note: TRBinance requires an API key even for public REST endpoints; pass `api_key`/`api_secret` to `BinanceRestApiManager`

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "unicorn-binance-local-depth-cache"
-version = "2.8.1"
+version = "2.9.0"
 description = "A Python SDK for accessing and managing multiple local Binance order books with Python in a simple, fast, flexible, robust and fully featured way."
 authors = ["Oliver Zehentleitner"]
 license = "MIT"
@@ -24,7 +24,7 @@ python = ">=3.9.0"
 aiohttp = "*"
 Cython = "*"
 requests = ">=2.31.0"
-unicorn-binance-rest-api = ">=2.8.1"
+unicorn-binance-rest-api = ">=2.9.0"
 unicorn-binance-websocket-api = ">=2.10.2"
 
 [tool.poetry.dev-dependencies]
