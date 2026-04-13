@@ -150,7 +150,8 @@ The Python package [UNICORN Binance Local Depth Cache](https://github.com/oliver
 provides local order books for the Binance Exchanges 
 [Binance](https://github.com/binance-exchange/binance-official-api-docs) ([+Testnet](https://testnet.binance.vision/)), 
 [Binance Futures](https://binance-docs.github.io/apidocs/futures/en/#websocket-market-streams) 
-([+Testnet](https://testnet.binancefuture.com)) and [Binance US](https://www.binance.us/).
+([+Testnet](https://testnet.binancefuture.com)), [Binance US](https://www.binance.us/) and 
+[TRBinance](https://www.binance.tr/).
 
 ***The algorithm of the DepthCache management was designed according to these instructions:***
 
@@ -161,6 +162,7 @@ Since, according to Binance's predefined algorithm,
 - [Binance Spot: "How to manage a local order book correctly"](https://binance-docs.github.io/apidocs/spot/en/#how-to-manage-a-local-order-book-correctly)
 - [Binance Futures: "How to manage a local order book correctly"](https://binance-docs.github.io/apidocs/futures/en/#diff-book-depth-streams)
 - [Binance US: "Managing a Local Order Book"](https://docs.binance.us/#order-book-depth-diff-stream)
+- [TRBinance: "Diff. Depth Stream"](https://www.binance.tr/apidocs/#diff-depth-stream)
 
 With [create_depthcache()`](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html?highlight=create_depthcache#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.create_depthcaches) 
 the DepthCache is started and initialized, i.e. for each DepthCache that is to be created, a separate 
@@ -198,6 +200,7 @@ is thrown or ask with [`is_depth_cache_synchronized()`](https://oliver-zehentlei
 | [Binance USD-M Futures](https://www.binance.com)                   | `binance.com-futures`         |
 | [Binance USD-M Futures Testnet](https://testnet.binancefuture.com) | `binance.com-futures-testnet` |
 | [Binance US](https://www.binance.us/)                              | `binance.us`                  |
+| [TRBinance](https://www.binance.tr/)                               | `trbinance.com`               |
 
 - Create multiple depth caches within a single object instance. 
 

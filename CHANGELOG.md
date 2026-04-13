@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 2.8.1.dev (development stage/unreleased/unstable)
 ### Added
+- Added support for exchange `trbinance.com` (closes #13)
 - Added Python 3.14 support
 - Added mocked unit tests for `Cluster` class (cluster.py)
 ### Changed

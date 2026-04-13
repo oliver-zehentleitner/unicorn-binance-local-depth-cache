@@ -69,8 +69,8 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         - https://binance-docs.github.io/apidocs/spot/en/#how-to-manage-a-local-order-book-correctly
         - https://binance-docs.github.io/apidocs/futures/en/#diff-book-depth-streams
 
-    :param exchange: Select binance.com, binance.com-testnet, binance.com-futures, binance.com-futures-testnet
-                     (default: binance.com)
+    :param exchange: Select binance.com, binance.com-testnet, binance.com-futures, binance.com-futures-testnet,
+                     binance.us, trbinance.com (default: binance.com)
     :type exchange: str
     :param default_refresh_interval: The default refresh interval in seconds, default is None. The DepthCache is reset
                                      and reinitialized at this interval.
@@ -393,7 +393,8 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         try:
             if self.exchange == "binance.com" \
                     or self.exchange == "binance.com-testnet" \
-                    or self.exchange == "binance.us":
+                    or self.exchange == "binance.us" \
+                    or self.exchange == "trbinance.com":
                 order_book = self.ubra.get_order_book(symbol=market.upper(), limit=1000)
             elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet":
                 order_book = self.ubra.futures_order_book(symbol=market.upper(), limit=1000)
@@ -586,7 +587,8 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                 # Gap detection
                 if self.exchange == "binance.com" \
                         or self.exchange == "binance.com-testnet" \
-                        or self.exchange == "binance.us":
+                        or self.exchange == "binance.us" \
+                        or self.exchange == "trbinance.com":
                     if stream_data['data']['U'] != self.depth_caches[market]['last_update_id']+1:
                         logger.error(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
                                      f"- There is a gap between the last and the penultimate update ID, the depth_cache"
@@ -631,7 +633,8 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                     continue
                 if self.exchange == "binance.com" \
                         or self.exchange == "binance.com-testnet" \
-                        or self.exchange == "binance.us":
+                        or self.exchange == "binance.us" \
+                        or self.exchange == "trbinance.com":
                     if int(stream_data['data']['u']) <= self.depth_caches[market]['last_update_id']:
                         # Drop it
                         logger.debug(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
