@@ -95,8 +95,8 @@ ubldc.stop_manager()
 
 [Discover more possibilities.](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html)
 
-## Connect to a UNICORN DepthCache Cluster for Binance
-The [UNICORN DepthCache Cluster for Binance](https://github.com/oliver-zehentleitner/unicorn-depthcache-cluster-for-binance) is a 
+## Connect to a UNICORN Binance DepthCache Cluster
+The [UNICORN Binance DepthCache Cluster](https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster) is a 
 separate Kubernetes application for managing multiple DepthCaches including load balancing and fail over.
 
 ### Synchronous
