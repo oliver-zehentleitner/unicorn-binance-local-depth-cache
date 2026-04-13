@@ -645,6 +645,18 @@ class TestUbldc(unittest.TestCase):
         with self.assertRaises(DepthCacheNotFound):
             self.__class__.ubldc.get_bids()
 
+    def test_get_last_update_time(self):
+        result = self.__class__.ubldc.get_last_update_time(market='BTCUSDT')
+        self.assertTrue(result is None or isinstance(result, int))
+
+    def test_invalid_market_get_last_update_time(self):
+        with self.assertRaises(DepthCacheNotFound):
+            self.__class__.ubldc.get_last_update_time(market='TEST_INVALID_MARKET')
+
+    def test_invalid_market_get_last_update_time_without_params(self):
+        with self.assertRaises(DepthCacheNotFound):
+            self.__class__.ubldc.get_last_update_time()
+
     def test_get_asks_threshold_volume(self):
         try:
             self.__class__.ubldc.get_asks(market='BTCUSDT', threshold_volume=200000)

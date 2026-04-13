@@ -954,6 +954,28 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         except KeyError:
             raise DepthCacheNotFound(market=market)
 
+    def get_last_update_time(self, market: str = None) -> Optional[int]:
+        """
+        Get the Unix timestamp of the last processed depth update for a market.
+
+        Returns ``None`` if the DepthCache exists but has not yet received its first update.
+
+        :param market: Specify the market symbol for the used DepthCache
+        :type market: str
+        :return: Unix timestamp (int) or None
+        :raises DepthCacheNotFound: if the market is unknown
+        """
+        if market is None:
+            raise DepthCacheNotFound(market=market)
+        market = market.lower()
+        try:
+            last_update_time = self.depth_caches[market].get('last_update_time')
+        except KeyError:
+            raise DepthCacheNotFound(market=market)
+        logger.debug(f"BinanceLocalDepthCacheManager.get_last_update_time(market={market}) - "
+                     f"Returning: {last_update_time}")
+        return last_update_time
+
     def _get_book_side(self,
                        market: str = None,
                        limit_count: int = None,
