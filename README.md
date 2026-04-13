@@ -200,7 +200,10 @@ is thrown or ask with [`is_depth_cache_synchronized()`](https://oliver-zehentlei
 | [Binance USD-M Futures](https://www.binance.com)                   | `binance.com-futures`         |
 | [Binance USD-M Futures Testnet](https://testnet.binancefuture.com) | `binance.com-futures-testnet` |
 | [Binance US](https://www.binance.us/)                              | `binance.us`                  |
-| [TRBinance](https://www.binance.tr/)                               | `trbinance.com`               |
+| [TRBinance](https://www.binance.tr/)                               | `trbinance.com` ¹             |
+
+  ¹ TRBinance requires an API key even for public REST endpoints (e.g. order book snapshots). 
+  Pass `api_key` and `api_secret` to `BinanceRestApiManager` when using `exchange="trbinance.com"`.
 
 - Create multiple depth caches within a single object instance. 
 
