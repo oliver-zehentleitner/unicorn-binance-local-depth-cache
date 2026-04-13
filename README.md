@@ -319,9 +319,6 @@ This is not a release version and can not be considered to be stable!
 ## Examples
 - [Look here!](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/)
 
-## Howto
-- [How to Obtain and Use a Unicorn Binance Suite License Key and Run the UBS Module According to Best Practice](https://technopathy.club/how-to-obtain-and-use-a-unicorn-binance-suite-license-key-and-run-the-ubs-module-according-to-best-87b0088124a8)
-
 ## Project Homepage
 [https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 
@@ -330,10 +327,9 @@ This is not a release version and can not be considered to be stable!
 
 ## Social
 - [Discussions](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/discussions)
-- [Gitter](https://gitter.im/unicorn-binance-suite/unicorn-binance-local-depth-cache)
 - [https://t.me/unicorndevs](https://t.me/unicorndevs)
 - [https://dev.binance.vision](https://dev.binance.vision)
-- [https://community.binance.org](https://community.binance.org)
+
 
 ## Receive Notifications
 To receive notifications on available updates you can 
