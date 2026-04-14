@@ -12,7 +12,6 @@ from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, Dep
 load_dotenv()
 
 exchange: str = "binance.com-futures"
-markets: list = ['1000SHIBUSDT', 'BTCUSDT', 'ETHUSDT']
 ubdcc_address: str = os.getenv('UBDCC_ADDRESS')
 ubdcc_port: int = int(os.getenv('UBDCC_PORT'))
 
