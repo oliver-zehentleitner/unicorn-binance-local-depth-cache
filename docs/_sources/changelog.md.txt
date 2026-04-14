@@ -9,7 +9,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.9.0.dev (development stage/unreleased/unstable)
+## 2.10.0.dev (development stage/unreleased/unstable)
+
+## 2.10.0
+### Changed
+- cluster.py: switched from stdlib `json` to `orjson` (suite-wide standard) — added `orjson` to dependencies
+- cluster.py: `create_depthcache(s)` switched from GET to POST — markets list is now sent as JSON body to UBDCC 0.2.0, fixing URL-too-long errors when creating many DepthCaches at once
+- README: updated cluster section (no longer "K8s application" — also runs locally via `pip install ubdcc`)
+### Fixed
+- manager.py: `get_latest_version()` crashed with `AttributeError: 'NoneType' object has no attribute 'get'` when the GitHub API request failed — now checks `isinstance(status, dict)` before calling `.get()`
+- cluster.py: fixed double JSON serialization in POST requests (`json=json.dumps(params)` → `json=params`) that caused server-side 500 errors
+- unittest: updated test_create_depthcache(s) to mock `requests.post` (not `requests.get`) after the GET→POST switch
+- README: fixed wrong `ubdcc_port`, method names, typo "DephtCache" → "DepthCache"
 
 ## 2.9.0
 ### Added

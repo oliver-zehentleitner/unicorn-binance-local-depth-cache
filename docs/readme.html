@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>UNICORN Binance Local Depth Cache &#8212; unicorn-binance-local-depth-cache 2.9.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICORN Binance Local Depth Cache &#8212; unicorn-binance-local-depth-cache 2.10.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -64,7 +64,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#stop-ubldc-after-usage-to-avoid-memory-leaks">Stop <code class="docutils literal notranslate"><span class="pre">ubldc</span></code> after usage to avoid memory leaks</a></li>
-<li><a class="reference internal" href="#connect-to-a-unicorn-depthcache-cluster-for-binance">Connect to a UNICORN DepthCache Cluster for Binance</a><ul>
+<li><a class="reference internal" href="#connect-to-a-unicorn-binance-depthcache-cluster">Connect to a UNICORN Binance DepthCache Cluster</a><ul>
 <li><a class="reference internal" href="#synchronous">Synchronous</a></li>
 <li><a class="reference internal" href="#asynchronous">Asynchronous</a></li>
 </ul>
@@ -317,23 +317,25 @@ as a Python C extension for maximum performance.</p>
 </div>
 <p><a class="reference external" href="https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html">Discover more possibilities.</a></p>
 </section>
-<section id="connect-to-a-unicorn-depthcache-cluster-for-binance">
-<h2>Connect to a UNICORN DepthCache Cluster for Binance<a class="headerlink" href="#connect-to-a-unicorn-depthcache-cluster-for-binance" title="Link to this heading">¶</a></h2>
-<p>The <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-depthcache-cluster-for-binance">UNICORN DepthCache Cluster for Binance</a> is a
-separate Kubernetes application for managing multiple DepthCaches including load balancing and fail over.</p>
+<section id="connect-to-a-unicorn-binance-depthcache-cluster">
+<h2>Connect to a UNICORN Binance DepthCache Cluster<a class="headerlink" href="#connect-to-a-unicorn-binance-depthcache-cluster" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster">UNICORN Binance DepthCache Cluster (UBDCC)</a>
+manages hundreds of DepthCaches with load balancing, automatic failover and self-healing state. It runs locally on a
+single machine (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ubdcc</span></code>) or scales across a Kubernetes cluster. Access is via REST API from any language —
+Python users can use the built-in cluster module shown below.</p>
 <section id="synchronous">
 <h3>Synchronous<a class="headerlink" href="#synchronous" title="Link to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unicorn_binance_local_depth_cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">,</span> <span class="n">DepthCacheClusterNotReachableError</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unicorn_binance_local_depth_cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">,</span> <span class="n">DepthCacheClusterNotReachableError</span>
 
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="n">ubldc</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">create_depthcache</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> <span class="n">markets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;BTCUSDT&#39;</span><span class="p">,</span> <span class="s1">&#39;ETHUSDT&#39;</span><span class="p">],</span> <span class="n">desired_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">ubldc</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">create_depthcaches</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> <span class="n">markets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;BTCUSDT&#39;</span><span class="p">,</span> <span class="s1">&#39;ETHUSDT&#39;</span><span class="p">],</span> <span class="n">desired_quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">ubldc</span><span class="o">.</span><span class="n">is_stop_request</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">ubldc</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">get_asks</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="s1">&#39;BTCUSDT&#39;</span><span class="p">,</span> <span class="n">limit_count</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
         
 <span class="k">try</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="n">exchange</span><span class="p">,</span> <span class="n">ubdcc_address</span><span class="o">=</span><span class="s2">&quot;192.10.80.4&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ubldc</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> <span class="n">ubdcc_address</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">ubdcc_port</span><span class="o">=</span><span class="mi">42081</span><span class="p">)</span> <span class="k">as</span> <span class="n">ubldc</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+            <span class="n">main</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">Gracefully stopping ...&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">DepthCacheClusterNotReachableError</span> <span class="k">as</span> <span class="n">error_msg</span><span class="p">:</span>
@@ -343,17 +345,17 @@ separate Kubernetes application for managing multiple DepthCaches including load
 </section>
 <section id="asynchronous">
 <h3>Asynchronous<a class="headerlink" href="#asynchronous" title="Link to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unicorn_binance_local_depth_cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">,</span> <span class="n">DepthCacheClusterNotReachableError</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unicorn_binance_local_depth_cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">,</span> <span class="n">DepthCacheClusterNotReachableError</span>
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">ubldc</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">create_depthcache_async</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> 
-                                                <span class="n">markets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;BTCUSDT&#39;</span><span class="p">,</span> <span class="s1">&#39;ETHUSDT&#39;</span><span class="p">],</span> 
-                                                <span class="n">desired_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">ubldc</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">create_depthcaches_async</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> 
+                                                  <span class="n">markets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;BTCUSDT&#39;</span><span class="p">,</span> <span class="s1">&#39;ETHUSDT&#39;</span><span class="p">],</span> 
+                                                  <span class="n">desired_quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">ubldc</span><span class="o">.</span><span class="n">is_stop_request</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">ubldc</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">get_asks_async</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="s1">&#39;BTCUSDT&#39;</span><span class="p">,</span> <span class="n">limit_count</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
         
 <span class="k">try</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="n">exchange</span><span class="p">,</span> <span class="n">ubdcc_address</span><span class="o">=</span><span class="s2">&quot;192.10.80.4&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ubldc</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">BinanceLocalDepthCacheManager</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;binance.com&quot;</span><span class="p">,</span> <span class="n">ubdcc_address</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">ubdcc_port</span><span class="o">=</span><span class="mi">42081</span><span class="p">)</span> <span class="k">as</span> <span class="n">ubldc</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
@@ -362,7 +364,7 @@ separate Kubernetes application for managing multiple DepthCaches including load
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ERROR: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/unicorn_depthcache_cluster_for_binance">Try UNICORN DephtCache Cluster for Binance examples!</a></p>
+<p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/unicorn_binance_depth_cache_cluster">Try the cluster examples!</a></p>
 <p><a class="reference external" href="https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html#module-unicorn_binance_local_depth_cache.cluster">Discover more cluster possibilities …</a></p>
 </section>
 </section>
@@ -539,9 +541,9 @@ and <code class="docutils literal notranslate"><span class="pre">win-64</span></
 </section>
 <section id="windows">
 <h4>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h4>
-<p>Use the below command with the version (such as 2.9.0) you determined
+<p>Use the below command with the version (such as 2.10.0) you determined
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest">here</a>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.9.0.tar.gz</span> <span class="pre">--upgrade</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.10.0.tar.gz</span> <span class="pre">--upgrade</span></code></p>
 </section>
 </section>
 <section id="from-the-latest-source-dev-stage-with-pip-from-github">
@@ -665,7 +667,7 @@ of any kind, including but not limited to direct or indirect damages for loss of
 </ul>
 </li>
 <li><a class="reference internal" href="#stop-ubldc-after-usage-to-avoid-memory-leaks">Stop <code class="docutils literal notranslate"><span class="pre">ubldc</span></code> after usage to avoid memory leaks</a></li>
-<li><a class="reference internal" href="#connect-to-a-unicorn-depthcache-cluster-for-binance">Connect to a UNICORN DepthCache Cluster for Binance</a><ul>
+<li><a class="reference internal" href="#connect-to-a-unicorn-binance-depthcache-cluster">Connect to a UNICORN Binance DepthCache Cluster</a><ul>
 <li><a class="reference internal" href="#synchronous">Synchronous</a></li>
 <li><a class="reference internal" href="#asynchronous">Asynchronous</a></li>
 </ul>
@@ -821,7 +823,7 @@ of any kind, including but not limited to direct or indirect damages for loss of
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 13 2026 at 13:42 (CET).
+    Last updated on Apr 14 2026 at 17:32 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.

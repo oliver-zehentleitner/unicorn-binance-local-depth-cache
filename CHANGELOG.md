@@ -9,7 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.9.0.dev (development stage/unreleased/unstable)
+## 2.10.0.dev (development stage/unreleased/unstable)
+
+## 2.10.0
 ### Changed
 - cluster.py: switched from stdlib `json` to `orjson` (suite-wide standard) — added `orjson` to dependencies
 - cluster.py: `create_depthcache(s)` switched from GET to POST — markets list is now sent as JSON body to UBDCC 0.2.0, fixing URL-too-long errors when creating many DepthCaches at once
