@@ -96,23 +96,25 @@ ubldc.stop_manager()
 [Discover more possibilities.](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html)
 
 ## Connect to a UNICORN Binance DepthCache Cluster
-The [UNICORN Binance DepthCache Cluster](https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster) is a 
-separate Kubernetes application for managing multiple DepthCaches including load balancing and fail over.
+The [UNICORN Binance DepthCache Cluster (UBDCC)](https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster) 
+manages hundreds of DepthCaches with load balancing, automatic failover and self-healing state. It runs locally on a 
+single machine (`pip install ubdcc`) or scales across a Kubernetes cluster. Access is via REST API from any language — 
+Python users can use the built-in cluster module shown below.
 
 ### Synchronous
 
-```
+```python
 from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheClusterNotReachableError
 
-async def main():
-    ubldc.cluster.create_depthcache(exchange="binance.com", markets=['BTCUSDT', 'ETHUSDT'], desired_quantity=3)
+def main():
+    ubldc.cluster.create_depthcaches(exchange="binance.com", markets=['BTCUSDT', 'ETHUSDT'], desired_quantity=2)
     while ubldc.is_stop_request() is False:
         print(ubldc.cluster.get_asks(exchange="binance.com", market='BTCUSDT', limit_count=2))
         
 try:
-    with BinanceLocalDepthCacheManager(exchange=exchange, ubdcc_address="192.10.80.4") as ubldc:
+    with BinanceLocalDepthCacheManager(exchange="binance.com", ubdcc_address="127.0.0.1", ubdcc_port=42081) as ubldc:
         try:
-            asyncio.run(main())
+            main()
         except KeyboardInterrupt:
             print("\r\nGracefully stopping ...")
 except DepthCacheClusterNotReachableError as error_msg:
@@ -121,18 +123,18 @@ except DepthCacheClusterNotReachableError as error_msg:
 
 ### Asynchronous
 
-```
+```python
 from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheClusterNotReachableError
 
 async def main():
-    await ubldc.cluster.create_depthcache_async(exchange="binance.com", 
-                                                markets=['BTCUSDT', 'ETHUSDT'], 
-                                                desired_quantity=3)
+    await ubldc.cluster.create_depthcaches_async(exchange="binance.com", 
+                                                  markets=['BTCUSDT', 'ETHUSDT'], 
+                                                  desired_quantity=2)
     while ubldc.is_stop_request() is False:
         print(await ubldc.cluster.get_asks_async(exchange="binance.com", market='BTCUSDT', limit_count=2))
         
 try:
-    with BinanceLocalDepthCacheManager(exchange=exchange, ubdcc_address="192.10.80.4") as ubldc:
+    with BinanceLocalDepthCacheManager(exchange="binance.com", ubdcc_address="127.0.0.1", ubdcc_port=42081) as ubldc:
         try:
             asyncio.run(main())
         except KeyboardInterrupt:
@@ -141,7 +143,7 @@ except DepthCacheClusterNotReachableError as error_msg:
     print(f"ERROR: {error_msg}")
 ```
 
-[Try UNICORN DephtCache Cluster for Binance examples!](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/unicorn_depthcache_cluster_for_binance)
+[Try the cluster examples!](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/unicorn_binance_depth_cache_cluster)
 
 [Discover more cluster possibilities ...](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html#module-unicorn_binance_local_depth_cache.cluster)
 
