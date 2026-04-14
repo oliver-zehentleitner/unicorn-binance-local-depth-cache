@@ -741,18 +741,24 @@ class TestCluster(unittest.TestCase):
         cluster = Cluster(address="mock-cluster.local", port=8080)
         self.assertEqual(cluster.url, "http://mock-cluster.local:8080/")
 
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.post')
     @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
-    def test_create_depthcache(self, mock_get):
+    def test_create_depthcache(self, mock_get, mock_post):
         mock_get.return_value = unittest.mock.MagicMock(
-            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, {'result': 'OK'}]),
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        mock_post.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value={'result': 'OK'}),
             raise_for_status=unittest.mock.MagicMock()
         )
         cluster = Cluster(address="mock-cluster.local", port=80)
         result = cluster.create_depthcache(exchange="binance.com", market="BTCUSDT")
         self.assertEqual(result, {'result': 'OK'})
 
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.post')
     @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
-    def test_create_depthcache_missing_params(self, mock_get):
+    def test_create_depthcache_missing_params(self, mock_get, mock_post):
         mock_get.return_value = unittest.mock.MagicMock(
             json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
             raise_for_status=unittest.mock.MagicMock()
@@ -761,10 +767,15 @@ class TestCluster(unittest.TestCase):
         with self.assertRaises(ValueError):
             cluster.create_depthcache(exchange="binance.com")
 
+    @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.post')
     @unittest.mock.patch('unicorn_binance_local_depth_cache.cluster.requests.get')
-    def test_create_depthcaches(self, mock_get):
+    def test_create_depthcaches(self, mock_get, mock_post):
         mock_get.return_value = unittest.mock.MagicMock(
-            json=unittest.mock.MagicMock(side_effect=[_CLUSTER_TEST_RESPONSE_OK, {'result': 'OK'}]),
+            json=unittest.mock.MagicMock(return_value=_CLUSTER_TEST_RESPONSE_OK),
+            raise_for_status=unittest.mock.MagicMock()
+        )
+        mock_post.return_value = unittest.mock.MagicMock(
+            json=unittest.mock.MagicMock(return_value={'result': 'OK'}),
             raise_for_status=unittest.mock.MagicMock()
         )
         cluster = Cluster(address="mock-cluster.local", port=80)
