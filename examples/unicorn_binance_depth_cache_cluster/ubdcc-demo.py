@@ -11,7 +11,7 @@ import os
 
 load_dotenv()
 
-footer: str = "By LUCIT - www.lucit.tech"
+footer: str = "By Oliver Zehentleitner"
 exchange: str = "binance.com-futures"
 limit_count: int = 2
 markets: list = ['1000SHIBUSDT', 'BTCUSDT', 'ETHUSDT']
