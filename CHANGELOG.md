@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.10.0.dev (development stage/unreleased/unstable)
+## 2.11.0.dev (development stage/unreleased/unstable)
 ### Added
 - `on_restart` callback parameter on `BinanceLocalDepthCacheManager` — invoked as `on_restart(market, timestamp)` every time a stream restart is detected, once per market on the affected stream. Enables reactive consumers (e.g. UBDCC) to forward restart events without polling.
 - `get_last_restart_time(market)` — returns Unix timestamp of the last stream restart serving this market (or `None` if not restarted yet)
