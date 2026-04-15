@@ -72,7 +72,7 @@ setup(
      long_description_content_type="text/markdown",
      license='MIT',
      install_requires=['aiohttp', 'Cython>=3.0.10', 'orjson', 'requests>=2.32.3',
-                       'unicorn-binance-websocket-api>=2.10.2', 'unicorn-binance-rest-api>=2.11.0'],
+                       'unicorn-binance-websocket-api>=2.10.2', 'unicorn-binance-rest-api>=2.9.1'],
      keywords='binance, depth cache',
      project_urls={
          'Documentation': 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache',

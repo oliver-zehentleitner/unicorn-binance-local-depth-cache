@@ -28,14 +28,14 @@ requirements:
     - pip
     - mypy
     - aiohttp
-    - lucit::unicorn-binance-rest-api >=2.11.0
+    - lucit::unicorn-binance-rest-api >=2.9.1
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - Cython
     - orjson
     - requests >=2.31.0
   run:
     - python
-    - lucit::unicorn-binance-rest-api >=2.11.0
+    - lucit::unicorn-binance-rest-api >=2.9.1
     - lucit::unicorn-binance-websocket-api >=2.10.2
     - aiohttp
     - Cython
