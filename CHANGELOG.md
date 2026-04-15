@@ -11,9 +11,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 2.10.0.dev (development stage/unreleased/unstable)
 ### Added
+- `on_restart` callback parameter on `BinanceLocalDepthCacheManager` — invoked as `on_restart(market, timestamp)` every time a stream restart is detected, once per market on the affected stream. Enables reactive consumers (e.g. UBDCC) to forward restart events without polling.
 - `get_last_restart_time(market)` — returns Unix timestamp of the last stream restart serving this market (or `None` if not restarted yet)
 - `get_restart_count(market)` — returns the number of restarts of the stream serving this market
-- Both getters expose UBLDC'''s existing per-stream restart tracking as a clean public API. Useful for upstream stability monitoring (e.g. UBDCC syncs these values to the cluster management for fleet-wide visibility).
+- Both getters expose UBLDC'''s existing per-stream restart tracking as a clean public API for on-demand queries (complement to the callback).
 
 ## 2.10.0
 ### Changed

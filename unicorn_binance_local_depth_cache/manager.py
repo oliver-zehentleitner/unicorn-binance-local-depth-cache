@@ -125,6 +125,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                  auto_data_cleanup_stopped_streams: bool = False,
                  init_interval: float = 4.0,
                  init_time_window: int = 5,
+                 on_restart=None,
                  websocket_close_timeout: int = 2,
                  websocket_ping_interval: int = 10,
                  websocket_ping_timeout: int = 20,
@@ -148,6 +149,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         self.auto_data_cleanup_stopped_streams = auto_data_cleanup_stopped_streams
         self.init_interval = init_interval
         self.init_time_window = init_time_window
+        self.on_restart = on_restart
         self.websocket_close_timeout = websocket_close_timeout
         self.websocket_ping_interval = websocket_ping_interval
         self.websocket_ping_timeout = websocket_ping_timeout
@@ -729,7 +731,17 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                                     self.dc_streams[dc_stream]['restarts'] = 0
                                 else:
                                     self.dc_streams[dc_stream]['restarts'] += 1
-                                    self.dc_streams[dc_stream]['last_restart'] = time.time()
+                                    restart_ts = time.time()
+                                    self.dc_streams[dc_stream]['last_restart'] = restart_ts
+                                    if self.on_restart is not None:
+                                        for m in self.dc_streams[dc_stream]['markets']:
+                                            try:
+                                                self.on_restart(m, restart_ts)
+                                            except Exception as error_msg:
+                                                logger.error(
+                                                    f"BinanceLocalDepthCacheManager._manage_depthcaches() - "
+                                                    f"on_restart callback raised: {error_msg}"
+                                                )
                             else:
                                 self.ubwa.subscribe_to_stream(stream_id=self.dc_streams[dc_stream]['stream_id'],
                                                               markets=market)
