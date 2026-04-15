@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
 ## 2.10.0.dev (development stage/unreleased/unstable)
+### Added
+- `get_last_restart_time(market)` — returns Unix timestamp of the last stream restart serving this market (or `None` if not restarted yet)
+- `get_restart_count(market)` — returns the number of restarts of the stream serving this market
+- Both getters expose UBLDC'''s existing per-stream restart tracking as a clean public API. Useful for upstream stability monitoring (e.g. UBDCC syncs these values to the cluster management for fleet-wide visibility).
 
 ## 2.10.0
 ### Changed
