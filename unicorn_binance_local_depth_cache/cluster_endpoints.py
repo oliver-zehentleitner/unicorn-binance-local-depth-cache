@@ -48,3 +48,6 @@ class ClusterEndpoints:
     get_depthcache_info: str = "get_depthcache_info"
     stop_depthcache: str = "stop_depthcache"
     test: str = "test"
+    ubdcc_add_credentials: str = "ubdcc_add_credentials"
+    ubdcc_remove_credentials: str = "ubdcc_remove_credentials"
+    ubdcc_get_credentials_list: str = "ubdcc_get_credentials_list"

@@ -314,6 +314,58 @@ class Cluster:
                   "market": market}
         return await self._request_async(self.endpoints.stop_depthcache, method="get", params=params, debug=debug)
 
+    def ubdcc_add_credentials(self,
+                              account_group: str = None,
+                              api_key: str = None,
+                              api_secret: str = None,
+                              debug: bool = False) -> dict:
+        """Store a Binance API key pair in the cluster for a given account group
+        (binance.com, binance.com-testnet, binance.com-futures-testnet,
+        binance.us, binance.tr). Multiple pairs per group are allowed and get
+        load-balanced across DCNs. Returns the generated credential id."""
+        if account_group is None or api_key is None or api_secret is None:
+            raise ValueError("Missing mandatory parameter: account_group, api_key, api_secret")
+        params = {"account_group": account_group,
+                  "api_key": api_key,
+                  "api_secret": api_secret}
+        return self._request(self.endpoints.ubdcc_add_credentials, method="post", params=params, debug=debug)
+
+    async def ubdcc_add_credentials_async(self,
+                                          account_group: str = None,
+                                          api_key: str = None,
+                                          api_secret: str = None,
+                                          debug: bool = False) -> dict:
+        if account_group is None or api_key is None or api_secret is None:
+            raise ValueError("Missing mandatory parameter: account_group, api_key, api_secret")
+        params = {"account_group": account_group,
+                  "api_key": api_key,
+                  "api_secret": api_secret}
+        return await self._request_async(self.endpoints.ubdcc_add_credentials, method="post", params=params,
+                                         debug=debug)
+
+    def ubdcc_remove_credentials(self, credential_id: str = None, debug: bool = False) -> dict:
+        """Remove a stored API key pair by id."""
+        if credential_id is None:
+            raise ValueError("Missing mandatory parameter: credential_id")
+        params = {"id": credential_id}
+        return self._request(self.endpoints.ubdcc_remove_credentials, method="post", params=params, debug=debug)
+
+    async def ubdcc_remove_credentials_async(self, credential_id: str = None, debug: bool = False) -> dict:
+        if credential_id is None:
+            raise ValueError("Missing mandatory parameter: credential_id")
+        params = {"id": credential_id}
+        return await self._request_async(self.endpoints.ubdcc_remove_credentials, method="post", params=params,
+                                         debug=debug)
+
+    def ubdcc_get_credentials_list(self, debug: bool = False) -> dict:
+        """List stored credentials. API keys are returned masked (preview only);
+        api_secret is never returned. Each entry lists the DCN UIDs it is
+        currently assigned to."""
+        return self._request(self.endpoints.ubdcc_get_credentials_list, method="get", debug=debug)
+
+    async def ubdcc_get_credentials_list_async(self, debug: bool = False) -> dict:
+        return await self._request_async(self.endpoints.ubdcc_get_credentials_list, method="get", debug=debug)
+
     def test_connection(self) -> bool:
         test = self._request(self.endpoints.test, method="get")
         if test.get('app') is not None and test.get('result') is not None:
