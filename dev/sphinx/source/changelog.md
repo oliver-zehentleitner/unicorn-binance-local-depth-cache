@@ -9,7 +9,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.10.0.dev (development stage/unreleased/unstable)
+## 2.11.0.dev (development stage/unreleased/unstable)
+
+## 2.11.0
+### Added
+- `Cluster` class now wraps the UBDCC 0.4.0 credential endpoints: `ubdcc_add_credentials`, `ubdcc_remove_credentials`, `ubdcc_get_credentials_list` (each with a sync + async variant). Lets you manage per-account-group Binance API key pairs on a running cluster without falling back to raw HTTP. Public responses keep keys masked and never expose `api_secret`. Two demo scripts under `examples/unicorn_depthcache_cluster_for_binance/` (`manage-credentials.py` / `-async.py`).
+- `on_restart` callback parameter on `BinanceLocalDepthCacheManager` — invoked as `on_restart(market, timestamp)` every time a stream restart is detected, once per market on the affected stream. Enables reactive consumers (e.g. UBDCC) to forward restart events without polling.
+- `get_last_restart_time(market)` — returns Unix timestamp of the last stream restart serving this market (or `None` if not restarted yet)
+- `get_restart_count(market)` — returns the number of restarts of the stream serving this market
+- Both getters expose UBLDC'''s existing per-stream restart tracking as a clean public API for on-demand queries (complement to the callback).
 
 ## 2.10.0
 ### Changed

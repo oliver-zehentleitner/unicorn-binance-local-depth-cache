@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>unicorn_binance_local_depth_cache &#8212; unicorn-binance-local-depth-cache 2.10.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unicorn_binance_local_depth_cache &#8212; unicorn-binance-local-depth-cache 2.11.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -167,11 +167,13 @@
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_asks"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_asks()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_bids"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_bids()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_dc_stream_id"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_dc_stream_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_last_restart_time"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_last_restart_time()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_last_update_time"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_last_update_time()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_latest_release_info"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_latest_release_info()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_latest_version"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_latest_version()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_list_of_depth_caches"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_list_of_depth_caches()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_list_of_depthcaches"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_list_of_depthcaches()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_restart_count"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_restart_count()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_ubra_manager"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_ubra_manager()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_ubwa_manager"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_ubwa_manager()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_user_agent"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.get_user_agent()</span></code></a></li>
@@ -219,6 +221,12 @@
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.stop_depthcache_async"><code class="docutils literal notranslate"><span class="pre">Cluster.stop_depthcache_async()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.test_connection"><code class="docutils literal notranslate"><span class="pre">Cluster.test_connection()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.test_connection_async"><code class="docutils literal notranslate"><span class="pre">Cluster.test_connection_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_add_credentials"><code class="docutils literal notranslate"><span class="pre">Cluster.ubdcc_add_credentials()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_add_credentials_async"><code class="docutils literal notranslate"><span class="pre">Cluster.ubdcc_add_credentials_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_get_credentials_list"><code class="docutils literal notranslate"><span class="pre">Cluster.ubdcc_get_credentials_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_get_credentials_list_async"><code class="docutils literal notranslate"><span class="pre">Cluster.ubdcc_get_credentials_list_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_remove_credentials"><code class="docutils literal notranslate"><span class="pre">Cluster.ubdcc_remove_credentials()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_remove_credentials_async"><code class="docutils literal notranslate"><span class="pre">Cluster.ubdcc_remove_credentials_async()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -234,6 +242,9 @@
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster_endpoints.ClusterEndpoints.get_depthcache_list"><code class="docutils literal notranslate"><span class="pre">ClusterEndpoints.get_depthcache_list</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster_endpoints.ClusterEndpoints.stop_depthcache"><code class="docutils literal notranslate"><span class="pre">ClusterEndpoints.stop_depthcache</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster_endpoints.ClusterEndpoints.test"><code class="docutils literal notranslate"><span class="pre">ClusterEndpoints.test</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster_endpoints.ClusterEndpoints.ubdcc_add_credentials"><code class="docutils literal notranslate"><span class="pre">ClusterEndpoints.ubdcc_add_credentials</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster_endpoints.ClusterEndpoints.ubdcc_get_credentials_list"><code class="docutils literal notranslate"><span class="pre">ClusterEndpoints.ubdcc_get_credentials_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster_endpoints.ClusterEndpoints.ubdcc_remove_credentials"><code class="docutils literal notranslate"><span class="pre">ClusterEndpoints.ubdcc_remove_credentials</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -363,7 +374,7 @@
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 14 2026 at 17:32 (CET).
+    Last updated on Apr 15 2026 at 12:16 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.

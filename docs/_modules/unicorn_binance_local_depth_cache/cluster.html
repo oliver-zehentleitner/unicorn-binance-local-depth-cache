@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>unicorn_binance_local_depth_cache.cluster &#8212; unicorn-binance-local-depth-cache 2.10.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unicorn_binance_local_depth_cache.cluster &#8212; unicorn-binance-local-depth-cache 2.11.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="../../_static/pydoctheme.css?v=fdf8e9ae" />
@@ -502,6 +502,76 @@
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoints</span><span class="o">.</span><span class="n">stop_depthcache</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="Cluster.ubdcc_add_credentials">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_add_credentials">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ubdcc_add_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                              <span class="n">account_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Store a Binance API key pair in the cluster for a given account group</span>
+<span class="sd">        (binance.com, binance.com-testnet, binance.com-futures-testnet,</span>
+<span class="sd">        binance.us, binance.tr). Multiple pairs per group are allowed and get</span>
+<span class="sd">        load-balanced across DCNs. Returns the generated credential id.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">account_group</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">api_secret</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing mandatory parameter: account_group, api_key, api_secret&quot;</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;account_group&quot;</span><span class="p">:</span> <span class="n">account_group</span><span class="p">,</span>
+                  <span class="s2">&quot;api_key&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+                  <span class="s2">&quot;api_secret&quot;</span><span class="p">:</span> <span class="n">api_secret</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoints</span><span class="o">.</span><span class="n">ubdcc_add_credentials</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cluster.ubdcc_add_credentials_async">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_add_credentials_async">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ubdcc_add_credentials_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                          <span class="n">account_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">account_group</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">api_secret</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing mandatory parameter: account_group, api_key, api_secret&quot;</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;account_group&quot;</span><span class="p">:</span> <span class="n">account_group</span><span class="p">,</span>
+                  <span class="s2">&quot;api_key&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+                  <span class="s2">&quot;api_secret&quot;</span><span class="p">:</span> <span class="n">api_secret</span><span class="p">}</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoints</span><span class="o">.</span><span class="n">ubdcc_add_credentials</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                                         <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cluster.ubdcc_remove_credentials">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_remove_credentials">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ubdcc_remove_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">credential_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a stored API key pair by id.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">credential_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing mandatory parameter: credential_id&quot;</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">credential_id</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoints</span><span class="o">.</span><span class="n">ubdcc_remove_credentials</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cluster.ubdcc_remove_credentials_async">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_remove_credentials_async">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ubdcc_remove_credentials_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">credential_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">credential_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing mandatory parameter: credential_id&quot;</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">credential_id</span><span class="p">}</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoints</span><span class="o">.</span><span class="n">ubdcc_remove_credentials</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                                         <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cluster.ubdcc_get_credentials_list">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_get_credentials_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ubdcc_get_credentials_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List stored credentials. API keys are returned masked (preview only);</span>
+<span class="sd">        api_secret is never returned. Each entry lists the DCN UIDs it is</span>
+<span class="sd">        currently assigned to.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoints</span><span class="o">.</span><span class="n">ubdcc_get_credentials_list</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cluster.ubdcc_get_credentials_list_async">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.ubdcc_get_credentials_list_async">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ubdcc_get_credentials_list_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoints</span><span class="o">.</span><span class="n">ubdcc_get_credentials_list</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Cluster.test_connection">
 <a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.cluster.Cluster.test_connection">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -619,7 +689,7 @@
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 14 2026 at 17:32 (CET).
+    Last updated on Apr 15 2026 at 12:15 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
