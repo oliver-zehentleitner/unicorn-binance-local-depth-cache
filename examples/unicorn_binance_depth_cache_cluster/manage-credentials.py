@@ -55,7 +55,7 @@ try:
 
         if new_id:
             print(f"\nRemoving credential '{new_id}' ...")
-            pprint(ubldc.cluster.ubdcc_remove_credentials(credential_id=new_id))
+            #pprint(ubldc.cluster.ubdcc_remove_credentials(credential_id=new_id))
 
 except DepthCacheClusterNotReachableError as error_msg:
     print(f"ERROR: {error_msg}")
