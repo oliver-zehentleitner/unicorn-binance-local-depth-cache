@@ -10,7 +10,7 @@ Open development tasks and decisions are tracked in **[TASKS.md](TASKS.md)**.
 
 Python SDK (MIT License) for building and managing multiple local Binance order book depth caches. Subscribes to Binance WebSocket diff streams, initializes via REST snapshots, and maintains a synchronized in-process order book (asks/bids) per market.
 
-**Current Version:** 2.8.1  
+**Current Version:** 2.11.1
 **Python Compatibility:** 3.9 – 3.14  
 **Author:** Oliver Zehentleitner  
 **PyPI:** `unicorn-binance-local-depth-cache`  

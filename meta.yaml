@@ -1,5 +1,5 @@
 {% set name = "unicorn-binance-local-depth-cache" %}
-{% set version = "2.11.0" %}
+{% set version = "2.11.1" %}
 
 package:
   name: {{ name|lower }}
@@ -29,14 +29,14 @@ requirements:
     - mypy
     - aiohttp
     - lucit::unicorn-binance-rest-api >=2.9.1
-    - lucit::unicorn-binance-websocket-api >=2.10.2
+    - lucit::unicorn-binance-websocket-api >=2.11.0
     - Cython
     - orjson
     - requests >=2.31.0
   run:
     - python
     - lucit::unicorn-binance-rest-api >=2.9.1
-    - lucit::unicorn-binance-websocket-api >=2.10.2
+    - lucit::unicorn-binance-websocket-api >=2.11.0
     - aiohttp
     - Cython
     - orjson
