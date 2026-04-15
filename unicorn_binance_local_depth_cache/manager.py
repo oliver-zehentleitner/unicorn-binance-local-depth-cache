@@ -125,6 +125,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                  auto_data_cleanup_stopped_streams: bool = False,
                  init_interval: float = 4.0,
                  init_time_window: int = 5,
+                 on_restart=None,
                  websocket_close_timeout: int = 2,
                  websocket_ping_interval: int = 10,
                  websocket_ping_timeout: int = 20,
@@ -148,6 +149,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         self.auto_data_cleanup_stopped_streams = auto_data_cleanup_stopped_streams
         self.init_interval = init_interval
         self.init_time_window = init_time_window
+        self.on_restart = on_restart
         self.websocket_close_timeout = websocket_close_timeout
         self.websocket_ping_interval = websocket_ping_interval
         self.websocket_ping_timeout = websocket_ping_timeout
@@ -729,7 +731,17 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                                     self.dc_streams[dc_stream]['restarts'] = 0
                                 else:
                                     self.dc_streams[dc_stream]['restarts'] += 1
-                                    self.dc_streams[dc_stream]['last_restart'] = time.time()
+                                    restart_ts = time.time()
+                                    self.dc_streams[dc_stream]['last_restart'] = restart_ts
+                                    if self.on_restart is not None:
+                                        for m in self.dc_streams[dc_stream]['markets']:
+                                            try:
+                                                self.on_restart(m, restart_ts)
+                                            except Exception as error_msg:
+                                                logger.error(
+                                                    f"BinanceLocalDepthCacheManager._manage_depthcaches() - "
+                                                    f"on_restart callback raised: {error_msg}"
+                                                )
                             else:
                                 self.ubwa.subscribe_to_stream(stream_id=self.dc_streams[dc_stream]['stream_id'],
                                                               markets=market)
@@ -981,6 +993,57 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         logger.debug(f"BinanceLocalDepthCacheManager.get_last_update_time(market={market}) - "
                      f"Returning: {last_update_time}")
         return last_update_time
+
+    def get_last_restart_time(self, market: str = None) -> Optional[float]:
+        """
+        Get the Unix timestamp of the last restart of the underlying WebSocket stream serving this market.
+
+        Returns ``None`` if the stream has not restarted yet (fresh DepthCache, first connection).
+
+        A "restart" here means the WebSocket stream for this market had to reconnect and re-initialize
+        the DepthCache (new REST snapshot + resync). High restart activity can indicate upstream
+        instability on the exchange side.
+
+        :param market: Specify the market symbol for the used DepthCache
+        :type market: str
+        :return: Unix timestamp (float seconds) or None
+        :raises DepthCacheNotFound: if the market is unknown
+        """
+        if market is None:
+            raise DepthCacheNotFound(market=market)
+        market = market.lower()
+        stream_id = self.get_dc_stream_id(market=market)
+        if stream_id is None:
+            raise DepthCacheNotFound(market=market)
+        for dc_stream in self.dc_streams:
+            if self.dc_streams[dc_stream]['stream_id'] == stream_id:
+                return self.dc_streams[dc_stream].get('last_restart')
+        return None
+
+    def get_restart_count(self, market: str = None) -> int:
+        """
+        Get the number of restarts of the underlying WebSocket stream serving this market.
+
+        Returns ``0`` if the stream has not restarted yet.
+
+        A "restart" here means the WebSocket stream for this market had to reconnect and re-initialize
+        the DepthCache. High restart activity can indicate upstream instability on the exchange side.
+
+        :param market: Specify the market symbol for the used DepthCache
+        :type market: str
+        :return: Restart counter (int)
+        :raises DepthCacheNotFound: if the market is unknown
+        """
+        if market is None:
+            raise DepthCacheNotFound(market=market)
+        market = market.lower()
+        stream_id = self.get_dc_stream_id(market=market)
+        if stream_id is None:
+            raise DepthCacheNotFound(market=market)
+        for dc_stream in self.dc_streams:
+            if self.dc_streams[dc_stream]['stream_id'] == stream_id:
+                return self.dc_streams[dc_stream].get('restarts') or 0
+        return 0
 
     def _get_book_side(self,
                        market: str = None,
