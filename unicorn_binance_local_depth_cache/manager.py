@@ -70,6 +70,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         - https://binance-docs.github.io/apidocs/futures/en/#diff-book-depth-streams
 
     :param exchange: Select binance.com, binance.com-testnet, binance.com-futures, binance.com-futures-testnet,
+                     binance.com-vanilla-options, binance.com-vanilla-options-testnet,
                      binance.us, trbinance.com (default: binance.com)
     :type exchange: str
     :param default_refresh_interval: The default refresh interval in seconds, default is None. The DepthCache is reset
@@ -400,6 +401,9 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                 order_book = self.ubra.get_order_book(symbol=market.upper(), limit=1000)
             elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet":
                 order_book = self.ubra.futures_order_book(symbol=market.upper(), limit=1000)
+            elif self.exchange == "binance.com-vanilla-options" \
+                    or self.exchange == "binance.com-vanilla-options-testnet":
+                order_book = self.ubra.options_order_book(symbol=market.upper(), limit=1000)
             else:
                 return None
         except BinanceAPIException as error_msg:
@@ -604,7 +608,9 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                         self.set_resync_request(market=market)
                         self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
                         continue
-                elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet":
+                elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet" \
+                        or self.exchange == "binance.com-vanilla-options" \
+                        or self.exchange == "binance.com-vanilla-options-testnet":
                     if stream_data['data']['pu'] != self.depth_caches[market]['last_update_id']:
                         logger.error(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
                                      f"- There is a gap between the last and the penultimate update ID, the depth_cache"
@@ -664,7 +670,9 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                         self.depth_caches[market]['is_synchronized'] = True
                         self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
                         continue
-                elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet":
+                elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet" \
+                        or self.exchange == "binance.com-vanilla-options" \
+                        or self.exchange == "binance.com-vanilla-options-testnet":
                     if int(stream_data['data']['u']) < int(self.depth_caches[market]['last_update_id']):
                         # Drop it
                         logger.debug(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) -"
@@ -677,7 +685,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                         # The first processed event should have U <= lastUpdateId AND u >= lastUpdateId
                         self._apply_updates(asks=stream_data['data']['a'], bids=stream_data['data']['b'], market=market)
                         logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) - "
-                                    f"Finished initialization of the cache with market {market} (Futures)")
+                                    f"Finished initialization of the cache with market {market} (Futures/Options)")
                         # Init (refresh) finished
                         last_sync_time = time.time()
                         self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])

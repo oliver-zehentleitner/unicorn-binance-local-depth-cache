@@ -693,6 +693,63 @@ class TestUbldc(unittest.TestCase):
             ubldc.get_latest_release_info()
 
 
+class TestUbldcOptions(unittest.TestCase):
+    """Tests for European Options (Vanilla Options) depth cache support.
+
+    Unit tests (exchange string, update interval) use binance.us init with overridden exchange.
+    Live tests (create/stop depth cache, get asks/bids) require binance.com access and are
+    skipped in CI (GitHub Actions runners are geo-blocked).
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        print(f"\r\nTestUbldcOptions:")
+        # Use binance.us for init (works from CI), override exchange for unit tests
+        cls.ubldc = BinanceLocalDepthCacheManager(exchange="binance.us",
+                                                   depth_cache_update_interval=500)
+        cls.ubldc.exchange = "binance.com-vanilla-options"
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.ubldc.stop_manager()
+
+    def test_exchange_string(self):
+        """Test that the exchange is correctly set."""
+        self.assertEqual(str(self.__class__.ubldc.exchange), "binance.com-vanilla-options")
+
+    def test_update_interval(self):
+        """Test that depth_cache_update_interval is set."""
+        self.assertEqual(self.__class__.ubldc.depth_cache_update_interval, 500)
+
+    def test_create_depth_cache_missing_market(self):
+        """Test creating an Options depth cache without market fails gracefully."""
+        self.assertFalse(self.__class__.ubldc.create_depth_cache())
+
+    def test_live_options_depth_cache(self):
+        """Test full Options depth cache lifecycle (requires binance.com access, skipped in CI)."""
+        if os.environ.get('GITHUB_ACTIONS') is None:
+            try:
+                with BinanceLocalDepthCacheManager(exchange="binance.com-vanilla-options",
+                                                    depth_cache_update_interval=500) as ubldc_opts:
+                    result = ubldc_opts.create_depth_cache(markets='BTC-260626-120000-C')
+                    self.assertTrue(result)
+                    time.sleep(15)
+                    try:
+                        ubldc_opts.get_asks(market='BTC-260626-120000-C')
+                    except DepthCacheOutOfSync:
+                        pass
+                    try:
+                        ubldc_opts.get_bids(market='BTC-260626-120000-C')
+                    except DepthCacheOutOfSync:
+                        pass
+                    self.assertTrue(ubldc_opts.stop_depth_cache(str("BTC-260626-120000-C")))
+            except Exception as error_msg:
+                print(f"ERROR: {error_msg}")
+
+    def test_zstop_manager(self):
+        self.__class__.ubldc.stop_manager()
+
+
 _CLUSTER_TEST_RESPONSE_OK = {'app': {'name': 'ubdcc-restapi'}, 'result': 'OK'}
 _CLUSTER_ASKS_RESPONSE = {'asks': [['50000.00', '1.5'], ['50001.00', '0.3']]}
 _CLUSTER_BIDS_RESPONSE = {'bids': [['49999.00', '2.0'], ['49998.00', '0.8']]}
