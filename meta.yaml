@@ -1,5 +1,5 @@
 {% set name = "unicorn-binance-local-depth-cache" %}
-{% set version = "2.12.0" %}
+{% set version = "2.12.1" %}
 
 package:
   name: {{ name|lower }}
