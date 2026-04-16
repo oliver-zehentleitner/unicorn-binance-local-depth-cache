@@ -9,7 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.11.2.dev (development stage/unreleased/unstable)
+## 2.12.0.dev (development stage/unreleased/unstable)
+
+## 2.12.0
 ### Added
 - Support for Binance European Options (Vanilla Options) depth caches via `exchange="binance.com-vanilla-options"`
 - New exchange strings: `binance.com-vanilla-options`, `binance.com-vanilla-options-testnet`

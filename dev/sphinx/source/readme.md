@@ -152,17 +152,21 @@ The Python package [UNICORN Binance Local Depth Cache](https://github.com/oliver
 provides local order books for the Binance Exchanges 
 [Binance](https://github.com/binance-exchange/binance-official-api-docs) ([+Testnet](https://testnet.binance.vision/)), 
 [Binance Futures](https://binance-docs.github.io/apidocs/futures/en/#websocket-market-streams) 
-([+Testnet](https://testnet.binancefuture.com)), [Binance US](https://www.binance.us/) and 
+([+Testnet](https://testnet.binancefuture.com)),
+[Binance European Options](https://developers.binance.com/docs/derivatives/option/general-info)
+([+Testnet](https://testnet.binancefuture.com)),
+[Binance US](https://www.binance.us/) and 
 [TRBinance](https://www.binance.tr/).
 
 ***The algorithm of the DepthCache management was designed according to these instructions:***
 
 Since, according to Binance's predefined algorithm, 
-[all levels > 1000 would be orphaned and remain forever between valid levels](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/45)
+[all levels > 1000 would be orphaned and remain forever between valid levels](https://blog.technopathy.club/your-binance-order-book-is-wrong-here-s-why)
 , UBLDC removes them as soon as they exceed the thousandth position.
 
 - [Binance Spot: "How to manage a local order book correctly"](https://binance-docs.github.io/apidocs/spot/en/#how-to-manage-a-local-order-book-correctly)
 - [Binance Futures: "How to manage a local order book correctly"](https://binance-docs.github.io/apidocs/futures/en/#diff-book-depth-streams)
+- [Binance European Options: "How to manage a local order book correctly"](https://developers.binance.com/docs/derivatives/option/websocket-market-streams)
 - [Binance US: "Managing a Local Order Book"](https://docs.binance.us/#order-book-depth-diff-stream)
 - [TRBinance: "Diff. Depth Stream"](https://www.binance.tr/apidocs/#diff-depth-stream)
 
@@ -201,6 +205,8 @@ is thrown or ask with [`is_depth_cache_synchronized()`](https://oliver-zehentlei
 | [Binance Testnet](https://testnet.binance.vision/)                 | `binance.com-testnet`         |
 | [Binance USD-M Futures](https://www.binance.com)                   | `binance.com-futures`         |
 | [Binance USD-M Futures Testnet](https://testnet.binancefuture.com) | `binance.com-futures-testnet` |
+| [Binance European Options](https://www.binance.com)                | `binance.com-vanilla-options`         |
+| [Binance European Options Testnet](https://testnet.binancefuture.com) | `binance.com-vanilla-options-testnet` |
 | [Binance US](https://www.binance.us/)                              | `binance.us`                  |
 | [TRBinance](https://www.binance.tr/)                               | `trbinance.com` ¹             |
 
@@ -304,10 +310,10 @@ Run in bash:
 `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 2.11.2) you determined 
+Use the below command with the version (such as 2.12.0) you determined 
 [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.11.2.tar.gz --upgrade`
+`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.12.0.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 This is not a release version and can not be considered to be stable!
