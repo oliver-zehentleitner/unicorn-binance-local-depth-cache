@@ -9,7 +9,7 @@ import logging
 import os
 
 amount_test_caches: int = 5
-footer: str = "By LUCIT - www.lucit.tech"
+footer: str = "UNICORN Binance Suite - github.com/oliver-zehentleitner"
 exchange: str = "binance.com-futures"
 limit_count: int = 2
 title: str = "UBLDC Demo"

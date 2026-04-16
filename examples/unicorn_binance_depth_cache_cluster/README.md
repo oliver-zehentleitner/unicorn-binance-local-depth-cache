@@ -1,11 +1,13 @@
 # UNICORN DepthCache Cluster for Binance
-A highly scalable Kubernetes application from LUCIT to manage multiple and redundant UNICORN Binance Local Depth Cache 
-Instances on a Kubernetes Cluster for high-frequency access to Binance's DepthCache data (order books). 
-
-[UNICORN DepthCache Cluster for Binance](https://github.com/oliver-zehentleitner/unicorn-depthcache-cluster-for-binance)
+Examples for using [UBLDC](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)'s built-in 
+cluster interface to connect to a 
+[UNICORN Binance DepthCache Cluster (UBDCC)](https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster).
 
 ## Overview
-Instead of creating and using local DepthCaches, we connect to a UNICORN DepthCache Cluster for Binance.
+Instead of creating and using local DepthCaches, we connect to a 
+[UBDCC](https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster) cluster and use 
+[UBLDC](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)'s `cluster` module for 
+synchronous and asynchronous access to shared order book data.
 
 ## Prerequisites
 Ensure you have Python 3.7+ installed on your system. 
@@ -15,15 +17,12 @@ Before running the provided script, install the required Python packages:
 pip install -r requirements.txt
 ```
 
-And set up your `.env` file!
-
-## Get a UNICORN Binance Suite License
-To run modules of the *UNICORN Binance Suite* you need a [valid license](https://shop.lucit.services)!
+And set up your `.env` file with `UBDCC_ADDRESS` and `UBDCC_PORT`.
 
 ## Usage
 ### Running the Script:
 ```bash
-python xxx.py
+python <script_name>.py
 ```
 
 ### Graceful Shutdown:
@@ -34,5 +33,6 @@ an unexpected exception.
 The script employs logging to provide insights into its operation and to assist in troubleshooting. Logs are saved to a 
 file named after the script with a .log extension.
 
-For further assistance or to report issues, please [contact our support team](https://www.lucit.tech/get-support.html) 
-or [visit our GitHub repository](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache).
+For further assistance or to report issues, please open a 
+[GitHub Issue](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose) 
+or join the [UNICORN Binance Suite community on Telegram](https://t.me/unicorndevs).
