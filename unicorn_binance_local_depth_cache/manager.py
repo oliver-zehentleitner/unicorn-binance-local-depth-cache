@@ -286,7 +286,11 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         if isinstance(markets, str):
             markets = [markets, ]
         if self.depth_cache_update_interval is None:
-            channel = f"depth"
+            if self.exchange == "binance.com-vanilla-options" \
+                    or self.exchange == "binance.com-vanilla-options-testnet":
+                channel = "depth@500ms"
+            else:
+                channel = "depth"
         else:
             channel = f"depth@{self.depth_cache_update_interval}ms"
         for market in markets:
