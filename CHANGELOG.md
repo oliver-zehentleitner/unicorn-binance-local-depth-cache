@@ -9,7 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.12.0.dev (development stage/unreleased/unstable)
+## 2.12.1.dev (development stage/unreleased/unstable)
+
+## 2.12.1
 ### Fixed
 - Options depth cache: default to `depth@500ms` when `depth_cache_update_interval` is not set (Options has no bare `@depth` stream)
 
