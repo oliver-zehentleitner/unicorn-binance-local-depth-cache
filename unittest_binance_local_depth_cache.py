@@ -693,6 +693,60 @@ class TestUbldc(unittest.TestCase):
             ubldc.get_latest_release_info()
 
 
+class TestUbldcOptions(unittest.TestCase):
+    """Tests for European Options (Vanilla Options) depth cache support."""
+
+    @classmethod
+    def setUpClass(cls):
+        print(f"\r\nTestUbldcOptions:")
+        cls.ubldc = BinanceLocalDepthCacheManager(exchange="binance.com-vanilla-options",
+                                                   depth_cache_update_interval=500)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.ubldc.stop_manager()
+
+    def test_exchange_string(self):
+        """Test that the exchange is correctly set."""
+        self.assertEqual(str(self.__class__.ubldc.exchange), "binance.com-vanilla-options")
+
+    def test_update_interval(self):
+        """Test that depth_cache_update_interval is set."""
+        self.assertEqual(self.__class__.ubldc.depth_cache_update_interval, 500)
+
+    def test_create_depth_cache(self):
+        """Test creating an Options depth cache."""
+        # Use a real Options symbol
+        result = self.__class__.ubldc.create_depth_cache(markets='BTC-260626-120000-C')
+        self.assertTrue(result)
+
+    def test_create_depth_cache_missing_market(self):
+        """Test creating an Options depth cache without market fails gracefully."""
+        self.assertFalse(self.__class__.ubldc.create_depth_cache())
+
+    def test_get_asks(self):
+        """Test getting asks for an Options depth cache."""
+        time.sleep(15)
+        try:
+            self.__class__.ubldc.get_asks(market='BTC-260626-120000-C')
+        except DepthCacheOutOfSync:
+            pass
+
+    def test_get_bids(self):
+        """Test getting bids for an Options depth cache."""
+        try:
+            self.__class__.ubldc.get_bids(market='BTC-260626-120000-C')
+        except DepthCacheOutOfSync:
+            pass
+
+    def test_stop_depth_cache(self):
+        """Test stopping an Options depth cache."""
+        self.assertTrue(self.__class__.ubldc.stop_depth_cache(str("BTC-260626-120000-C")))
+
+    def test_zstop_manager(self):
+        self.__class__.ubldc.stop_manager()
+
+
 _CLUSTER_TEST_RESPONSE_OK = {'app': {'name': 'ubdcc-restapi'}, 'result': 'OK'}
 _CLUSTER_ASKS_RESPONSE = {'asks': [['50000.00', '1.5'], ['50001.00', '0.3']]}
 _CLUSTER_BIDS_RESPONSE = {'bids': [['49999.00', '2.0'], ['49998.00', '0.8']]}
