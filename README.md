@@ -158,7 +158,7 @@ provides local order books for the Binance Exchanges
 ***The algorithm of the DepthCache management was designed according to these instructions:***
 
 Since, according to Binance's predefined algorithm, 
-[all levels > 1000 would be orphaned and remain forever between valid levels](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/45)
+[all levels > 1000 would be orphaned and remain forever between valid levels](https://blog.technopathy.club/your-binance-order-book-is-wrong-here-s-why)
 , UBLDC removes them as soon as they exceed the thousandth position.
 
 - [Binance Spot: "How to manage a local order book correctly"](https://binance-docs.github.io/apidocs/spot/en/#how-to-manage-a-local-order-book-correctly)
