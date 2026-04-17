@@ -115,14 +115,11 @@ body:
       options:
         - concerns all
         - binance.com
-        - binance.com-coin_futures
+        - binance.com-testnet
         - binance.com-futures
         - binance.com-futures-testnet
-        - binance.com-isolated_margin
-        - binance.com-isolated_margin-testnet
-        - binance.com-margin
-        - binance.com-margin-testnet
-        - binance.com-testnet
+        - binance.com-vanilla-options
+        - binance.com-vanilla-options-testnet
         - binance.us
         - trbinance.com
     validations:
