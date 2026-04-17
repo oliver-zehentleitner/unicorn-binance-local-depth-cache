@@ -1,0 +1,109 @@
+# UNICORN Binance Local Depth Cache (UBLDC)
+
+> Synchronized local order books for Binance with real-time WebSocket updates.
+> Part of [UNICORN Binance Suite](https://github.com/oliver-zehentleitner/unicorn-binance-suite).
+
+Install: `pip install unicorn-binance-local-depth-cache`
+Import: `from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync`
+
+## Quick Start
+
+```python
+# use case: maintain a local order book and read best bid/ask
+from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync
+import time
+
+with BinanceLocalDepthCacheManager(exchange="binance.com") as ubldc:
+    ubldc.create_depthcache("BTCUSDT")
+    while True:
+        try:
+            asks = ubldc.get_asks("BTCUSDT", limit_count=5)
+            bids = ubldc.get_bids("BTCUSDT", limit_count=5)
+            print(f"Ask: {asks[0]}, Bid: {bids[0]}")
+        except DepthCacheOutOfSync:
+            print("Re-syncing...")
+        time.sleep(1)
+```
+
+## Common Use Cases
+
+### Multiple depth caches
+```python
+ubldc.create_depthcache(markets=["BTCUSDT", "ETHUSDT", "BNBUSDT"])
+```
+
+### Filter by volume threshold
+```python
+# get asks until cumulative volume exceeds 100 BTC
+asks = ubldc.get_asks("BTCUSDT", threshold_volume=100)
+```
+
+### Check sync status without exception
+```python
+if ubldc.is_depth_cache_synchronized("BTCUSDT"):
+    asks = ubldc.get_asks("BTCUSDT")
+```
+
+### Stop a specific depth cache
+```python
+ubldc.stop_depthcache("BTCUSDT")
+```
+
+### Futures depth cache
+```python
+ubldc = BinanceLocalDepthCacheManager(exchange="binance.com-futures")
+ubldc.create_depthcache("BTCUSDT")
+```
+
+### European Options depth cache
+```python
+ubldc = BinanceLocalDepthCacheManager(exchange="binance.com-vanilla-options")
+ubldc.create_depthcache("BTC-260626-120000-C")
+```
+
+## Connect to a DepthCache Cluster (UBDCC)
+
+```python
+# use case: access order books from a UBDCC cluster
+with BinanceLocalDepthCacheManager(exchange="binance.com",
+                                    ubdcc_address="127.0.0.1",
+                                    ubdcc_port=42081) as ubldc:
+    ubldc.cluster.create_depthcaches(exchange="binance.com",
+                                      markets=["BTCUSDT", "ETHUSDT"],
+                                      desired_quantity=2)
+    asks = ubldc.cluster.get_asks(exchange="binance.com", market="BTCUSDT")
+    bids = ubldc.cluster.get_bids(exchange="binance.com", market="BTCUSDT")
+```
+
+Async variant: `await ubldc.cluster.get_asks_async(exchange="binance.com", market="BTCUSDT")`
+
+## Key Parameters
+
+### BinanceLocalDepthCacheManager()
+| Parameter | Type | Default | Purpose |
+|-----------|------|---------|---------|
+| exchange | str | "binance.com" | Exchange endpoint |
+| depth_cache_update_interval | int | None | Update speed in ms (100 or 500) |
+| ubdcc_address | str | None | UBDCC cluster address (enables cluster mode) |
+| ubdcc_port | int | 80 | UBDCC REST API port |
+| ubra_manager | BinanceRestApiManager | None | Shared REST API instance |
+
+### get_asks() / get_bids()
+| Parameter | Type | Default | Purpose |
+|-----------|------|---------|---------|
+| market | str | required | Symbol, e.g. "BTCUSDT" |
+| limit_count | int | None | Return only top N levels |
+| threshold_volume | float | None | Return levels until volume exceeded |
+
+Returns: `list` of `[price, quantity]` pairs. Raises `DepthCacheOutOfSync` if cache is not synchronized.
+
+## Supported Exchanges
+
+`binance.com`, `binance.com-testnet`, `binance.com-futures`, `binance.com-futures-testnet`, `binance.com-vanilla-options`, `binance.com-vanilla-options-testnet`, `binance.us`, `trbinance.com`
+
+## Common Mistakes
+
+- Always catch `DepthCacheOutOfSync` — the cache may be re-initializing after a WebSocket gap
+- Do NOT poll `get_asks()`/`get_bids()` without sleep — the cache updates in real-time, you just read it
+- Use `with` context or call `ubldc.stop_manager()` to avoid orphaned threads
+- Market symbols are case-insensitive ("BTCUSDT" and "btcusdt" both work)
