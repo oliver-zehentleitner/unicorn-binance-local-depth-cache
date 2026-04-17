@@ -35,9 +35,20 @@ async def main():
     for item in exchange_info['symbols']:
         if item['symbol'].endswith("USDT") and item['status'] == "TRADING":
             markets.append(item['symbol'])
-    markets = markets[:50]
+    markets = markets[:20]
     result = ubldc.cluster.create_depthcaches(exchange=exchange, markets=markets, desired_quantity=2, debug=True)
     print(f"Adding {len(markets)} DepthCaches for exchange '{exchange}' on UBDCC '{ubdcc_address}':")
+    pprint(result)
+
+    # Create Options depth caches (update_interval=500 for @depth@500ms)
+    markets = ["BTC-260626-120000-C", "BTC-260626-120000-P", "BTC-260626-100000-C"]
+    result = ubldc.cluster.create_depthcaches(
+        exchange="binance.com-vanilla-options",
+        markets=markets,
+        desired_quantity=2,
+        update_interval=500
+    )
+    print(f"Adding {markets} DepthCaches for exchange 'binance.com-vanilla-options' on UBDCC '{ubdcc_address}':")
     pprint(result)
 
 try:
