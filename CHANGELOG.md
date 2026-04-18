@@ -11,6 +11,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 2.12.1.dev (development stage/unreleased/unstable)
 ### Changed
+- `setup.py`, `dev/set_version.py`, `dev/test_plain.py`: file header
+  `Author: LUCIT Systems and Development` → `Oliver Zehentleitner`,
+  copyright `LUCIT Systems and Development (2022-2023)` →
+  `Oliver Zehentleitner (2022-2026)`.
+- `dev/test_plain.py`: dropped the obsolete
+  `from lucit_licensing_python.exceptions import NoValidatedLucitLicense`
+  import and the corresponding `try/except NoValidatedLucitLicense`
+  wrapper — the LUCIT licensing manager has been removed from UBLDC.
+- `SECURITY.md`: replaced the lucit.tech contact form URL with the
+  GitHub Security Advisories private-reporting URL.
 - README: switched all conda references from the legacy `lucit` channel
   to `conda-forge`. Added conda-forge version / downloads / feedstock
   build badges. Removed the "There is no conda support until migration"

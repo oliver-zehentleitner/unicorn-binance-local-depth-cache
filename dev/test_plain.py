@@ -12,17 +12,15 @@
 # License: MIT
 # https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/LICENSE
 #
-# Author: LUCIT Systems and Development
+# Author: Oliver Zehentleitner
 #
-# Copyright (c) 2022-2023, LUCIT Systems and Development (https://www.lucit.tech)
+# Copyright (c) 2022-2026, Oliver Zehentleitner (https://about.me/oliver-zehentleitner)
 # All rights reserved.
 
 from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync
-from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 import asyncio
 import logging
 import os
-import sys
 
 logging.getLogger("unicorn_binance_local_depth_cache")
 logging.basicConfig(level=logging.DEBUG,
@@ -37,12 +35,8 @@ async def worker(ubldc):
     while ubldc.is_stop_request() is False:
         await asyncio.sleep(1)
 
-try:
-    with BinanceLocalDepthCacheManager(exchange="binance.com") as ubldc_manager:
-        try:
-            asyncio.run(worker(ubldc_manager))
-        except KeyboardInterrupt:
-            print("\r\nGracefully stopping ...")
-except NoValidatedLucitLicense as error_msg:
-    print(f"ERROR: {error_msg}")
-    sys.exit(1)
+with BinanceLocalDepthCacheManager(exchange="binance.com") as ubldc_manager:
+    try:
+        asyncio.run(worker(ubldc_manager))
+    except KeyboardInterrupt:
+        print("\r\nGracefully stopping ...")
