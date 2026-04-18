@@ -50,7 +50,6 @@ about:
     A Python SDK for accessing and managing multiple local Binance order books with Python in a
     simple, fast, flexible, robust and fully featured way.
   description: |
-    
     [![GitHub Release](https://img.shields.io/github/release/oliver-zehentleitner/unicorn-binance-local-depth-cache.svg?label=github)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases)
     [![GitHub Downloads](https://img.shields.io/github/downloads/oliver-zehentleitner/unicorn-binance-local-depth-cache/total?color=blue)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases)
     [![PyPi Release](https://img.shields.io/pypi/v/unicorn-binance-local-depth-cache?color=blue)](https://pypi.org/project/unicorn-binance-local-depth-cache/)
@@ -428,7 +427,7 @@ about:
     ### If you intend to use real money, use it at your own risk!
     
     Under no circumstances will we be responsible or liable for any claims, damages, losses, expenses, costs or liabilities 
-    of any kind, including but not limited to direct or indirect damages for loss of profits.
+    of any kind, including but not limited to direct or indirect damages for loss of profits. 
 
   dev_url: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
   doc_url: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache
