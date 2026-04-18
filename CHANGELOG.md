@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 2.12.1.dev (development stage/unreleased/unstable)
 ### Changed
+- Bumped minimum `unicorn-binance-websocket-api` dependency from
+  `>=2.12.0` to `>=2.12.2` in `setup.py`, `requirements.txt`,
+  `pyproject.toml`, `environment.yml` and `meta.yaml`. 2.12.2 is the
+  cleanup-round UBWA release.
 - `setup.py`, `dev/set_version.py`, `dev/test_plain.py`: file header
   `Author: LUCIT Systems and Development` → `Oliver Zehentleitner`,
   copyright `LUCIT Systems and Development (2022-2023)` →
