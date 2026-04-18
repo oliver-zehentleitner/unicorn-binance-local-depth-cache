@@ -1,8 +1,8 @@
 # Changes must also be made in the following files:
 # ./environment.yml
-# ./meta.yaml
 # ./pyproject.toml
 # ./setup.py
+# https://github.com/conda-forge/unicorn-binance-local-depth-cache-feedstock/blob/main/recipe/meta.yaml
 
 aiohttp
 Cython>=3.0.10
