@@ -497,7 +497,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         self.depth_caches[market]['last_refresh_time'] = int(time.time())
         self.depth_caches[market]['last_update_time'] = int(time.time() * 1000)
         try:
-            self.depth_caches[market]['last_update_id'] = int(order_book['lastUpdateId'])
+            last_update_id = int(order_book['lastUpdateId'])
         except TypeError as error_msg:
             logger.error(f"BinanceLocalDepthCacheManager._init_depth_cache(market={market}) - TypeError: {error_msg}")
             self.depth_caches[market]['refresh_request'] = True
@@ -507,7 +507,12 @@ class BinanceLocalDepthCacheManager(threading.Thread):
             self.depth_caches[market]['refresh_request'] = True
             return False
         self._apply_updates(asks=order_book['asks'], bids=order_book['bids'], market=market)
-        logger.debug(f"BinanceLocalDepthCacheManager._init_depth_cache(market={market}) - Finished initialization!")
+        # Set last_update_id AFTER applying snapshot — this signals the async loop to
+        # stop buffering and start processing events against the sync condition.
+        self.depth_caches[market]['last_update_id'] = last_update_id
+        logger.debug(f"BinanceLocalDepthCacheManager._init_depth_cache(market={market}) - Finished initialization, "
+                     f"lastUpdateId={last_update_id}, {len(self.depth_caches[market].get('init_buffer', []))} "
+                     f"events buffered!")
         return True
 
     async def _manage_depth_cache_async(self, stream_id=None) -> None:
@@ -644,64 +649,84 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                 logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) - Init "
                             f"depth cache of market {market}")
                 if self.depth_caches[market]['last_update_id'] is None:
+                    # Snapshot is still being fetched — buffer events instead of dropping them.
+                    # Once _init_depth_cache sets last_update_id, these will be replayed.
+                    if 'init_buffer' not in self.depth_caches[market]:
+                        self.depth_caches[market]['init_buffer'] = []
+                    self.depth_caches[market]['init_buffer'].append(stream_data)
                     logger.debug(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) - "
-                                 f"Dropping outdated depth update of the cache with market {market}! Reason: "
-                                 f"`last_update_id` is None")
+                                 f"Buffering depth update for {market} (init_buffer "
+                                 f"size={len(self.depth_caches[market]['init_buffer'])})")
                     self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
                     continue
-                if self.exchange == "binance.com" \
-                        or self.exchange == "binance.com-testnet" \
-                        or self.exchange == "binance.us" \
-                        or self.exchange == "trbinance.com":
-                    if int(stream_data['data']['u']) <= self.depth_caches[market]['last_update_id']:
-                        # Drop it
-                        logger.debug(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
-                                     f"- Dropping outdated depth update of the cache with market {market}! Reason: "
-                                     f"{stream_data['data']['u']} <= {self.depth_caches[market]['last_update_id']}")
-                        self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
-                        continue
-                    if int(stream_data['data']['U']) <= self.depth_caches[market]['last_update_id'] + 1 \
-                            <= int(stream_data['data']['u']):
-                        # The first processed event should have U <= lastUpdateId+1 AND u >= lastUpdateId+1.
-                        self._apply_updates(asks=stream_data['data']['a'], bids=stream_data['data']['b'], market=market)
-                        logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) -"
-                                    f" Finished initialization of the cache with market {market} (Spot)")
-                        # Init (refresh) finished
-                        last_sync_time = time.time()
-                        self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])
-                        self.depth_caches[market]['last_update_time'] = int(last_sync_time * 1000)
-                        self.depth_caches[market]['last_refresh_time'] = int(last_sync_time)
-                        self.depth_caches[market]['is_synchronized'] = True
-                        self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
-                        continue
-                elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet" \
-                        or self.exchange == "binance.com-vanilla-options" \
-                        or self.exchange == "binance.com-vanilla-options-testnet":
-                    if int(stream_data['data']['u']) < int(self.depth_caches[market]['last_update_id']):
-                        # Drop it
-                        logger.debug(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) -"
-                                     f" Dropping outdated depth update of the cache with market {market}! Reason: "
-                                     f"{stream_data['data']['u']} <= {self.depth_caches[market]['last_update_id']}")
-                        self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
-                        continue
-                    if int(stream_data['data']['U']) <= self.depth_caches[market]['last_update_id'] \
-                            <= int(stream_data['data']['u']):
-                        # The first processed event should have U <= lastUpdateId AND u >= lastUpdateId
-                        self._apply_updates(asks=stream_data['data']['a'], bids=stream_data['data']['b'], market=market)
-                        logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) - "
-                                    f"Finished initialization of the cache with market {market} (Futures/Options)")
-                        # Init (refresh) finished
-                        last_sync_time = time.time()
-                        self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])
-                        self.depth_caches[market]['last_update_time'] = int(last_sync_time * 1000)
-                        self.depth_caches[market]['is_synchronized'] = True
-                        self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
-                        continue
-                logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) - Set "
-                            f"refresh_request for depth_cache with market {market}")
-                self.set_resync_request(market=market)
+                # Replay buffered events from the init phase
+                if self.depth_caches[market].get('init_buffer'):
+                    buffered = self.depth_caches[market].pop('init_buffer')
+                    logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) - "
+                                f"Replaying {len(buffered)} buffered events for {market}")
+                    buffered.append(stream_data)
+                    for buffered_event in buffered:
+                        if self.depth_caches[market]['is_synchronized'] is True:
+                            break
+                        self._process_init_event(stream_id=stream_id, stream_data=buffered_event, market=market)
+                    if self.depth_caches[market]['is_synchronized'] is not True:
+                        logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
+                                    f"- No sync point found in {len(buffered)} buffered events for {market}, "
+                                    f"requesting resync")
+                        self.set_resync_request(market=market)
+                    self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
+                    continue
+                self._process_init_event(stream_id=stream_id, stream_data=stream_data, market=market)
+                if self.depth_caches[market]['is_synchronized'] is not True:
+                    self.set_resync_request(market=market)
                 self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
                 continue
+
+    def _process_init_event(self, stream_id=None, stream_data=None, market=None) -> None:
+        """
+        Try to find the sync point for a depth cache that has a REST snapshot but is not yet synchronized.
+        Called for both buffered (replayed) and live events during the init phase.
+
+        Spot sync:  U <= lastUpdateId+1 <= u
+        Futures/Options sync:  U <= lastUpdateId <= u
+        """
+        if self.exchange == "binance.com" \
+                or self.exchange == "binance.com-testnet" \
+                or self.exchange == "binance.us" \
+                or self.exchange == "trbinance.com":
+            if int(stream_data['data']['u']) <= self.depth_caches[market]['last_update_id']:
+                return
+            if int(stream_data['data']['U']) <= self.depth_caches[market]['last_update_id'] + 1 \
+                    <= int(stream_data['data']['u']):
+                self._apply_updates(asks=stream_data['data']['a'], bids=stream_data['data']['b'], market=market)
+                logger.info(f"BinanceLocalDepthCacheManager._process_init_event(stream_id={stream_id}) - "
+                            f"Finished initialization of the cache with market {market} (Spot)")
+                last_sync_time = time.time()
+                self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])
+                self.depth_caches[market]['last_update_time'] = int(last_sync_time * 1000)
+                self.depth_caches[market]['last_refresh_time'] = int(last_sync_time)
+                self.depth_caches[market]['is_synchronized'] = True
+                return
+        elif self.exchange == "binance.com-futures" or self.exchange == "binance.com-futures-testnet" \
+                or self.exchange == "binance.com-vanilla-options" \
+                or self.exchange == "binance.com-vanilla-options-testnet":
+            if int(stream_data['data']['u']) < int(self.depth_caches[market]['last_update_id']):
+                return
+            if int(stream_data['data']['U']) <= self.depth_caches[market]['last_update_id'] \
+                    <= int(stream_data['data']['u']):
+                self._apply_updates(asks=stream_data['data']['a'], bids=stream_data['data']['b'], market=market)
+                logger.info(f"BinanceLocalDepthCacheManager._process_init_event(stream_id={stream_id}) - "
+                            f"Finished initialization of the cache with market {market} (Futures/Options)")
+                last_sync_time = time.time()
+                self.depth_caches[market]['last_update_id'] = int(stream_data['data']['u'])
+                self.depth_caches[market]['last_update_time'] = int(last_sync_time * 1000)
+                self.depth_caches[market]['is_synchronized'] = True
+                return
+        # No sync point found in this event — if this is a live (non-buffered) call,
+        # the async loop will trigger a resync after exhausting all possibilities.
+        logger.debug(f"BinanceLocalDepthCacheManager._process_init_event(stream_id={stream_id}) - "
+                     f"No sync point in event for {market}: U={stream_data['data']['U']}, "
+                     f"u={stream_data['data']['u']}, lastUpdateId={self.depth_caches[market]['last_update_id']}")
 
     def _manage_depthcaches(self) -> None:
         """
