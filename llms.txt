@@ -3,7 +3,7 @@
 > Synchronized local order books for Binance with real-time WebSocket updates.
 > Part of [UNICORN Binance Suite](https://github.com/oliver-zehentleitner/unicorn-binance-suite).
 
-Version: 2.12.x. Python 3.9 – 3.14.
+Version: 2.12.2. Python 3.9 – 3.14.
 
 Install: `pip install unicorn-binance-local-depth-cache`
 Import: `from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync`
