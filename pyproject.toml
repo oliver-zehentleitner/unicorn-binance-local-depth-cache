@@ -22,9 +22,9 @@ repository = "https://github.com/oliver-zehentleitner/unicorn-binance-local-dept
 [tool.poetry.dependencies]
 python = ">=3.9.0"
 aiohttp = "*"
-Cython = "*"
+Cython = ">=3.0.10"
 orjson = "*"
-requests = ">=2.31.0"
+requests = ">=2.32.3"
 unicorn-binance-rest-api = ">=2.10.0"
 unicorn-binance-websocket-api = ">=2.12.0"
 
