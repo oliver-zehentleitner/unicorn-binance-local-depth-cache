@@ -3,6 +3,8 @@
 [![GitHub Downloads](https://img.shields.io/github/downloads/oliver-zehentleitner/unicorn-binance-local-depth-cache/total?color=blue)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases)
 [![PyPi Release](https://img.shields.io/pypi/v/unicorn-binance-local-depth-cache?color=blue)](https://pypi.org/project/unicorn-binance-local-depth-cache/)
 [![PyPi Downloads](https://pepy.tech/badge/unicorn-binance-local-depth-cache)](https://pepy.tech/project/unicorn-binance-local-depth-cache)
+[![Conda-Forge Version](https://img.shields.io/conda/v/conda-forge/unicorn-binance-local-depth-cache?color=blue&label=conda)](https://anaconda.org/conda-forge/unicorn-binance-local-depth-cache)
+[![Conda-Forge Downloads](https://img.shields.io/conda/dn/conda-forge/unicorn-binance-local-depth-cache?color=blue&label=downloads)](https://anaconda.org/conda-forge/unicorn-binance-local-depth-cache)
 [![License](https://img.shields.io/github/license/oliver-zehentleitner/unicorn-binance-local-depth-cache.svg?color=blue)](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/license.html)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_local_depth_cache.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_local_depth_cache.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues)
@@ -10,6 +12,7 @@
 [![CodeQL](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml)
 [![Unit Tests](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/unit-tests.yml)
 [![Build and Publish GH+PyPi](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml)
+[![Conda-Forge Build](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/unicorn-binance-local-depth-cache-feedstock?branchName=main)](https://github.com/conda-forge/unicorn-binance-local-depth-cache-feedstock)
 [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/)
 [![Read How To`s](https://img.shields.io/badge/read-%20howto-yellow)](https://technopathy.club)
 [![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
@@ -234,28 +237,22 @@ If you like the project, please
 [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)! 
 
 ## Installation and Upgrade
-The module requires Python 3.8 and runs smoothly up to and including Python 3.13.
+The module requires Python 3.9 and runs smoothly up to and including Python 3.14.
 
-[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
-
-For the PyPy interpreter we offer packages only from Python version 3.9 and higher.
-
-Anaconda packages are available from Python version 3.8 and higher, but only in the latest version!
+PyPy wheels are available for all supported Python versions.
 
 The current dependencies are listed [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/requirements.txt).
 
 If you run into errors during the installation take a look [here](https://github.com/oliver-zehentleitner/unicorn-binance-suite/wiki/Installation).
 
 ### Packages are created automatically with GitHub Actions
-When a new release is to be created, we start two GitHubActions: 
-
-- [Build and Publish Anaconda](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
-- [Build and Publish GH+PyPi](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml) 
-
-Both start virtual Windows/Linux/Mac servers provided by GitHub in the cloud with preconfigured environments and 
-create the respective compilations and stub files, pack them into wheels and conda packages and then publish them on 
-GitHub, PYPI and Anaconda. This is a transparent method that makes it possible to trace the source code behind a 
-compilation.
+When a new release is created, the
+[Build and Publish GH+PyPi](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml)
+workflow spins up virtual Windows/Linux/Mac runners, compiles the Cython extensions, builds the
+wheels and publishes them on GitHub and PyPI. The conda-forge feedstock
+[conda-forge/unicorn-binance-local-depth-cache-feedstock](https://github.com/conda-forge/unicorn-binance-local-depth-cache-feedstock)
+picks up the new PyPI release automatically and builds the Conda packages on its own infrastructure.
+This is a transparent method that makes it possible to trace the source code behind a compilation.
 
 ### A Cython binary, PyPy or source code based CPython wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/unicorn-binance-rest-api/)
 Our [Cython](https://cython.org/) and [PyPy](https://www.pypy.org/) Wheels are available on [PyPI](https://pypi.org/), 
@@ -279,29 +276,10 @@ configuration.
 #### Update
 `pip install unicorn-binance-local-depth-cache --upgrade`
 
-### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
-[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
-
-The `unicorn-binance-local-depth-cache` package is also available as a Cython version for the `linux-64`, `osx-64` 
-and `win-64` architectures with [Conda](https://docs.conda.io/en/latest/) through the 
-[`lucit` channel](https://anaconda.org/lucit). 
-
-For optimal compatibility and performance, it is recommended to source the necessary dependencies from the 
-[`conda-forge` channel](https://anaconda.org/conda-forge). 
-
-#### Installation
-[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
-
+### conda
 ```
-conda config --add channels conda-forge
-conda config --add channels lucit
-conda install -c lucit unicorn-binance-local-depth-cache
+conda install -c conda-forge unicorn-binance-local-depth-cache
 ```
-
-#### Update
-[There is no conda support until the migration to conda-forge.](https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17)
-
-`conda update -c lucit unicorn-binance-local-depth-cache`
 
 ### From source of the latest release with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 #### Linux, macOS, ...
@@ -310,10 +288,10 @@ Run in bash:
 `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 2.12.1) you determined 
+Use the below command with the version (such as 2.12.2) you determined 
 [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.12.1.tar.gz --upgrade`
+`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.12.2.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 This is not a release version and can not be considered to be stable!
@@ -378,6 +356,15 @@ contribute follow
 [![Contributors](https://contributors-img.web.app/image?repo=oliver-zehentleitner/unicorn-binance-local-depth-cache)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/graphs/contributors)
 
 We ![love](https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/master/images/misc/heart.png) open source!
+
+---
+
+## AI Integration
+
+This project provides a [`llms.txt`](https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/refs/heads/master/llms.txt) file for AI tools (ChatGPT, Claude, Copilot, etc.) with structured 
+usage instructions, code examples and module routing.
+
+---
 
 ## Disclaimer
 This project is for informational purposes only. You should not construe this information or any other material as 

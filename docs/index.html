@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to unicorn-binance-local-depth-cache’s documentation! &#8212; unicorn-binance-local-depth-cache 2.12.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to unicorn-binance-local-depth-cache’s documentation! &#8212; unicorn-binance-local-depth-cache 2.12.2 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -177,7 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="readme.html#installation-and-upgrade">Installation and Upgrade</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#packages-are-created-automatically-with-github-actions">Packages are created automatically with GitHub Actions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#a-cython-binary-pypy-or-source-code-based-cpython-wheel-of-the-latest-version-with-pip-from-pypi">A Cython binary, PyPy or source code based CPython wheel of the latest version with <code class="docutils literal notranslate"><span class="pre">pip</span></code> from PyPI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="readme.html#a-conda-package-of-the-latest-version-with-conda-from-anaconda">A Conda Package of the latest version with <code class="docutils literal notranslate"><span class="pre">conda</span></code> from Anaconda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#conda">conda</a></li>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#from-source-of-the-latest-release-with-pip-from-github">From source of the latest release with PIP from GitHub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#from-the-latest-source-dev-stage-with-pip-from-github">From the latest source (dev-stage) with PIP from GitHub</a></li>
 </ul>
@@ -194,6 +194,7 @@
 <li class="toctree-l3"><a class="reference internal" href="readme.html#contributors">Contributors</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#ai-integration">AI Integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#disclaimer">Disclaimer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#if-you-intend-to-use-real-money-use-it-at-your-own-risk">If you intend to use real money, use it at your own risk!</a></li>
 </ul>
@@ -213,162 +214,167 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">ChangeLog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#dev-development-stage-unreleased-unstable">2.12.1.dev (development stage/unreleased/unstable)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id1">2.12.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">2.12.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#dev-development-stage-unreleased-unstable">2.12.2.dev (development stage/unreleased/unstable)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id1">2.12.2</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#changed">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id3">2.11.2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id5">2.11.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">2.11.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id8">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">2.10.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id11">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">2.9.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id13">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id14">Fixed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id15">Changed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#removed">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">2.8.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id18">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id19">Removed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">2.12.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">2.8.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id3">2.12.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Changed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id5">2.11.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">2.11.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id8">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">2.11.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id11">2.10.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id12">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id13">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">2.9.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id15">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id16">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id18">Removed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id19">2.8.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id20">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id22">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id22">2.7.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id24">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id23">2.8.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id24">Changed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">2.6.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">2.7.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id27">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id27">2.5.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id28">2.6.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id29">2.4.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id30">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">2.5.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id31">2.4.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id32">Changed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id32">2.4.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id33">2.3.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id34">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id35">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id34">2.4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id35">Changed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id36">2.2.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id36">2.3.0</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id37">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id38">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id38">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">2.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id40">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Changed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#renamed">Renamed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">2.1.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id40">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">2.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id43">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id41">2.1.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id42">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id43">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id44">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id44">2.1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id45">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id46">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id47">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id45">2.0.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id46">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id47">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id48">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id48">2.0.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id49">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id50">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id51">Fixed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id49">1.0.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id50">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id52">1.0.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id53">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id51">0.7.3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id52">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id54">0.7.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id55">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id53">0.7.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id54">0.7.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id55">0.7.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id56">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id57">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id58">Removed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id56">0.7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id57">0.7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id58">0.7.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id59">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id60">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id61">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id59">0.6.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id60">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id61">Changed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id62">0.6.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id63">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id64">Changed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id62">0.5.3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id63">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id64">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id65">0.5.2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id65">0.5.3</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id66">Changed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id67">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id68">0.5.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id69">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id68">0.5.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id69">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id70">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id70">0.5.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id71">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id72">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id73">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id71">0.5.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id72">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id74">0.4.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id75">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id73">0.5.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id74">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id75">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id76">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id77">0.4.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id78">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#fixing">Fixing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id76">0.4.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id77">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id79">0.4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id80">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#changes">Changes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id78">0.3.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id79">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id80">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id81">0.2.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id81">0.3.0</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id82">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id83">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id84">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id83">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id85">0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id84">0.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id85">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id86">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id87">Removed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id88">0.1.0</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a><ul>
@@ -516,7 +522,7 @@
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 17 2026 at 14:42 (CET).
+    Last updated on Apr 18 2026 at 21:06 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.

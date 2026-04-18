@@ -9,7 +9,51 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.12.1.dev (development stage/unreleased/unstable)
+## 2.12.2.dev (development stage/unreleased/unstable)
+
+## 2.12.2
+### Changed
+- Bumped minimum `unicorn-binance-websocket-api` dependency from
+  `>=2.12.0` to `>=2.12.2` in `setup.py`, `requirements.txt`,
+  `pyproject.toml`, `environment.yml` and `meta.yaml`. 2.12.2 is the
+  cleanup-round UBWA release.
+- `setup.py`, `dev/set_version.py`, `dev/test_plain.py`: file header
+  `Author: LUCIT Systems and Development` → `Oliver Zehentleitner`,
+  copyright `LUCIT Systems and Development (2022-2023)` →
+  `Oliver Zehentleitner (2022-2026)`.
+- `dev/test_plain.py`: dropped the obsolete
+  `from lucit_licensing_python.exceptions import NoValidatedLucitLicense`
+  import and the corresponding `try/except NoValidatedLucitLicense`
+  wrapper — the LUCIT licensing manager has been removed from UBLDC.
+- `SECURITY.md`: replaced the lucit.tech contact form URL with the
+  GitHub Security Advisories private-reporting URL.
+- README: switched all conda references from the legacy `lucit` channel
+  to `conda-forge`. Added conda-forge version / downloads / feedstock
+  build badges. Removed the "There is no conda support until migration"
+  placeholders. Install section is now a single
+  `conda install -c conda-forge unicorn-binance-local-depth-cache`.
+- README: reworded the PyPy paragraph. The old sentence ("For the PyPy
+  interpreter we offer packages only from Python version 3.9 and
+  higher") made sense when we still shipped wheels for pre-3.9 CPython;
+  replaced with "PyPy wheels are available for all supported Python
+  versions." Also dropped the stale "Anaconda packages are available
+  from Python version 3.8 and higher" line and fixed the Python range
+  in the Installation section to 3.9 – 3.14.
+- Aligned dependency pins across `requirements.txt`, `setup.py`,
+  `pyproject.toml`, `environment.yml` and `meta.yaml` using `setup.py`
+  as the source of truth (`Cython>=3.0.10`, `requests>=2.32.3`;
+  `orjson` was missing from `environment.yml` and has been added).
+- `environment.yml`: dropped the `lucit` channel and the `defaults`
+  channel; removed `lucit::` prefixes on suite deps; bumped
+  `python>=3.8` to `python>=3.9` to match the rest.
+- `meta.yaml`: removed the leftover `channels:` and `dependencies:`
+  blocks (they are `environment.yml` keys, not valid in `meta.yaml`).
+  Dropped the `lucit::` channel prefixes from suite deps. Re-embedded
+  the current `README.md` into `about.description`. License is MIT.
+### Removed
+- `.github/workflows/build_conda.yml`: the conda-forge feedstock
+  (`conda-forge/unicorn-binance-local-depth-cache-feedstock`) now
+  builds and publishes the conda package; no in-repo build is needed.
 
 ## 2.12.1
 ### Fixed

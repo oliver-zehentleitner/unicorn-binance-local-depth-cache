@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>UNICORN Binance Local Depth Cache &#8212; unicorn-binance-local-depth-cache 2.12.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICORN Binance Local Depth Cache &#8212; unicorn-binance-local-depth-cache 2.12.2 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -82,11 +82,7 @@
 <li><a class="reference internal" href="#update">Update</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#a-conda-package-of-the-latest-version-with-conda-from-anaconda">A Conda Package of the latest version with <code class="docutils literal notranslate"><span class="pre">conda</span></code> from Anaconda</a><ul>
-<li><a class="reference internal" href="#id1">Installation</a></li>
-<li><a class="reference internal" href="#id2">Update</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#conda">conda</a></li>
 <li><a class="reference internal" href="#from-source-of-the-latest-release-with-pip-from-github">From source of the latest release with PIP from GitHub</a><ul>
 <li><a class="reference internal" href="#linux-macos">Linux, macOS, …</a></li>
 <li><a class="reference internal" href="#windows">Windows</a></li>
@@ -107,6 +103,7 @@
 <li><a class="reference internal" href="#contributors">Contributors</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#ai-integration">AI Integration</a></li>
 <li><a class="reference internal" href="#disclaimer">Disclaimer</a><ul>
 <li><a class="reference internal" href="#if-you-intend-to-use-real-money-use-it-at-your-own-risk">If you intend to use real money, use it at your own risk!</a></li>
 </ul>
@@ -223,6 +220,8 @@
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases"><img alt="GitHub Downloads" src="https://img.shields.io/github/downloads/oliver-zehentleitner/unicorn-binance-local-depth-cache/total?color=blue" /></a>
 <a class="reference external" href="https://pypi.org/project/unicorn-binance-local-depth-cache/"><img alt="PyPi Release" src="https://img.shields.io/pypi/v/unicorn-binance-local-depth-cache?color=blue" /></a>
 <a class="reference external" href="https://pepy.tech/project/unicorn-binance-local-depth-cache"><img alt="PyPi Downloads" src="https://pepy.tech/badge/unicorn-binance-local-depth-cache" /></a>
+<a class="reference external" href="https://anaconda.org/conda-forge/unicorn-binance-local-depth-cache"><img alt="Conda-Forge Version" src="https://img.shields.io/conda/v/conda-forge/unicorn-binance-local-depth-cache?color=blue&amp;label=conda" /></a>
+<a class="reference external" href="https://anaconda.org/conda-forge/unicorn-binance-local-depth-cache"><img alt="Conda-Forge Downloads" src="https://img.shields.io/conda/dn/conda-forge/unicorn-binance-local-depth-cache?color=blue&amp;label=downloads" /></a>
 <a class="reference external" href="https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/license.html"><img alt="License" src="https://img.shields.io/github/license/oliver-zehentleitner/unicorn-binance-local-depth-cache.svg?color=blue" /></a>
 <a class="reference external" href="https://www.python.org/downloads/"><img alt="Supported Python Version" src="https://img.shields.io/pypi/pyversions/unicorn_binance_local_depth_cache.svg" /></a>
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues"><img alt="PyPI - Status" src="https://img.shields.io/pypi/status/unicorn_binance_local_depth_cache.svg" /></a>
@@ -230,6 +229,7 @@
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml/badge.svg" /></a>
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/unit-tests.yml"><img alt="Unit Tests" src="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/unit-tests.yml/badge.svg" /></a>
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml"><img alt="Build and Publish GH+PyPi" src="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml/badge.svg" /></a>
+<a class="reference external" href="https://github.com/conda-forge/unicorn-binance-local-depth-cache-feedstock"><img alt="Conda-Forge Build" src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/unicorn-binance-local-depth-cache-feedstock?branchName=main" /></a>
 <a class="reference external" href="https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/"><img alt="Read the Docs" src="https://img.shields.io/badge/read-%20docs-yellow" /></a>
 <a class="reference external" href="https://technopathy.club"><img alt="Read How To`s" src="https://img.shields.io/badge/read-%20howto-yellow" /></a>
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache"><img alt="Github" src="https://img.shields.io/badge/source-github-cbc2c8" /></a>
@@ -476,23 +476,19 @@ functions and source code for easier debugging of the source code. <a class="ref
 </section>
 <section id="installation-and-upgrade">
 <h2>Installation and Upgrade<a class="headerlink" href="#installation-and-upgrade" title="Link to this heading">¶</a></h2>
-<p>The module requires Python 3.8 and runs smoothly up to and including Python 3.13.</p>
-<p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17">There is no conda support until the migration to conda-forge.</a></p>
-<p>For the PyPy interpreter we offer packages only from Python version 3.9 and higher.</p>
-<p>Anaconda packages are available from Python version 3.8 and higher, but only in the latest version!</p>
+<p>The module requires Python 3.9 and runs smoothly up to and including Python 3.14.</p>
+<p>PyPy wheels are available for all supported Python versions.</p>
 <p>The current dependencies are listed <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/requirements.txt">here</a>.</p>
 <p>If you run into errors during the installation take a look <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite/wiki/Installation">here</a>.</p>
 <section id="packages-are-created-automatically-with-github-actions">
 <h3>Packages are created automatically with GitHub Actions<a class="headerlink" href="#packages-are-created-automatically-with-github-actions" title="Link to this heading">¶</a></h3>
-<p>When a new release is to be created, we start two GitHubActions:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17">Build and Publish Anaconda</a></p></li>
-<li><p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml">Build and Publish GH+PyPi</a></p></li>
-</ul>
-<p>Both start virtual Windows/Linux/Mac servers provided by GitHub in the cloud with preconfigured environments and
-create the respective compilations and stub files, pack them into wheels and conda packages and then publish them on
-GitHub, PYPI and Anaconda. This is a transparent method that makes it possible to trace the source code behind a
-compilation.</p>
+<p>When a new release is created, the
+<a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml">Build and Publish GH+PyPi</a>
+workflow spins up virtual Windows/Linux/Mac runners, compiles the Cython extensions, builds the
+wheels and publishes them on GitHub and PyPI. The conda-forge feedstock
+<a class="reference external" href="https://github.com/conda-forge/unicorn-binance-local-depth-cache-feedstock">conda-forge/unicorn-binance-local-depth-cache-feedstock</a>
+picks up the new PyPI release automatically and builds the Conda packages on its own infrastructure.
+This is a transparent method that makes it possible to trace the source code behind a compilation.</p>
 </section>
 <section id="a-cython-binary-pypy-or-source-code-based-cpython-wheel-of-the-latest-version-with-pip-from-pypi">
 <h3>A Cython binary, PyPy or source code based CPython wheel of the latest version with <code class="docutils literal notranslate"><span class="pre">pip</span></code> from <a class="reference external" href="https://pypi.org/project/unicorn-binance-rest-api/">PyPI</a><a class="headerlink" href="#a-cython-binary-pypy-or-source-code-based-cpython-wheel-of-the-latest-version-with-pip-from-pypi" title="Link to this heading">¶</a></h3>
@@ -518,28 +514,11 @@ configuration.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">unicorn-binance-local-depth-cache</span> <span class="pre">--upgrade</span></code></p>
 </section>
 </section>
-<section id="a-conda-package-of-the-latest-version-with-conda-from-anaconda">
-<h3>A Conda Package of the latest version with <code class="docutils literal notranslate"><span class="pre">conda</span></code> from <a class="reference external" href="https://anaconda.org/lucit">Anaconda</a><a class="headerlink" href="#a-conda-package-of-the-latest-version-with-conda-from-anaconda" title="Link to this heading">¶</a></h3>
-<p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17">There is no conda support until the migration to conda-forge.</a></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">unicorn-binance-local-depth-cache</span></code> package is also available as a Cython version for the <code class="docutils literal notranslate"><span class="pre">linux-64</span></code>, <code class="docutils literal notranslate"><span class="pre">osx-64</span></code>
-and <code class="docutils literal notranslate"><span class="pre">win-64</span></code> architectures with <a class="reference external" href="https://docs.conda.io/en/latest/">Conda</a> through the
-<a class="reference external" href="https://anaconda.org/lucit"><code class="docutils literal notranslate"><span class="pre">lucit</span></code> channel</a>.</p>
-<p>For optimal compatibility and performance, it is recommended to source the necessary dependencies from the
-<a class="reference external" href="https://anaconda.org/conda-forge"><code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel</a>.</p>
-<section id="id1">
-<h4>Installation<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
-<p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17">There is no conda support until the migration to conda-forge.</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
-<span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">lucit</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">lucit</span> <span class="n">unicorn</span><span class="o">-</span><span class="n">binance</span><span class="o">-</span><span class="n">local</span><span class="o">-</span><span class="n">depth</span><span class="o">-</span><span class="n">cache</span>
+<section id="conda">
+<h3>conda<a class="headerlink" href="#conda" title="Link to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">unicorn</span><span class="o">-</span><span class="n">binance</span><span class="o">-</span><span class="n">local</span><span class="o">-</span><span class="n">depth</span><span class="o">-</span><span class="n">cache</span>
 </pre></div>
 </div>
-</section>
-<section id="id2">
-<h4>Update<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
-<p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite/issues/17">There is no conda support until the migration to conda-forge.</a></p>
-<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">-c</span> <span class="pre">lucit</span> <span class="pre">unicorn-binance-local-depth-cache</span></code></p>
-</section>
 </section>
 <section id="from-source-of-the-latest-release-with-pip-from-github">
 <h3>From source of the latest release with PIP from <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache">GitHub</a><a class="headerlink" href="#from-source-of-the-latest-release-with-pip-from-github" title="Link to this heading">¶</a></h3>
@@ -550,9 +529,9 @@ and <code class="docutils literal notranslate"><span class="pre">win-64</span></
 </section>
 <section id="windows">
 <h4>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h4>
-<p>Use the below command with the version (such as 2.12.1) you determined
+<p>Use the below command with the version (such as 2.12.2) you determined
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest">here</a>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.12.1.tar.gz</span> <span class="pre">--upgrade</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.12.2.tar.gz</span> <span class="pre">--upgrade</span></code></p>
 </section>
 </section>
 <section id="from-the-latest-source-dev-stage-with-pip-from-github">
@@ -631,6 +610,13 @@ contribute follow
 <p>We <img alt="love" src="https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/master/images/misc/heart.png" /> open source!</p>
 </section>
 </section>
+<hr class="docutils" />
+<section id="ai-integration">
+<h2>AI Integration<a class="headerlink" href="#ai-integration" title="Link to this heading">¶</a></h2>
+<p>This project provides a <a class="reference external" href="https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/refs/heads/master/llms.txt"><code class="docutils literal notranslate"><span class="pre">llms.txt</span></code></a> file for AI tools (ChatGPT, Claude, Copilot, etc.) with structured
+usage instructions, code examples and module routing.</p>
+</section>
+<hr class="docutils" />
 <section id="disclaimer">
 <h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Link to this heading">¶</a></h2>
 <p>This project is for informational purposes only. You should not construe this information or any other material as
@@ -692,11 +678,7 @@ of any kind, including but not limited to direct or indirect damages for loss of
 <li><a class="reference internal" href="#update">Update</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#a-conda-package-of-the-latest-version-with-conda-from-anaconda">A Conda Package of the latest version with <code class="docutils literal notranslate"><span class="pre">conda</span></code> from Anaconda</a><ul>
-<li><a class="reference internal" href="#id1">Installation</a></li>
-<li><a class="reference internal" href="#id2">Update</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#conda">conda</a></li>
 <li><a class="reference internal" href="#from-source-of-the-latest-release-with-pip-from-github">From source of the latest release with PIP from GitHub</a><ul>
 <li><a class="reference internal" href="#linux-macos">Linux, macOS, …</a></li>
 <li><a class="reference internal" href="#windows">Windows</a></li>
@@ -717,6 +699,7 @@ of any kind, including but not limited to direct or indirect damages for loss of
 <li><a class="reference internal" href="#contributors">Contributors</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#ai-integration">AI Integration</a></li>
 <li><a class="reference internal" href="#disclaimer">Disclaimer</a><ul>
 <li><a class="reference internal" href="#if-you-intend-to-use-real-money-use-it-at-your-own-risk">If you intend to use real money, use it at your own risk!</a></li>
 </ul>
@@ -827,7 +810,7 @@ of any kind, including but not limited to direct or indirect damages for loss of
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 17 2026 at 14:42 (CET).
+    Last updated on Apr 18 2026 at 21:06 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.

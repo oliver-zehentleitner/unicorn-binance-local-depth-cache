@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>unicorn-binance-local-depth-cache Change Log &#8212; unicorn-binance-local-depth-cache 2.12.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unicorn-binance-local-depth-cache Change Log &#8212; unicorn-binance-local-depth-cache 2.12.2 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -52,162 +52,167 @@
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">unicorn-binance-local-depth-cache Change Log</a><ul>
-<li><a class="reference internal" href="#dev-development-stage-unreleased-unstable">2.12.1.dev (development stage/unreleased/unstable)</a></li>
-<li><a class="reference internal" href="#id1">2.12.1</a><ul>
-<li><a class="reference internal" href="#fixed">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id2">2.12.0</a><ul>
-<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#dev-development-stage-unreleased-unstable">2.12.2.dev (development stage/unreleased/unstable)</a></li>
+<li><a class="reference internal" href="#id1">2.12.2</a><ul>
 <li><a class="reference internal" href="#changed">Changed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id3">2.11.2</a><ul>
-<li><a class="reference internal" href="#id4">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id5">2.11.1</a><ul>
-<li><a class="reference internal" href="#id6">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id7">2.11.0</a><ul>
-<li><a class="reference internal" href="#id8">Added</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id9">2.10.0</a><ul>
-<li><a class="reference internal" href="#id10">Changed</a></li>
-<li><a class="reference internal" href="#id11">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id12">2.9.0</a><ul>
-<li><a class="reference internal" href="#id13">Added</a></li>
-<li><a class="reference internal" href="#id14">Fixed</a></li>
-<li><a class="reference internal" href="#id15">Changed</a></li>
 <li><a class="reference internal" href="#removed">Removed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id16">2.8.1</a><ul>
-<li><a class="reference internal" href="#id17">Added</a></li>
-<li><a class="reference internal" href="#id18">Changed</a></li>
-<li><a class="reference internal" href="#id19">Removed</a></li>
+<li><a class="reference internal" href="#id2">2.12.1</a><ul>
+<li><a class="reference internal" href="#fixed">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id20">2.8.0</a><ul>
+<li><a class="reference internal" href="#id3">2.12.0</a><ul>
+<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#id4">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">2.11.2</a><ul>
+<li><a class="reference internal" href="#id6">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7">2.11.1</a><ul>
+<li><a class="reference internal" href="#id8">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">2.11.0</a><ul>
+<li><a class="reference internal" href="#id10">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11">2.10.0</a><ul>
+<li><a class="reference internal" href="#id12">Changed</a></li>
+<li><a class="reference internal" href="#id13">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">2.9.0</a><ul>
+<li><a class="reference internal" href="#id15">Added</a></li>
+<li><a class="reference internal" href="#id16">Fixed</a></li>
+<li><a class="reference internal" href="#id17">Changed</a></li>
+<li><a class="reference internal" href="#id18">Removed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19">2.8.1</a><ul>
+<li><a class="reference internal" href="#id20">Added</a></li>
 <li><a class="reference internal" href="#id21">Changed</a></li>
+<li><a class="reference internal" href="#id22">Removed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id22">2.7.0</a><ul>
-<li><a class="reference internal" href="#id23">Changed</a></li>
-<li><a class="reference internal" href="#id24">Fixed</a></li>
+<li><a class="reference internal" href="#id23">2.8.0</a><ul>
+<li><a class="reference internal" href="#id24">Changed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id25">2.6.0</a><ul>
-<li><a class="reference internal" href="#id26">Added</a></li>
+<li><a class="reference internal" href="#id25">2.7.0</a><ul>
+<li><a class="reference internal" href="#id26">Changed</a></li>
+<li><a class="reference internal" href="#id27">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id27">2.5.0</a><ul>
-<li><a class="reference internal" href="#id28">Added</a></li>
+<li><a class="reference internal" href="#id28">2.6.0</a><ul>
+<li><a class="reference internal" href="#id29">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id29">2.4.1</a><ul>
-<li><a class="reference internal" href="#id30">Fixed</a></li>
+<li><a class="reference internal" href="#id30">2.5.0</a><ul>
+<li><a class="reference internal" href="#id31">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id31">2.4.0</a><ul>
-<li><a class="reference internal" href="#id32">Changed</a></li>
+<li><a class="reference internal" href="#id32">2.4.1</a><ul>
+<li><a class="reference internal" href="#id33">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id33">2.3.0</a><ul>
-<li><a class="reference internal" href="#id34">Added</a></li>
-<li><a class="reference internal" href="#id35">Fixed</a></li>
+<li><a class="reference internal" href="#id34">2.4.0</a><ul>
+<li><a class="reference internal" href="#id35">Changed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id36">2.2.0</a><ul>
+<li><a class="reference internal" href="#id36">2.3.0</a><ul>
 <li><a class="reference internal" href="#id37">Added</a></li>
-<li><a class="reference internal" href="#id38">Changed</a></li>
+<li><a class="reference internal" href="#id38">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id39">2.2.0</a><ul>
+<li><a class="reference internal" href="#id40">Added</a></li>
+<li><a class="reference internal" href="#id41">Changed</a></li>
 <li><a class="reference internal" href="#renamed">Renamed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id39">2.1.1</a><ul>
-<li><a class="reference internal" href="#id40">Fixed</a></li>
+<li><a class="reference internal" href="#id42">2.1.1</a><ul>
+<li><a class="reference internal" href="#id43">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id41">2.1.0</a><ul>
-<li><a class="reference internal" href="#id42">Added</a></li>
-<li><a class="reference internal" href="#id43">Changed</a></li>
-<li><a class="reference internal" href="#id44">Fixed</a></li>
+<li><a class="reference internal" href="#id44">2.1.0</a><ul>
+<li><a class="reference internal" href="#id45">Added</a></li>
+<li><a class="reference internal" href="#id46">Changed</a></li>
+<li><a class="reference internal" href="#id47">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id45">2.0.0</a><ul>
-<li><a class="reference internal" href="#id46">Added</a></li>
-<li><a class="reference internal" href="#id47">Changed</a></li>
-<li><a class="reference internal" href="#id48">Fixed</a></li>
+<li><a class="reference internal" href="#id48">2.0.0</a><ul>
+<li><a class="reference internal" href="#id49">Added</a></li>
+<li><a class="reference internal" href="#id50">Changed</a></li>
+<li><a class="reference internal" href="#id51">Fixed</a></li>
 <li><a class="reference internal" href="#security">Security</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id49">1.0.0</a><ul>
-<li><a class="reference internal" href="#id50">Added</a></li>
+<li><a class="reference internal" href="#id52">1.0.0</a><ul>
+<li><a class="reference internal" href="#id53">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id51">0.7.3</a><ul>
-<li><a class="reference internal" href="#id52">Fixed</a></li>
+<li><a class="reference internal" href="#id54">0.7.3</a><ul>
+<li><a class="reference internal" href="#id55">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id53">0.7.2</a></li>
-<li><a class="reference internal" href="#id54">0.7.1</a></li>
-<li><a class="reference internal" href="#id55">0.7.0</a><ul>
-<li><a class="reference internal" href="#id56">Added</a></li>
-<li><a class="reference internal" href="#id57">Changed</a></li>
-<li><a class="reference internal" href="#id58">Removed</a></li>
+<li><a class="reference internal" href="#id56">0.7.2</a></li>
+<li><a class="reference internal" href="#id57">0.7.1</a></li>
+<li><a class="reference internal" href="#id58">0.7.0</a><ul>
+<li><a class="reference internal" href="#id59">Added</a></li>
+<li><a class="reference internal" href="#id60">Changed</a></li>
+<li><a class="reference internal" href="#id61">Removed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id59">0.6.0</a><ul>
-<li><a class="reference internal" href="#id60">Added</a></li>
-<li><a class="reference internal" href="#id61">Changed</a></li>
+<li><a class="reference internal" href="#id62">0.6.0</a><ul>
+<li><a class="reference internal" href="#id63">Added</a></li>
+<li><a class="reference internal" href="#id64">Changed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id62">0.5.3</a><ul>
-<li><a class="reference internal" href="#id63">Changed</a></li>
-<li><a class="reference internal" href="#id64">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id65">0.5.2</a><ul>
+<li><a class="reference internal" href="#id65">0.5.3</a><ul>
 <li><a class="reference internal" href="#id66">Changed</a></li>
 <li><a class="reference internal" href="#id67">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id68">0.5.1</a><ul>
-<li><a class="reference internal" href="#id69">Fixed</a></li>
+<li><a class="reference internal" href="#id68">0.5.2</a><ul>
+<li><a class="reference internal" href="#id69">Changed</a></li>
+<li><a class="reference internal" href="#id70">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id70">0.5.0</a><ul>
-<li><a class="reference internal" href="#id71">Added</a></li>
-<li><a class="reference internal" href="#id72">Changed</a></li>
-<li><a class="reference internal" href="#id73">Fixed</a></li>
+<li><a class="reference internal" href="#id71">0.5.1</a><ul>
+<li><a class="reference internal" href="#id72">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id74">0.4.1</a><ul>
-<li><a class="reference internal" href="#id75">Added</a></li>
+<li><a class="reference internal" href="#id73">0.5.0</a><ul>
+<li><a class="reference internal" href="#id74">Added</a></li>
+<li><a class="reference internal" href="#id75">Changed</a></li>
+<li><a class="reference internal" href="#id76">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id77">0.4.1</a><ul>
+<li><a class="reference internal" href="#id78">Added</a></li>
 <li><a class="reference internal" href="#fixing">Fixing</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id76">0.4.0</a><ul>
-<li><a class="reference internal" href="#id77">Added</a></li>
+<li><a class="reference internal" href="#id79">0.4.0</a><ul>
+<li><a class="reference internal" href="#id80">Added</a></li>
 <li><a class="reference internal" href="#changes">Changes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id78">0.3.0</a><ul>
-<li><a class="reference internal" href="#id79">Added</a></li>
-<li><a class="reference internal" href="#id80">Added</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id81">0.2.0</a><ul>
+<li><a class="reference internal" href="#id81">0.3.0</a><ul>
 <li><a class="reference internal" href="#id82">Added</a></li>
-<li><a class="reference internal" href="#id83">Changed</a></li>
-<li><a class="reference internal" href="#id84">Removed</a></li>
+<li><a class="reference internal" href="#id83">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id85">0.1.0</a></li>
+<li><a class="reference internal" href="#id84">0.2.0</a><ul>
+<li><a class="reference internal" href="#id85">Added</a></li>
+<li><a class="reference internal" href="#id86">Changed</a></li>
+<li><a class="reference internal" href="#id87">Removed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id88">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -324,10 +329,63 @@
 <p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/discussions/categories/releases">Discussions about unicorn-binance-local-depth-cache releases!</a></p>
 <p><a class="reference external" href="https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade">How to upgrade to the latest version!</a></p>
 <section id="dev-development-stage-unreleased-unstable">
-<h2>2.12.1.dev (development stage/unreleased/unstable)<a class="headerlink" href="#dev-development-stage-unreleased-unstable" title="Link to this heading">¶</a></h2>
+<h2>2.12.2.dev (development stage/unreleased/unstable)<a class="headerlink" href="#dev-development-stage-unreleased-unstable" title="Link to this heading">¶</a></h2>
 </section>
 <section id="id1">
-<h2>2.12.1<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<h2>2.12.2<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Bumped minimum <code class="docutils literal notranslate"><span class="pre">unicorn-binance-websocket-api</span></code> dependency from
+<code class="docutils literal notranslate"><span class="pre">&gt;=2.12.0</span></code> to <code class="docutils literal notranslate"><span class="pre">&gt;=2.12.2</span></code> in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>,
+<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>. 2.12.2 is the
+cleanup-round UBWA release.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, <code class="docutils literal notranslate"><span class="pre">dev/set_version.py</span></code>, <code class="docutils literal notranslate"><span class="pre">dev/test_plain.py</span></code>: file header
+<code class="docutils literal notranslate"><span class="pre">Author:</span> <span class="pre">LUCIT</span> <span class="pre">Systems</span> <span class="pre">and</span> <span class="pre">Development</span></code> → <code class="docutils literal notranslate"><span class="pre">Oliver</span> <span class="pre">Zehentleitner</span></code>,
+copyright <code class="docutils literal notranslate"><span class="pre">LUCIT</span> <span class="pre">Systems</span> <span class="pre">and</span> <span class="pre">Development</span> <span class="pre">(2022-2023)</span></code> →
+<code class="docutils literal notranslate"><span class="pre">Oliver</span> <span class="pre">Zehentleitner</span> <span class="pre">(2022-2026)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dev/test_plain.py</span></code>: dropped the obsolete
+<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">lucit_licensing_python.exceptions</span> <span class="pre">import</span> <span class="pre">NoValidatedLucitLicense</span></code>
+import and the corresponding <code class="docutils literal notranslate"><span class="pre">try/except</span> <span class="pre">NoValidatedLucitLicense</span></code>
+wrapper — the LUCIT licensing manager has been removed from UBLDC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SECURITY.md</span></code>: replaced the lucit.tech contact form URL with the
+GitHub Security Advisories private-reporting URL.</p></li>
+<li><p>README: switched all conda references from the legacy <code class="docutils literal notranslate"><span class="pre">lucit</span></code> channel
+to <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>. Added conda-forge version / downloads / feedstock
+build badges. Removed the “There is no conda support until migration”
+placeholders. Install section is now a single
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">unicorn-binance-local-depth-cache</span></code>.</p></li>
+<li><p>README: reworded the PyPy paragraph. The old sentence (“For the PyPy
+interpreter we offer packages only from Python version 3.9 and
+higher”) made sense when we still shipped wheels for pre-3.9 CPython;
+replaced with “PyPy wheels are available for all supported Python
+versions.” Also dropped the stale “Anaconda packages are available
+from Python version 3.8 and higher” line and fixed the Python range
+in the Installation section to 3.9 – 3.14.</p></li>
+<li><p>Aligned dependency pins across <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> using <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>
+as the source of truth (<code class="docutils literal notranslate"><span class="pre">Cython&gt;=3.0.10</span></code>, <code class="docutils literal notranslate"><span class="pre">requests&gt;=2.32.3</span></code>;
+<code class="docutils literal notranslate"><span class="pre">orjson</span></code> was missing from <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> and has been added).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>: dropped the <code class="docutils literal notranslate"><span class="pre">lucit</span></code> channel and the <code class="docutils literal notranslate"><span class="pre">defaults</span></code>
+channel; removed <code class="docutils literal notranslate"><span class="pre">lucit::</span></code> prefixes on suite deps; bumped
+<code class="docutils literal notranslate"><span class="pre">python&gt;=3.8</span></code> to <code class="docutils literal notranslate"><span class="pre">python&gt;=3.9</span></code> to match the rest.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>: removed the leftover <code class="docutils literal notranslate"><span class="pre">channels:</span></code> and <code class="docutils literal notranslate"><span class="pre">dependencies:</span></code>
+blocks (they are <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> keys, not valid in <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>).
+Dropped the <code class="docutils literal notranslate"><span class="pre">lucit::</span></code> channel prefixes from suite deps. Re-embedded
+the current <code class="docutils literal notranslate"><span class="pre">README.md</span></code> into <code class="docutils literal notranslate"><span class="pre">about.description</span></code>. License is MIT.</p></li>
+</ul>
+</section>
+<section id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/build_conda.yml</span></code>: the conda-forge feedstock
+(<code class="docutils literal notranslate"><span class="pre">conda-forge/unicorn-binance-local-depth-cache-feedstock</span></code>) now
+builds and publishes the conda package; no in-repo build is needed.</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>2.12.1<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
@@ -335,8 +393,8 @@
 </ul>
 </section>
 </section>
-<section id="id2">
-<h2>2.12.0<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="id3">
+<h2>2.12.0<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
@@ -345,36 +403,36 @@
 <li><p>Options depth cache uses the same sync algorithm as Futures (<code class="docutils literal notranslate"><span class="pre">pu</span></code>-based gap detection)</p></li>
 </ul>
 </section>
-<section id="changed">
-<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">¶</a></h3>
+<section id="id4">
+<h3>Changed<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Minimum dependency: <code class="docutils literal notranslate"><span class="pre">unicorn-binance-rest-api&gt;=2.10.0</span></code> (Options Market Data API)</p></li>
 <li><p>Minimum dependency: <code class="docutils literal notranslate"><span class="pre">unicorn-binance-websocket-api&gt;=2.12.0</span></code> (Options exchange support)</p></li>
 </ul>
 </section>
 </section>
-<section id="id3">
-<h2>2.11.2<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<section id="id4">
-<h3>Fixed<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<section id="id5">
+<h2>2.11.2<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<section id="id6">
+<h3>Fixed<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Error in GitHub Action</p></li>
 </ul>
 </section>
 </section>
-<section id="id5">
-<h2>2.11.1<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
-<section id="id6">
-<h3>Fixed<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<section id="id7">
+<h2>2.11.1<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<section id="id8">
+<h3>Fixed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Dependency conflict</p></li>
 </ul>
 </section>
 </section>
-<section id="id7">
-<h2>2.11.0<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
-<section id="id8">
-<h3>Added<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<section id="id9">
+<h2>2.11.0<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
+<section id="id10">
+<h3>Added<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Cluster</span></code> class now wraps the UBDCC 0.4.0 credential endpoints: <code class="docutils literal notranslate"><span class="pre">ubdcc_add_credentials</span></code>, <code class="docutils literal notranslate"><span class="pre">ubdcc_remove_credentials</span></code>, <code class="docutils literal notranslate"><span class="pre">ubdcc_get_credentials_list</span></code> (each with a sync + async variant). Lets you manage per-account-group Binance API key pairs on a running cluster without falling back to raw HTTP. Public responses keep keys masked and never expose <code class="docutils literal notranslate"><span class="pre">api_secret</span></code>. Two demo scripts under <code class="docutils literal notranslate"><span class="pre">examples/unicorn_depthcache_cluster_for_binance/</span></code> (<code class="docutils literal notranslate"><span class="pre">manage-credentials.py</span></code> / <code class="docutils literal notranslate"><span class="pre">-async.py</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">on_restart</span></code> callback parameter on <code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager</span></code> — invoked as <code class="docutils literal notranslate"><span class="pre">on_restart(market,</span> <span class="pre">timestamp)</span></code> every time a stream restart is detected, once per market on the affected stream. Enables reactive consumers (e.g. UBDCC) to forward restart events without polling.</p></li>
@@ -384,18 +442,18 @@
 </ul>
 </section>
 </section>
-<section id="id9">
-<h2>2.10.0<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
-<section id="id10">
-<h3>Changed<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<section id="id11">
+<h2>2.10.0<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
+<section id="id12">
+<h3>Changed<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>cluster.py: switched from stdlib <code class="docutils literal notranslate"><span class="pre">json</span></code> to <code class="docutils literal notranslate"><span class="pre">orjson</span></code> (suite-wide standard) — added <code class="docutils literal notranslate"><span class="pre">orjson</span></code> to dependencies</p></li>
 <li><p>cluster.py: <code class="docutils literal notranslate"><span class="pre">create_depthcache(s)</span></code> switched from GET to POST — markets list is now sent as JSON body to UBDCC 0.2.0, fixing URL-too-long errors when creating many DepthCaches at once</p></li>
 <li><p>README: updated cluster section (no longer “K8s application” — also runs locally via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ubdcc</span></code>)</p></li>
 </ul>
 </section>
-<section id="id11">
-<h3>Fixed<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<section id="id13">
+<h3>Fixed<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>manager.py: <code class="docutils literal notranslate"><span class="pre">get_latest_version()</span></code> crashed with <code class="docutils literal notranslate"><span class="pre">AttributeError:</span> <span class="pre">'NoneType'</span> <span class="pre">object</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">attribute</span> <span class="pre">'get'</span></code> when the GitHub API request failed — now checks <code class="docutils literal notranslate"><span class="pre">isinstance(status,</span> <span class="pre">dict)</span></code> before calling <code class="docutils literal notranslate"><span class="pre">.get()</span></code></p></li>
 <li><p>cluster.py: fixed double JSON serialization in POST requests (<code class="docutils literal notranslate"><span class="pre">json=json.dumps(params)</span></code> → <code class="docutils literal notranslate"><span class="pre">json=params</span></code>) that caused server-side 500 errors</p></li>
@@ -404,10 +462,10 @@
 </ul>
 </section>
 </section>
-<section id="id12">
-<h2>2.9.0<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
-<section id="id13">
-<h3>Added<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<section id="id14">
+<h2>2.9.0<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
+<section id="id15">
+<h3>Added<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">get_last_update_time(market)</span></code> — returns Unix timestamp in milliseconds of the last processed depth update, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not yet synced (closes #35)</p></li>
 <li><p>Added support for exchange <code class="docutils literal notranslate"><span class="pre">trbinance.com</span></code> (closes #13) — note: TRBinance requires an API key even for public REST endpoints; pass <code class="docutils literal notranslate"><span class="pre">api_key</span></code>/<code class="docutils literal notranslate"><span class="pre">api_secret</span></code> to <code class="docutils literal notranslate"><span class="pre">BinanceRestApiManager</span></code></p></li>
@@ -415,22 +473,22 @@
 <li><p>Added mocked unit tests for <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> class (cluster.py)</p></li>
 </ul>
 </section>
-<section id="id14">
-<h3>Fixed<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<section id="id16">
+<h3>Fixed<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>manager.py: detect REST API error responses in <code class="docutils literal notranslate"><span class="pre">_get_order_book_from_rest()</span></code> and log clearly instead of failing silently with a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> — includes hint for <code class="docutils literal notranslate"><span class="pre">trbinance.com</span></code> about required API key</p></li>
 <li><p>cluster.py: replaced <code class="docutils literal notranslate"><span class="pre">print()</span></code> with proper <code class="docutils literal notranslate"><span class="pre">logger</span></code> calls in <code class="docutils literal notranslate"><span class="pre">_request()</span></code> and <code class="docutils literal notranslate"><span class="pre">_request_async()</span></code> — <code class="docutils literal notranslate"><span class="pre">error</span></code> for network/client failures, <code class="docutils literal notranslate"><span class="pre">warning</span></code> for timeouts and cancellations</p></li>
 </ul>
 </section>
-<section id="id15">
-<h3>Changed<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<section id="id17">
+<h3>Changed<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>build_wheels.yml: Upgraded <code class="docutils literal notranslate"><span class="pre">cibuildwheel</span></code> from <code class="docutils literal notranslate"><span class="pre">v3.0.0</span></code> to <code class="docutils literal notranslate"><span class="pre">v3.4.1</span></code></p></li>
 <li><p>setup.py: Fixed author from “LUCIT Systems and Development” to “Oliver Zehentleitner”</p></li>
 </ul>
 </section>
-<section id="removed">
-<h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">¶</a></h3>
+<section id="id18">
+<h3>Removed<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Dropped Python 3.8 support</p></li>
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">Cluster.submit_license()</span></code> and <code class="docutils literal notranslate"><span class="pre">Cluster.submit_license_async()</span></code> — LUCIT licensing is gone</p></li>
@@ -440,10 +498,10 @@
 </ul>
 </section>
 </section>
-<section id="id16">
-<h2>2.8.1<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
-<section id="id17">
-<h3>Added<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<section id="id19">
+<h2>2.8.1<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h2>
+<section id="id20">
+<h3>Added<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>build_wheels.yml:<br />
 CIBW_ARCHS_LINUX: “x86_64 aarch64”
@@ -452,23 +510,23 @@ CIBW_ARCHS_WINDOWS: “AMD64”
 CIBW_MUSLLINUX_X86_64_IMAGE: “musllinux_1_1”</p></li>
 </ul>
 </section>
-<section id="id18">
-<h3>Changed<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<section id="id21">
+<h3>Changed<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Moved from https://github.com/LUCIT-Systems-and-Development/ to https://github.com/oliver-zehentleitner</p></li>
 </ul>
 </section>
-<section id="id19">
-<h3>Removed<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<section id="id22">
+<h3>Removed<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>LUCIT Licensing Manager</p></li>
 </ul>
 </section>
 </section>
-<section id="id20">
-<h2>2.8.0<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h2>
-<section id="id21">
-<h3>Changed<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<section id="id23">
+<h2>2.8.0<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h2>
+<section id="id24">
+<h3>Changed<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">get_list_of_depth_caches()</span></code> is deprecated, use <code class="docutils literal notranslate"><span class="pre">get_list_of_depthcaches()</span></code> instead! From now on, only active
 DepthCaches are returned!</p></li>
@@ -476,16 +534,16 @@ DepthCaches are returned!</p></li>
 </ul>
 </section>
 </section>
-<section id="id22">
-<h2>2.7.0<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h2>
-<section id="id23">
-<h3>Changed<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<section id="id25">
+<h2>2.7.0<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h2>
+<section id="id26">
+<h3>Changed<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Holding the thread lock is now in the more abstract functions.</p></li>
 </ul>
 </section>
-<section id="id24">
-<h3>Fixed<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<section id="id27">
+<h3>Fixed<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>‘Uncontrolling growth of elements in lists of asks and bids in Depth Cache Manager’
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/45">issue#45</a>
@@ -497,68 +555,68 @@ Thanks to <a class="reference external" href="https://github.com/chubatrik">&#64
 </ul>
 </section>
 </section>
-<section id="id25">
-<h2>2.6.0<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h2>
-<section id="id26">
-<h3>Added<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<section id="id28">
+<h2>2.6.0<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h2>
+<section id="id29">
+<h3>Added<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Counting restarts and logging last restart time in <code class="docutils literal notranslate"><span class="pre">ubldc.dc_streams</span></code>.</p></li>
 </ul>
 </section>
 </section>
-<section id="id27">
-<h2>2.5.0<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h2>
-<section id="id28">
-<h3>Added<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h3>
+<section id="id30">
+<h2>2.5.0<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h2>
+<section id="id31">
+<h3>Added<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Support of <code class="docutils literal notranslate"><span class="pre">auto_data_cleanup_stopped_streams</span></code> - Passthrough to UBWA.</p></li>
 </ul>
 </section>
 </section>
-<section id="id29">
-<h2>2.4.1<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h2>
-<section id="id30">
-<h3>Fixed<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<section id="id32">
+<h2>2.4.1<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h2>
+<section id="id33">
+<h3>Fixed<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>ValueError in <code class="docutils literal notranslate"><span class="pre">stop_depthcache()</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id31">
-<h2>2.4.0<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h2>
-<section id="id32">
-<h3>Changed<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h3>
+<section id="id34">
+<h2>2.4.0<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h2>
+<section id="id35">
+<h3>Changed<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Rewrite of the init process. Now it is possible to successfully create much more DepthCaches than before!</p></li>
 </ul>
 </section>
 </section>
-<section id="id33">
-<h2>2.3.0<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h2>
-<section id="id34">
-<h3>Added<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
+<section id="id36">
+<h2>2.3.0<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h2>
+<section id="id37">
+<h3>Added<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Async client functions for interacting with the UNICORN DepthCache Cluster for Binance.</p></li>
 </ul>
 </section>
-<section id="id35">
-<h3>Fixed<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<section id="id38">
+<h3>Fixed<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>DepthCache management now correctly handles refreshes.</p></li>
 </ul>
 </section>
 </section>
-<section id="id36">
-<h2>2.2.0<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h2>
-<section id="id37">
-<h3>Added<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
+<section id="id39">
+<h2>2.2.0<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h2>
+<section id="id40">
+<h3>Added<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><em><strong>Experimental</strong></em> Client functions for interacting with the UNICORN DepthCache Cluster for Binance</p></li>
 <li><p>Support multiple streams to bypass subscription limit per stream</p></li>
 </ul>
 </section>
-<section id="id38">
-<h3>Changed<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h3>
+<section id="id41">
+<h3>Changed<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Dropping support for Python 3.7</p></li>
 </ul>
@@ -571,26 +629,26 @@ Thanks to <a class="reference external" href="https://github.com/chubatrik">&#64
 </ul>
 </section>
 </section>
-<section id="id39">
-<h2>2.1.1<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h2>
-<section id="id40">
-<h3>Fixed<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
+<section id="id42">
+<h2>2.1.1<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h2>
+<section id="id43">
+<h3>Fixed<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Wrong sort order in <code class="docutils literal notranslate"><span class="pre">get_asks()</span></code> - bug was released with 2.1.0.</p></li>
 </ul>
 </section>
 </section>
-<section id="id41">
-<h2>2.1.0<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h2>
+<section id="id44">
+<h2>2.1.0<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h2>
 <p>Stability and performance optimization</p>
-<section id="id42">
-<h3>Added<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h3>
+<section id="id45">
+<h3>Added<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>DepthCache specific infos to <code class="docutils literal notranslate"><span class="pre">print_summary()</span></code>.</p></li>
 </ul>
 </section>
-<section id="id43">
-<h3>Changed<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h3>
+<section id="id46">
+<h3>Changed<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>More granular and efficient transfer of update values.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">init_time_window</span></code> default value 10 to 5</p></li>
@@ -598,8 +656,8 @@ Thanks to <a class="reference external" href="https://github.com/chubatrik">&#64
 <li><p><code class="docutils literal notranslate"><span class="pre">websocket_ping_timeout</span></code> default value 15 to 20</p></li>
 </ul>
 </section>
-<section id="id44">
-<h3>Fixed<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h3>
+<section id="id47">
+<h3>Fixed<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Filtering and removing 0 values now works with all formats. (0.0, 0.000, 0.0000000, …)</p></li>
 <li><p>Updates were erroneously applied twice in <code class="docutils literal notranslate"><span class="pre">_init_depth_cache()</span></code>.</p></li>
@@ -608,13 +666,13 @@ Thanks to <a class="reference external" href="https://github.com/chubatrik">&#64
 </ul>
 </section>
 </section>
-<section id="id45">
-<h2>2.0.0<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h2>
+<section id="id48">
+<h2>2.0.0<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h2>
 <p>Scaling. The core functions have been rewritten in this update. Instead of one stream per depth_cache, we now use one
 stream up to the max subscription limit of the endpoint and use the new UBWA <code class="docutils literal notranslate"><span class="pre">asyncio_queue</span></code> interface.
 <code class="docutils literal notranslate"><span class="pre">get_stream_data_from_asyncio_queue()</span></code>. And we avoid bans by complying with Binance weight costs on init.</p>
-<section id="id46">
-<h3>Added<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h3>
+<section id="id49">
+<h3>Added<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Support for “binance.us”</p></li>
 <li><p>Since UBLDC is delivered as a compiled C extension, IDEs such as Pycharm and Visual Code cannot use information about
@@ -626,8 +684,8 @@ obtain the required information from these.</p></li>
 <li><p>New exceptions: <code class="docutils literal notranslate"><span class="pre">DepthCacheAlreadyStopped</span></code> and <code class="docutils literal notranslate"><span class="pre">DepthCacheNotFound</span></code></p></li>
 </ul>
 </section>
-<section id="id47">
-<h3>Changed<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h3>
+<section id="id50">
+<h3>Changed<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The parameter <code class="docutils literal notranslate"><span class="pre">ubwa_manager</span></code> was removed from <code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager()</span></code>, because UBLDC has to claim the
 callback function of the <code class="docutils literal notranslate"><span class="pre">stream_signals</span></code> for itself and has to initialize the instance itself. It is possible to
@@ -636,8 +694,8 @@ request the active <code class="docutils literal notranslate"><span class="pre">
 <li><p>Updated description text in all files.</p></li>
 </ul>
 </section>
-<section id="id48">
-<h3>Fixed<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h3>
+<section id="id51">
+<h3>Fixed<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Ip ban when using <code class="docutils literal notranslate"><span class="pre">create_depth_cache</span></code> with many symbols <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/30">issue#30</a></p></li>
 <li><p>Import in <code class="docutils literal notranslate"><span class="pre">licensing_manager.py</span></code>.</p></li>
@@ -721,10 +779,10 @@ versions 2.3.0 through 2.30.0.</p></li>
 </ul>
 </section>
 </section>
-<section id="id49">
-<h2>1.0.0<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h2>
-<section id="id50">
-<h3>Added<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h3>
+<section id="id52">
+<h2>1.0.0<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h2>
+<section id="id53">
+<h3>Added<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Support for Python 3.11 and 3.12</p></li>
 <li><p>Integration of the <code class="docutils literal notranslate"><span class="pre">lucit-licensing-python</span></code> library for verifying the UNICORN Binance Suite license. A license can be
@@ -741,132 +799,132 @@ transparent and the user can be sure that the compilation of a version fully cor
 </ul>
 </section>
 </section>
-<section id="id51">
-<h2>0.7.3<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h2>
-<section id="id52">
-<h3>Fixed<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h3>
+<section id="id54">
+<h2>0.7.3<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h2>
+<section id="id55">
+<h3>Fixed<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>TypeError exception in <code class="docutils literal notranslate"><span class="pre">_init_depth_cache</span></code> [issue#27](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/27</p></li>
 </ul>
 </section>
 </section>
-<section id="id53">
-<h2>0.7.2<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h2>
+<section id="id56">
+<h2>0.7.2<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h2>
 <p>Codebase equal to 0.7.0, testing azure pipe</p>
 </section>
-<section id="id54">
-<h2>0.7.1<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h2>
+<section id="id57">
+<h2>0.7.1<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h2>
 <p>Codebase equal to 0.7.0, just preparing conda-forge packaging</p>
 </section>
-<section id="id55">
-<h2>0.7.0<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h2>
-<section id="id56">
-<h3>Added<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h3>
+<section id="id58">
+<h2>0.7.0<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h2>
+<section id="id59">
+<h3>Added<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Active <code class="docutils literal notranslate"><span class="pre">high_performance</span></code> of UBWA.</p></li>
 <li><p>Exception handling for REST calls</p></li>
 <li><p>Improved logging</p></li>
 </ul>
 </section>
-<section id="id57">
-<h3>Changed<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h3>
+<section id="id60">
+<h3>Changed<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Websocket reconnect intervals</p></li>
 <li><p>Reduced calls of <code class="docutils literal notranslate"><span class="pre">market.lower()</span></code></p></li>
 </ul>
 </section>
-<section id="id58">
-<h3>Removed<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h3>
+<section id="id61">
+<h3>Removed<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Obsolete variable <code class="docutils literal notranslate"><span class="pre">self.timeout</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id59">
-<h2>0.6.0<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h2>
-<section id="id60">
-<h3>Added<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h3>
+<section id="id62">
+<h2>0.6.0<a class="headerlink" href="#id62" title="Link to this heading">¶</a></h2>
+<section id="id63">
+<h3>Added<a class="headerlink" href="#id63" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">default_websocket_close_timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">default_websocket_ping_interval</span></code>, <code class="docutils literal notranslate"><span class="pre">default_websocket_ping_timeout</span></code> and
 <code class="docutils literal notranslate"><span class="pre">websocket_close_timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">websocket_close_timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">websocket_ping_interval</span></code></p></li>
 </ul>
 </section>
-<section id="id61">
-<h3>Changed<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h3>
+<section id="id64">
+<h3>Changed<a class="headerlink" href="#id64" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">default_websocket_close_timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">default_websocket_ping_interval</span></code>, <code class="docutils literal notranslate"><span class="pre">default_websocket_ping_timeout</span></code> default values is 1,
 so websockets disconnect very fast, and we recognize “out of sync” very fast.</p></li>
 </ul>
 </section>
 </section>
-<section id="id62">
-<h2>0.5.3<a class="headerlink" href="#id62" title="Link to this heading">¶</a></h2>
-<section id="id63">
-<h3>Changed<a class="headerlink" href="#id63" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Balanced log levels</p></li>
-</ul>
-</section>
-<section id="id64">
-<h3>Fixed<a class="headerlink" href="#id64" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>KeyError in <code class="docutils literal notranslate"><span class="pre">stop_depth_cache()</span></code></p></li>
-</ul>
-</section>
-</section>
 <section id="id65">
-<h2>0.5.2<a class="headerlink" href="#id65" title="Link to this heading">¶</a></h2>
+<h2>0.5.3<a class="headerlink" href="#id65" title="Link to this heading">¶</a></h2>
 <section id="id66">
 <h3>Changed<a class="headerlink" href="#id66" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>close_timeout=5 in <code class="docutils literal notranslate"><span class="pre">create_stream()</span></code></p></li>
+<li><p>Balanced log levels</p></li>
 </ul>
 </section>
 <section id="id67">
 <h3>Fixed<a class="headerlink" href="#id67" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">_init_depth_cache()</span></code> returns False if <code class="docutils literal notranslate"><span class="pre">order_book</span></code> is False</p></li>
+<li><p>KeyError in <code class="docutils literal notranslate"><span class="pre">stop_depth_cache()</span></code></p></li>
 </ul>
 </section>
 </section>
 <section id="id68">
-<h2>0.5.1<a class="headerlink" href="#id68" title="Link to this heading">¶</a></h2>
+<h2>0.5.2<a class="headerlink" href="#id68" title="Link to this heading">¶</a></h2>
 <section id="id69">
-<h3>Fixed<a class="headerlink" href="#id69" title="Link to this heading">¶</a></h3>
+<h3>Changed<a class="headerlink" href="#id69" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>close_timeout=5 in <code class="docutils literal notranslate"><span class="pre">create_stream()</span></code></p></li>
+</ul>
+</section>
+<section id="id70">
+<h3>Fixed<a class="headerlink" href="#id70" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_init_depth_cache()</span></code> returns False if <code class="docutils literal notranslate"><span class="pre">order_book</span></code> is False</p></li>
+</ul>
+</section>
+</section>
+<section id="id71">
+<h2>0.5.1<a class="headerlink" href="#id71" title="Link to this heading">¶</a></h2>
+<section id="id72">
+<h3>Fixed<a class="headerlink" href="#id72" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Wrong proof of <code class="docutils literal notranslate"><span class="pre">is_stop_request()</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id70">
-<h2>0.5.0<a class="headerlink" href="#id70" title="Link to this heading">¶</a></h2>
-<section id="id71">
-<h3>Added<a class="headerlink" href="#id71" title="Link to this heading">¶</a></h3>
+<section id="id73">
+<h2>0.5.0<a class="headerlink" href="#id73" title="Link to this heading">¶</a></h2>
+<section id="id74">
+<h3>Added<a class="headerlink" href="#id74" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_reset_depth_cache()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">_get_order_book_from_depth_cache()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">is_stop_request()</span></code></p></li>
 </ul>
 </section>
-<section id="id72">
-<h3>Changed<a class="headerlink" href="#id72" title="Link to this heading">¶</a></h3>
+<section id="id75">
+<h3>Changed<a class="headerlink" href="#id75" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Clear stream_buffer on disconnect</p></li>
 <li><p>Better error handling in <code class="docutils literal notranslate"><span class="pre">_init_depth_cache()</span></code></p></li>
 </ul>
 </section>
-<section id="id73">
-<h3>Fixed<a class="headerlink" href="#id73" title="Link to this heading">¶</a></h3>
+<section id="id76">
+<h3>Fixed<a class="headerlink" href="#id76" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">stop_depth_cache()</span></code> did not stop its dependent stream and did not clear the stream_buffer</p></li>
 <li><p>A few error handling’s</p></li>
 </ul>
 </section>
 </section>
-<section id="id74">
-<h2>0.4.1<a class="headerlink" href="#id74" title="Link to this heading">¶</a></h2>
-<section id="id75">
-<h3>Added<a class="headerlink" href="#id75" title="Link to this heading">¶</a></h3>
+<section id="id77">
+<h2>0.4.1<a class="headerlink" href="#id77" title="Link to this heading">¶</a></h2>
+<section id="id78">
+<h3>Added<a class="headerlink" href="#id78" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Resetting asks and bits on stream_signal DISCONNECT</p></li>
 </ul>
@@ -878,10 +936,10 @@ so websockets disconnect very fast, and we recognize “out of sync” very fast
 </ul>
 </section>
 </section>
-<section id="id76">
-<h2>0.4.0<a class="headerlink" href="#id76" title="Link to this heading">¶</a></h2>
-<section id="id77">
-<h3>Added<a class="headerlink" href="#id77" title="Link to this heading">¶</a></h3>
+<section id="id79">
+<h2>0.4.0<a class="headerlink" href="#id79" title="Link to this heading">¶</a></h2>
+<section id="id80">
+<h3>Added<a class="headerlink" href="#id80" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">default_update_interval</span></code></p></li>
 </ul>
@@ -893,47 +951,47 @@ so websockets disconnect very fast, and we recognize “out of sync” very fast
 </ul>
 </section>
 </section>
-<section id="id78">
-<h2>0.3.0<a class="headerlink" href="#id78" title="Link to this heading">¶</a></h2>
-<section id="id79">
-<h3>Added<a class="headerlink" href="#id79" title="Link to this heading">¶</a></h3>
+<section id="id81">
+<h2>0.3.0<a class="headerlink" href="#id81" title="Link to this heading">¶</a></h2>
+<section id="id82">
+<h3>Added<a class="headerlink" href="#id82" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>threading.Lock(): <code class="docutils literal notranslate"><span class="pre">self.threading_lock_ask</span></code> and <code class="docutils literal notranslate"><span class="pre">self.threading_lock_bid</span></code></p></li>
 </ul>
 </section>
-<section id="id80">
-<h3>Added<a class="headerlink" href="#id80" title="Link to this heading">¶</a></h3>
+<section id="id83">
+<h3>Added<a class="headerlink" href="#id83" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">set_refresh_request()</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id81">
-<h2>0.2.0<a class="headerlink" href="#id81" title="Link to this heading">¶</a></h2>
-<section id="id82">
-<h3>Added<a class="headerlink" href="#id82" title="Link to this heading">¶</a></h3>
+<section id="id84">
+<h2>0.2.0<a class="headerlink" href="#id84" title="Link to this heading">¶</a></h2>
+<section id="id85">
+<h3>Added<a class="headerlink" href="#id85" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Binance Futures support (exchange=”binance.com-futures”)</p></li>
 </ul>
 </section>
-<section id="id83">
-<h3>Changed<a class="headerlink" href="#id83" title="Link to this heading">¶</a></h3>
+<section id="id86">
+<h3>Changed<a class="headerlink" href="#id86" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">create_depth_cache()</span></code> renamed parameter <code class="docutils literal notranslate"><span class="pre">market</span></code> to <code class="docutils literal notranslate"><span class="pre">markets</span></code>. <code class="docutils literal notranslate"><span class="pre">markets</span></code> can be a str or a list of one or more market symbols</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stop_depth_cache()</span></code> renamed parameter <code class="docutils literal notranslate"><span class="pre">market</span></code> to <code class="docutils literal notranslate"><span class="pre">markets</span></code>. <code class="docutils literal notranslate"><span class="pre">markets</span></code> can be a str or a list of one or more market symbols</p></li>
 <li><p>Renamed <code class="docutils literal notranslate"><span class="pre">stop_manager()</span></code> to <code class="docutils literal notranslate"><span class="pre">stop_manager_with_all_caches()</span></code></p></li>
 </ul>
 </section>
-<section id="id84">
-<h3>Removed<a class="headerlink" href="#id84" title="Link to this heading">¶</a></h3>
+<section id="id87">
+<h3>Removed<a class="headerlink" href="#id87" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">create_depth_caches()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stop_depth_caches()</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id85">
-<h2>0.1.0<a class="headerlink" href="#id85" title="Link to this heading">¶</a></h2>
+<section id="id88">
+<h2>0.1.0<a class="headerlink" href="#id88" title="Link to this heading">¶</a></h2>
 <p>Initial Release!</p>
 </section>
 </section>
@@ -954,162 +1012,167 @@ so websockets disconnect very fast, and we recognize “out of sync” very fast
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">unicorn-binance-local-depth-cache Change Log</a><ul>
-<li><a class="reference internal" href="#dev-development-stage-unreleased-unstable">2.12.1.dev (development stage/unreleased/unstable)</a></li>
-<li><a class="reference internal" href="#id1">2.12.1</a><ul>
-<li><a class="reference internal" href="#fixed">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id2">2.12.0</a><ul>
-<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#dev-development-stage-unreleased-unstable">2.12.2.dev (development stage/unreleased/unstable)</a></li>
+<li><a class="reference internal" href="#id1">2.12.2</a><ul>
 <li><a class="reference internal" href="#changed">Changed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id3">2.11.2</a><ul>
-<li><a class="reference internal" href="#id4">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id5">2.11.1</a><ul>
-<li><a class="reference internal" href="#id6">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id7">2.11.0</a><ul>
-<li><a class="reference internal" href="#id8">Added</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id9">2.10.0</a><ul>
-<li><a class="reference internal" href="#id10">Changed</a></li>
-<li><a class="reference internal" href="#id11">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id12">2.9.0</a><ul>
-<li><a class="reference internal" href="#id13">Added</a></li>
-<li><a class="reference internal" href="#id14">Fixed</a></li>
-<li><a class="reference internal" href="#id15">Changed</a></li>
 <li><a class="reference internal" href="#removed">Removed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id16">2.8.1</a><ul>
-<li><a class="reference internal" href="#id17">Added</a></li>
-<li><a class="reference internal" href="#id18">Changed</a></li>
-<li><a class="reference internal" href="#id19">Removed</a></li>
+<li><a class="reference internal" href="#id2">2.12.1</a><ul>
+<li><a class="reference internal" href="#fixed">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id20">2.8.0</a><ul>
+<li><a class="reference internal" href="#id3">2.12.0</a><ul>
+<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#id4">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">2.11.2</a><ul>
+<li><a class="reference internal" href="#id6">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7">2.11.1</a><ul>
+<li><a class="reference internal" href="#id8">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">2.11.0</a><ul>
+<li><a class="reference internal" href="#id10">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11">2.10.0</a><ul>
+<li><a class="reference internal" href="#id12">Changed</a></li>
+<li><a class="reference internal" href="#id13">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">2.9.0</a><ul>
+<li><a class="reference internal" href="#id15">Added</a></li>
+<li><a class="reference internal" href="#id16">Fixed</a></li>
+<li><a class="reference internal" href="#id17">Changed</a></li>
+<li><a class="reference internal" href="#id18">Removed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19">2.8.1</a><ul>
+<li><a class="reference internal" href="#id20">Added</a></li>
 <li><a class="reference internal" href="#id21">Changed</a></li>
+<li><a class="reference internal" href="#id22">Removed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id22">2.7.0</a><ul>
-<li><a class="reference internal" href="#id23">Changed</a></li>
-<li><a class="reference internal" href="#id24">Fixed</a></li>
+<li><a class="reference internal" href="#id23">2.8.0</a><ul>
+<li><a class="reference internal" href="#id24">Changed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id25">2.6.0</a><ul>
-<li><a class="reference internal" href="#id26">Added</a></li>
+<li><a class="reference internal" href="#id25">2.7.0</a><ul>
+<li><a class="reference internal" href="#id26">Changed</a></li>
+<li><a class="reference internal" href="#id27">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id27">2.5.0</a><ul>
-<li><a class="reference internal" href="#id28">Added</a></li>
+<li><a class="reference internal" href="#id28">2.6.0</a><ul>
+<li><a class="reference internal" href="#id29">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id29">2.4.1</a><ul>
-<li><a class="reference internal" href="#id30">Fixed</a></li>
+<li><a class="reference internal" href="#id30">2.5.0</a><ul>
+<li><a class="reference internal" href="#id31">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id31">2.4.0</a><ul>
-<li><a class="reference internal" href="#id32">Changed</a></li>
+<li><a class="reference internal" href="#id32">2.4.1</a><ul>
+<li><a class="reference internal" href="#id33">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id33">2.3.0</a><ul>
-<li><a class="reference internal" href="#id34">Added</a></li>
-<li><a class="reference internal" href="#id35">Fixed</a></li>
+<li><a class="reference internal" href="#id34">2.4.0</a><ul>
+<li><a class="reference internal" href="#id35">Changed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id36">2.2.0</a><ul>
+<li><a class="reference internal" href="#id36">2.3.0</a><ul>
 <li><a class="reference internal" href="#id37">Added</a></li>
-<li><a class="reference internal" href="#id38">Changed</a></li>
+<li><a class="reference internal" href="#id38">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id39">2.2.0</a><ul>
+<li><a class="reference internal" href="#id40">Added</a></li>
+<li><a class="reference internal" href="#id41">Changed</a></li>
 <li><a class="reference internal" href="#renamed">Renamed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id39">2.1.1</a><ul>
-<li><a class="reference internal" href="#id40">Fixed</a></li>
+<li><a class="reference internal" href="#id42">2.1.1</a><ul>
+<li><a class="reference internal" href="#id43">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id41">2.1.0</a><ul>
-<li><a class="reference internal" href="#id42">Added</a></li>
-<li><a class="reference internal" href="#id43">Changed</a></li>
-<li><a class="reference internal" href="#id44">Fixed</a></li>
+<li><a class="reference internal" href="#id44">2.1.0</a><ul>
+<li><a class="reference internal" href="#id45">Added</a></li>
+<li><a class="reference internal" href="#id46">Changed</a></li>
+<li><a class="reference internal" href="#id47">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id45">2.0.0</a><ul>
-<li><a class="reference internal" href="#id46">Added</a></li>
-<li><a class="reference internal" href="#id47">Changed</a></li>
-<li><a class="reference internal" href="#id48">Fixed</a></li>
+<li><a class="reference internal" href="#id48">2.0.0</a><ul>
+<li><a class="reference internal" href="#id49">Added</a></li>
+<li><a class="reference internal" href="#id50">Changed</a></li>
+<li><a class="reference internal" href="#id51">Fixed</a></li>
 <li><a class="reference internal" href="#security">Security</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id49">1.0.0</a><ul>
-<li><a class="reference internal" href="#id50">Added</a></li>
+<li><a class="reference internal" href="#id52">1.0.0</a><ul>
+<li><a class="reference internal" href="#id53">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id51">0.7.3</a><ul>
-<li><a class="reference internal" href="#id52">Fixed</a></li>
+<li><a class="reference internal" href="#id54">0.7.3</a><ul>
+<li><a class="reference internal" href="#id55">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id53">0.7.2</a></li>
-<li><a class="reference internal" href="#id54">0.7.1</a></li>
-<li><a class="reference internal" href="#id55">0.7.0</a><ul>
-<li><a class="reference internal" href="#id56">Added</a></li>
-<li><a class="reference internal" href="#id57">Changed</a></li>
-<li><a class="reference internal" href="#id58">Removed</a></li>
+<li><a class="reference internal" href="#id56">0.7.2</a></li>
+<li><a class="reference internal" href="#id57">0.7.1</a></li>
+<li><a class="reference internal" href="#id58">0.7.0</a><ul>
+<li><a class="reference internal" href="#id59">Added</a></li>
+<li><a class="reference internal" href="#id60">Changed</a></li>
+<li><a class="reference internal" href="#id61">Removed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id59">0.6.0</a><ul>
-<li><a class="reference internal" href="#id60">Added</a></li>
-<li><a class="reference internal" href="#id61">Changed</a></li>
+<li><a class="reference internal" href="#id62">0.6.0</a><ul>
+<li><a class="reference internal" href="#id63">Added</a></li>
+<li><a class="reference internal" href="#id64">Changed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id62">0.5.3</a><ul>
-<li><a class="reference internal" href="#id63">Changed</a></li>
-<li><a class="reference internal" href="#id64">Fixed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id65">0.5.2</a><ul>
+<li><a class="reference internal" href="#id65">0.5.3</a><ul>
 <li><a class="reference internal" href="#id66">Changed</a></li>
 <li><a class="reference internal" href="#id67">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id68">0.5.1</a><ul>
-<li><a class="reference internal" href="#id69">Fixed</a></li>
+<li><a class="reference internal" href="#id68">0.5.2</a><ul>
+<li><a class="reference internal" href="#id69">Changed</a></li>
+<li><a class="reference internal" href="#id70">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id70">0.5.0</a><ul>
-<li><a class="reference internal" href="#id71">Added</a></li>
-<li><a class="reference internal" href="#id72">Changed</a></li>
-<li><a class="reference internal" href="#id73">Fixed</a></li>
+<li><a class="reference internal" href="#id71">0.5.1</a><ul>
+<li><a class="reference internal" href="#id72">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id74">0.4.1</a><ul>
-<li><a class="reference internal" href="#id75">Added</a></li>
+<li><a class="reference internal" href="#id73">0.5.0</a><ul>
+<li><a class="reference internal" href="#id74">Added</a></li>
+<li><a class="reference internal" href="#id75">Changed</a></li>
+<li><a class="reference internal" href="#id76">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id77">0.4.1</a><ul>
+<li><a class="reference internal" href="#id78">Added</a></li>
 <li><a class="reference internal" href="#fixing">Fixing</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id76">0.4.0</a><ul>
-<li><a class="reference internal" href="#id77">Added</a></li>
+<li><a class="reference internal" href="#id79">0.4.0</a><ul>
+<li><a class="reference internal" href="#id80">Added</a></li>
 <li><a class="reference internal" href="#changes">Changes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id78">0.3.0</a><ul>
-<li><a class="reference internal" href="#id79">Added</a></li>
-<li><a class="reference internal" href="#id80">Added</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id81">0.2.0</a><ul>
+<li><a class="reference internal" href="#id81">0.3.0</a><ul>
 <li><a class="reference internal" href="#id82">Added</a></li>
-<li><a class="reference internal" href="#id83">Changed</a></li>
-<li><a class="reference internal" href="#id84">Removed</a></li>
+<li><a class="reference internal" href="#id83">Added</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id85">0.1.0</a></li>
+<li><a class="reference internal" href="#id84">0.2.0</a><ul>
+<li><a class="reference internal" href="#id85">Added</a></li>
+<li><a class="reference internal" href="#id86">Changed</a></li>
+<li><a class="reference internal" href="#id87">Removed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id88">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -1216,7 +1279,7 @@ so websockets disconnect very fast, and we recognize “out of sync” very fast
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 17 2026 at 14:42 (CET).
+    Last updated on Apr 18 2026 at 21:06 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
