@@ -241,6 +241,9 @@ The module requires Python 3.9 and runs smoothly up to and including Python 3.14
 
 PyPy wheels are available for all supported Python versions.
 
+**conda-forge note:** Conda packages are provided for Python 3.10 – 3.14. Python 3.9 is not available on conda-forge — it was dropped from the global pinning after reaching end-of-life in October 2025. For Python 3.9, use `pip install`.
+
+
 The current dependencies are listed [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/requirements.txt).
 
 If you run into errors during the installation take a look [here](https://github.com/oliver-zehentleitner/unicorn-binance-suite/wiki/Installation).
