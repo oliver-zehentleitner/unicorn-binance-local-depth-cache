@@ -119,6 +119,7 @@ Returns: `list` of `[price, quantity]` pairs. Raises `DepthCacheOutOfSync` if ca
 ## Docs
 
 - Repo: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+- AGENTS.md (for AI agents working on this repo): https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/AGENTS.md
 - Docs: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/
 - Full manager reference: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/unicorn_binance_local_depth_cache.html
 - PyPI: https://pypi.org/project/unicorn-binance-local-depth-cache/
