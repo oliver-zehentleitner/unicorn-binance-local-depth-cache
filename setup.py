@@ -62,7 +62,7 @@ with open("README.md", "r") as fh:
 
 setup(
      name=name,
-     version="2.12.2",
+     version="2.12.3",
      author="Oliver Zehentleitner",
      author_email='',
      url="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache",
