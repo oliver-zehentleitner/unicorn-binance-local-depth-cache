@@ -661,19 +661,66 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                     continue
                 # Replay buffered events from the init phase
                 if self.depth_caches[market].get('init_buffer'):
-                    buffered = self.depth_caches[market].pop('init_buffer')
+                    buffered = self.depth_caches[market]['init_buffer']
+                    self.depth_caches[market]['init_buffer'] = []
                     logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) - "
                                 f"Replaying {len(buffered)} buffered events for {market}")
                     buffered.append(stream_data)
+                    snapshot_last_update_id = self.depth_caches[market]['last_update_id']
+                    post_sync_applied = 0
+                    post_sync_gap = False
                     for buffered_event in buffered:
-                        if self.depth_caches[market]['is_synchronized'] is True:
-                            break
-                        self._process_init_event(stream_id=stream_id, stream_data=buffered_event, market=market)
-                    if self.depth_caches[market]['is_synchronized'] is not True:
+                        if self.depth_caches[market]['is_synchronized'] is not True:
+                            self._process_init_event(stream_id=stream_id, stream_data=buffered_event, market=market)
+                            continue
+                        # Already synced earlier in this loop: apply remaining events with gap detection
+                        if self.exchange == "binance.com" \
+                                or self.exchange == "binance.com-testnet" \
+                                or self.exchange == "binance.us" \
+                                or self.exchange == "trbinance.com":
+                            expected = self.depth_caches[market]['last_update_id'] + 1
+                            if int(buffered_event['data']['U']) != expected:
+                                post_sync_gap = True
+                                break
+                        elif self.exchange == "binance.com-futures" \
+                                or self.exchange == "binance.com-futures-testnet" \
+                                or self.exchange == "binance.com-vanilla-options" \
+                                or self.exchange == "binance.com-vanilla-options-testnet":
+                            if int(buffered_event['data']['pu']) != self.depth_caches[market]['last_update_id']:
+                                post_sync_gap = True
+                                break
+                        self._apply_updates(asks=buffered_event['data']['a'],
+                                            bids=buffered_event['data']['b'], market=market)
+                        self.depth_caches[market]['last_update_id'] = int(buffered_event['data']['u'])
+                        self.depth_caches[market]['last_update_time'] = int(time.time() * 1000)
+                        post_sync_applied += 1
+                    if post_sync_gap is True:
+                        logger.error(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
+                                     f"- Gap detected while replaying post-sync buffered events for `{market}`, "
+                                     f"requesting resync")
+                        self.set_resync_request(market=market)
+                    elif self.depth_caches[market]['is_synchronized'] is not True:
+                        # Keep buffered events for the next snapshot attempt. Required for exchanges
+                        # with a cached REST snapshot (Binance European Options) where the snapshot's
+                        # lastUpdateId can lag the stream by ~30s. Dropping the buffer on every failed
+                        # try would create an endless resync loop. Prune events definitely before the
+                        # snapshot (u < L) and cap the buffer size as a safeguard.
+                        if snapshot_last_update_id is not None:
+                            keep = [e for e in buffered
+                                    if int(e['data']['u']) >= snapshot_last_update_id]
+                        else:
+                            keep = list(buffered)
+                        max_buffer = 10000
+                        if len(keep) > max_buffer:
+                            keep = keep[-max_buffer:]
+                        self.depth_caches[market]['init_buffer'] = keep
                         logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
                                     f"- No sync point found in {len(buffered)} buffered events for {market}, "
-                                    f"requesting resync")
+                                    f"keeping {len(keep)} for retry, requesting resync")
                         self.set_resync_request(market=market)
+                    elif post_sync_applied > 0:
+                        logger.info(f"BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id={stream_id}) "
+                                    f"- Applied {post_sync_applied} post-sync buffered event(s) for `{market}`")
                     self.ubwa.asyncio_queue_task_done(stream_id=stream_id)
                     continue
                 self._process_init_event(stream_id=stream_id, stream_data=stream_data, market=market)
