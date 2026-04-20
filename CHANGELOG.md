@@ -9,7 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.12.2.dev (development stage/unreleased/unstable)
+## 2.12.3.dev (development stage/unreleased/unstable)
+
+## 2.12.3
 ### Fixed
 - `manager.py`: `binance.com-vanilla-options` depth caches never reached
   the `synchronized` state because Binance's `/eapi/v1/depth` REST
