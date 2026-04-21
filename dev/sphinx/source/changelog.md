@@ -10,6 +10,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
 ## 2.12.3.dev (development stage/unreleased/unstable)
+### Added
+- `manager.py`: New `set_credentials(api_key, api_secret)` method on
+  `BinanceLocalDepthCacheManager` — swap the internal
+  `BinanceRestApiManager` to a fresh instance bound to the given credentials
+  at runtime, without recreating the depth cache manager or interrupting
+  the WebSocket streams. New credentials take effect from the next REST
+  call (snapshot / resync). Pass `None` / `None` to drop credentials and
+  fall back to public rate limits. Enables UBDCC DCNs to react to
+  credential rebalances pushed from the cluster management.
 
 ## 2.12.3
 ### Fixed
