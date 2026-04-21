@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>unicorn_binance_local_depth_cache.manager &#8212; unicorn-binance-local-depth-cache 2.12.3 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unicorn_binance_local_depth_cache.manager &#8212; unicorn-binance-local-depth-cache 2.13.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="../../_static/pydoctheme.css?v=fdf8e9ae" />
@@ -183,7 +183,7 @@
 
 
 <span class="n">__app_name__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unicorn-binance-local-depth-cache&quot;</span>
-<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2.12.3.dev&quot;</span>
+<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2.13.0&quot;</span>
 <span class="n">__logger__</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;unicorn_binance_local_depth_cache&quot;</span><span class="p">)</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">__logger__</span>
@@ -286,6 +286,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">websocket_ping_interval</span> <span class="o">=</span> <span class="n">websocket_ping_interval</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">websocket_ping_timeout</span> <span class="o">=</span> <span class="n">websocket_ping_timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_colorama</span> <span class="o">=</span> <span class="n">disable_colorama</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warn_on_update</span> <span class="o">=</span> <span class="n">warn_on_update</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ubdcc_address</span> <span class="o">=</span> <span class="n">ubdcc_address</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ubdcc_port</span> <span class="o">=</span> <span class="n">ubdcc_port</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">last_update_check_github</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;tag_name&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}</span>
@@ -1408,6 +1409,36 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ubra</span></div>
 
 
+<div class="viewcode-block" id="BinanceLocalDepthCacheManager.set_credentials">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_credentials">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace the internal BinanceRestApiManager with a fresh instance bound to the given</span>
+<span class="sd">        credentials. Use this to rotate API keys at runtime without recreating the</span>
+<span class="sd">        BinanceLocalDepthCacheManager or interrupting the WebSocket streams — the new</span>
+<span class="sd">        credentials take effect from the next REST call (initial snapshot, resync).</span>
+
+<span class="sd">        Pass ``api_key=None`` and ``api_secret=None`` to drop credentials and fall back</span>
+<span class="sd">        to the public rate limits.</span>
+
+<span class="sd">        :param api_key: Binance API key, or ``None`` to use public rate limits</span>
+<span class="sd">        :type api_key: str</span>
+<span class="sd">        :param api_secret: Binance API secret, or ``None`` to use public rate limits</span>
+<span class="sd">        :type api_secret: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">old_ubra</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ubra</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ubra</span> <span class="o">=</span> <span class="n">BinanceRestApiManager</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+                                          <span class="n">api_secret</span><span class="o">=</span><span class="n">api_secret</span><span class="p">,</span>
+                                          <span class="n">exchange</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">exchange</span><span class="p">,</span>
+                                          <span class="n">disable_colorama</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_colorama</span><span class="p">,</span>
+                                          <span class="n">warn_on_update</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">warn_on_update</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old_ubra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">old_ubra</span><span class="o">.</span><span class="n">stop_manager</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error_msg</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;set_credentials() - failed to stop previous ubra instance: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="BinanceLocalDepthCacheManager.get_ubwa_manager">
 <a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_ubwa_manager">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_ubwa_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BinanceWebSocketApiManager</span><span class="p">:</span>
@@ -1792,7 +1823,7 @@
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 21 2026 at 12:08 (CET).
+    Last updated on Apr 21 2026 at 14:03 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.

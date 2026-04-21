@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>unicorn_binance_local_depth_cache package &#8212; unicorn-binance-local-depth-cache 2.12.3 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unicorn_binance_local_depth_cache package &#8212; unicorn-binance-local-depth-cache 2.13.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -76,6 +76,7 @@
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.is_update_available"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.is_update_available()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.print_summary"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.print_summary()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.print_summary_to_png"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.print_summary_to_png()</span></code></a></li>
+<li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_credentials"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.set_credentials()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_refresh_request"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.set_refresh_request()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_resync_request"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.set_resync_request()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.stop_depth_cache"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.stop_depth_cache()</span></code></a></li>
@@ -605,6 +606,25 @@ please provide a path like “/var/www/html/”. <a class="reference external" h
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_credentials">
+<span class="sig-name descname"><span class="pre">set_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/unicorn_binance_local_depth_cache/manager.html#BinanceLocalDepthCacheManager.set_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_credentials" title="Link to this definition">¶</a></dt>
+<dd><p>Replace the internal BinanceRestApiManager with a fresh instance bound to the given
+credentials. Use this to rotate API keys at runtime without recreating the
+BinanceLocalDepthCacheManager or interrupting the WebSocket streams — the new
+credentials take effect from the next REST call (initial snapshot, resync).</p>
+<p>Pass <code class="docutils literal notranslate"><span class="pre">api_key=None</span></code> and <code class="docutils literal notranslate"><span class="pre">api_secret=None</span></code> to drop credentials and fall back
+to the public rate limits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_key</strong> (<em>str</em>) – Binance API key, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to use public rate limits</p></li>
+<li><p><strong>api_secret</strong> (<em>str</em>) – Binance API secret, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to use public rate limits</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_refresh_request">
 <span class="sig-name descname"><span class="pre">set_refresh_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">markets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/unicorn_binance_local_depth_cache/manager.html#BinanceLocalDepthCacheManager.set_refresh_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_refresh_request" title="Link to this definition">¶</a></dt>
 <dd><p>Set refresh requests for one or more DepthCaches!</p>
@@ -961,6 +981,7 @@ currently assigned to.</p>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.is_update_available"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.is_update_available()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.print_summary"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.print_summary()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.print_summary_to_png"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.print_summary_to_png()</span></code></a></li>
+<li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_credentials"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.set_credentials()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_refresh_request"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.set_refresh_request()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_resync_request"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.set_resync_request()</span></code></a></li>
 <li><a class="reference internal" href="#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.stop_depth_cache"><code class="docutils literal notranslate"><span class="pre">BinanceLocalDepthCacheManager.stop_depth_cache()</span></code></a></li>
@@ -1135,7 +1156,7 @@ currently assigned to.</p>
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 21 2026 at 12:08 (CET).
+    Last updated on Apr 21 2026 at 14:03 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
