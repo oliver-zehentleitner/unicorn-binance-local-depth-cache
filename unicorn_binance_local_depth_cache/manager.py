@@ -155,6 +155,7 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         self.websocket_ping_interval = websocket_ping_interval
         self.websocket_ping_timeout = websocket_ping_timeout
         self.disable_colorama = disable_colorama
+        self.warn_on_update = warn_on_update
         self.ubdcc_address = ubdcc_address
         self.ubdcc_port = ubdcc_port
         self.last_update_check_github: dict = {'timestamp': time.time(), 'status': {'tag_name': None}}
@@ -1237,6 +1238,33 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         :return: BinanceRestApiManager
         """
         return self.ubra
+
+    def set_credentials(self, api_key: str = None, api_secret: str = None) -> None:
+        """
+        Replace the internal BinanceRestApiManager with a fresh instance bound to the given
+        credentials. Use this to rotate API keys at runtime without recreating the
+        BinanceLocalDepthCacheManager or interrupting the WebSocket streams — the new
+        credentials take effect from the next REST call (initial snapshot, resync).
+
+        Pass ``api_key=None`` and ``api_secret=None`` to drop credentials and fall back
+        to the public rate limits.
+
+        :param api_key: Binance API key, or ``None`` to use public rate limits
+        :type api_key: str
+        :param api_secret: Binance API secret, or ``None`` to use public rate limits
+        :type api_secret: str
+        """
+        old_ubra = self.ubra
+        self.ubra = BinanceRestApiManager(api_key=api_key,
+                                          api_secret=api_secret,
+                                          exchange=self.exchange,
+                                          disable_colorama=self.disable_colorama,
+                                          warn_on_update=self.warn_on_update)
+        if old_ubra is not None:
+            try:
+                old_ubra.stop_manager()
+            except Exception as error_msg:
+                logger.warning(f"set_credentials() - failed to stop previous ubra instance: {error_msg}")
 
     def get_ubwa_manager(self) -> BinanceWebSocketApiManager:
         """
