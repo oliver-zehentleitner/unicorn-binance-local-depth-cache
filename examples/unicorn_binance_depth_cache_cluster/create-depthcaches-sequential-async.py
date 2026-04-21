@@ -13,7 +13,7 @@ import os
 
 load_dotenv()
 
-exchange: str = "binance.com-futures"
+exchange: str = "binance.com"
 ubdcc_address: str = os.getenv('UBDCC_ADDRESS')
 ubdcc_port: int = int(os.getenv('UBDCC_PORT'))
 
@@ -40,7 +40,7 @@ async def main():
     print(f"Adding {len(markets)} DepthCaches for exchange '{exchange}' on UBDCC '{ubdcc_address}':")
     for market in markets:
         result = await ubldc.cluster.create_depthcache_async(exchange=exchange, market=market,
-                                                             desired_quantity=3, debug=True)
+                                                             desired_quantity=2, debug=True)
         pprint(result)
 
 try:
