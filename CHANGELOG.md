@@ -9,7 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.12.3.dev (development stage/unreleased/unstable)
+## 2.13.0.dev (development stage/unreleased/unstable)
+
+## 2.13.0
 ### Added
 - `manager.py`: New `set_credentials(api_key, api_secret)` method on
   `BinanceLocalDepthCacheManager` — swap the internal
