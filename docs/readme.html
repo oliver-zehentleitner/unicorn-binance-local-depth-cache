@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>UNICORN Binance Local Depth Cache &#8212; unicorn-binance-local-depth-cache 2.12.2 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICORN Binance Local Depth Cache &#8212; unicorn-binance-local-depth-cache 2.13.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -94,6 +94,7 @@
 <li><a class="reference internal" href="#change-log">Change Log</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#related-articles">Related Articles</a></li>
 <li><a class="reference internal" href="#project-homepage">Project Homepage</a></li>
 <li><a class="reference internal" href="#wiki">Wiki</a></li>
 <li><a class="reference internal" href="#social">Social</a></li>
@@ -231,16 +232,14 @@
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml"><img alt="Build and Publish GH+PyPi" src="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml/badge.svg" /></a>
 <a class="reference external" href="https://github.com/conda-forge/unicorn-binance-local-depth-cache-feedstock"><img alt="Conda-Forge Build" src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/unicorn-binance-local-depth-cache-feedstock?branchName=main" /></a>
 <a class="reference external" href="https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/"><img alt="Read the Docs" src="https://img.shields.io/badge/read-%20docs-yellow" /></a>
-<a class="reference external" href="https://technopathy.club"><img alt="Read How To`s" src="https://img.shields.io/badge/read-%20howto-yellow" /></a>
+<a class="reference external" href="https://blog.technopathy.club/series/unicorn-binance-suite"><img alt="Read How To`s" src="https://img.shields.io/badge/read-%20howto-yellow" /></a>
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache"><img alt="Github" src="https://img.shields.io/badge/source-github-cbc2c8" /></a>
 <a class="reference external" href="https://t.me/unicorndevs"><img alt="Telegram" src="https://img.shields.io/badge/community-telegram-41ab8c" /></a></p>
 <p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite"><img alt="UBS-Banner" src="https://raw.githubusercontent.com/oliver-zehentleitner/unicorn-binance-suite/master/images/logo/UBS-Banner-Readme.png" /></a></p>
 <section id="unicorn-binance-local-depth-cache">
 <h1>UNICORN Binance Local Depth Cache<a class="headerlink" href="#unicorn-binance-local-depth-cache" title="Link to this heading">¶</a></h1>
-<p><a class="reference internal" href="#description">Description</a> | <a class="reference internal" href="#installation-and-upgrade">Installation</a> | <a class="reference internal" href="#documentation">Documentation</a> |
-<a class="reference internal" href="#examples">Examples</a> | <a class="reference internal" href="#change-log">Change Log</a> | <a class="reference internal" href="#wiki">Wiki</a> | <a class="reference internal" href="#social">Social</a> |
-<a class="reference internal" href="#receive-notifications">Notifications</a> | <a class="reference internal" href="#how-to-report-bugs-or-suggest-improvements">Bugs</a> |
-<a class="reference internal" href="#contributing">Contributing</a> |<a class="reference internal" href="#disclaimer">Disclaimer</a></p>
+<p><a class="reference internal" href="#description">Description</a> | <a class="reference internal" href="#installation-and-upgrade">Installation</a> | <a class="reference internal" href="#documentation">Documentation</a> | <a class="reference internal" href="#examples">Examples</a> | <a class="reference internal" href="#change-log">Change Log</a> |
+<a class="reference internal" href="#wiki">Wiki</a> | <a class="reference internal" href="#social">Social</a> | <a class="reference internal" href="#receive-notifications">Notifications</a> | <a class="reference internal" href="#how-to-report-bugs-or-suggest-improvements">Bugs</a> | <a class="reference internal" href="#contributing">Contributing</a> |<a class="reference internal" href="#disclaimer">Disclaimer</a></p>
 <p>A Python SDK for accessing and managing multiple local Binance
 <a class="reference external" href="https://academy.binance.com/en/glossary/order-book">order books</a> with Python in a simple, fast, flexible, robust
 and fully functional way.</p>
@@ -478,6 +477,7 @@ functions and source code for easier debugging of the source code. <a class="ref
 <h2>Installation and Upgrade<a class="headerlink" href="#installation-and-upgrade" title="Link to this heading">¶</a></h2>
 <p>The module requires Python 3.9 and runs smoothly up to and including Python 3.14.</p>
 <p>PyPy wheels are available for all supported Python versions.</p>
+<p><strong>conda-forge note:</strong> Conda packages are provided for Python 3.10 – 3.14. Python 3.9 is not available on conda-forge — it was dropped from the global pinning after reaching end-of-life in October 2025. For Python 3.9, use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>.</p>
 <p>The current dependencies are listed <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/requirements.txt">here</a>.</p>
 <p>If you run into errors during the installation take a look <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-suite/wiki/Installation">here</a>.</p>
 <section id="packages-are-created-automatically-with-github-actions">
@@ -529,9 +529,9 @@ configuration.</p>
 </section>
 <section id="windows">
 <h4>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h4>
-<p>Use the below command with the version (such as 2.12.2) you determined
+<p>Use the below command with the version (such as 2.13.0) you determined
 <a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest">here</a>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.12.2.tar.gz</span> <span class="pre">--upgrade</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.13.0.tar.gz</span> <span class="pre">--upgrade</span></code></p>
 </section>
 </section>
 <section id="from-the-latest-source-dev-stage-with-pip-from-github">
@@ -555,6 +555,15 @@ configuration.</p>
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/">Look here!</a></p></li>
+</ul>
+</section>
+<section id="related-articles">
+<h2>Related Articles<a class="headerlink" href="#related-articles" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.technopathy.club/how-to-create-a-binance-api-key-and-api-secret">How to create a Binance API Key and API Secret?</a></p></li>
+<li><p><a class="reference external" href="https://blog.technopathy.club/why-your-binance-order-book-should-not-live-inside-your-bot">Why Your Binance Order Book Should Not Live Inside Your Bot</a></p></li>
+<li><p><a class="reference external" href="https://blog.technopathy.club/your-binance-order-book-is-wrong-here-s-why">Your Binance Order Book Is Wrong — Here’s Why</a></p></li>
+<li><p><a class="reference external" href="https://blog.technopathy.club/series/unicorn-binance-suite">UNICORN Binance Suite Article Series</a></p></li>
 </ul>
 </section>
 <section id="project-homepage">
@@ -690,6 +699,7 @@ of any kind, including but not limited to direct or indirect damages for loss of
 <li><a class="reference internal" href="#change-log">Change Log</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#related-articles">Related Articles</a></li>
 <li><a class="reference internal" href="#project-homepage">Project Homepage</a></li>
 <li><a class="reference internal" href="#wiki">Wiki</a></li>
 <li><a class="reference internal" href="#social">Social</a></li>
@@ -810,7 +820,7 @@ of any kind, including but not limited to direct or indirect damages for loss of
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 19 2026 at 08:20 (CET).
+    Last updated on Apr 21 2026 at 14:03 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.

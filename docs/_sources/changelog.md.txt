@@ -9,7 +9,41 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.12.2.dev (development stage/unreleased/unstable)
+## 2.13.0.dev (development stage/unreleased/unstable)
+
+## 2.13.0
+### Added
+- `manager.py`: New `set_credentials(api_key, api_secret)` method on
+  `BinanceLocalDepthCacheManager` — swap the internal
+  `BinanceRestApiManager` to a fresh instance bound to the given credentials
+  at runtime, without recreating the depth cache manager or interrupting
+  the WebSocket streams. New credentials take effect from the next REST
+  call (snapshot / resync). Pass `None` / `None` to drop credentials and
+  fall back to public rate limits. Enables UBDCC DCNs to react to
+  credential rebalances pushed from the cluster management.
+
+## 2.12.3
+### Fixed
+- `manager.py`: `binance.com-vanilla-options` depth caches never reached
+  the `synchronized` state because Binance's `/eapi/v1/depth` REST
+  endpoint serves a cached snapshot whose `lastUpdateId` can lag the
+  live diff stream by ~25–30 seconds. With the snapshot consistently
+  older than every buffered event, no event satisfied the
+  `U <= lastUpdateId <= u` sync predicate, and the previous replay
+  implementation dropped the init buffer on every failed attempt,
+  guaranteeing an endless resync loop. The init buffer is now retained
+  across resync attempts (pruned by `u < lastUpdateId` and capped at
+  10 000 entries), so once Binance's REST cache rotates far enough
+  forward, a previously buffered event matches the sync predicate and
+  the cache synchronises. Spot and Futures are unaffected because their
+  REST snapshots are live; behaviour for those exchanges is identical
+  when the first replay finds the sync point on the first try (the
+  common case). Post-sync events that were already in the buffer are
+  now applied via the regular gap-detection path (Spot:
+  `U == lastUpdateId + 1`, Futures/Options: `pu == lastUpdateId`)
+  instead of being silently discarded, which also closes a pre-existing
+  gap where fast initial bursts could leave the cache one or more
+  events behind immediately after sync.
 
 ## 2.12.2
 ### Changed

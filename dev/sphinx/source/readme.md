@@ -14,7 +14,7 @@
 [![Build and Publish GH+PyPi](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/build_wheels.yml)
 [![Conda-Forge Build](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/unicorn-binance-local-depth-cache-feedstock?branchName=main)](https://github.com/conda-forge/unicorn-binance-local-depth-cache-feedstock)
 [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/)
-[![Read How To`s](https://img.shields.io/badge/read-%20howto-yellow)](https://technopathy.club)
+[![Read How To`s](https://img.shields.io/badge/read-%20howto-yellow)](https://blog.technopathy.club/series/unicorn-binance-suite)
 [![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 [![Telegram](https://img.shields.io/badge/community-telegram-41ab8c)](https://t.me/unicorndevs)
 
@@ -22,10 +22,8 @@
 
 # UNICORN Binance Local Depth Cache 
 
-[Description](#description) | [Installation](#installation-and-upgrade) | [Documentation](#documentation) | 
-[Examples](#examples) | [Change Log](#change-log) | [Wiki](#wiki) | [Social](#social) | 
-[Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
-[Contributing](#contributing) |[Disclaimer](#disclaimer)
+[Description](#description) | [Installation](#installation-and-upgrade) | [Documentation](#documentation) | [Examples](#examples) | [Change Log](#change-log) | 
+[Wiki](#wiki) | [Social](#social) | [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | [Contributing](#contributing) |[Disclaimer](#disclaimer)
 
 A Python SDK for accessing and managing multiple local Binance 
 [order books](https://academy.binance.com/en/glossary/order-book) with Python in a simple, fast, flexible, robust 
@@ -241,6 +239,9 @@ The module requires Python 3.9 and runs smoothly up to and including Python 3.14
 
 PyPy wheels are available for all supported Python versions.
 
+**conda-forge note:** Conda packages are provided for Python 3.10 – 3.14. Python 3.9 is not available on conda-forge — it was dropped from the global pinning after reaching end-of-life in October 2025. For Python 3.9, use `pip install`.
+
+
 The current dependencies are listed [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/blob/master/requirements.txt).
 
 If you run into errors during the installation take a look [here](https://github.com/oliver-zehentleitner/unicorn-binance-suite/wiki/Installation).
@@ -288,10 +289,10 @@ Run in bash:
 `pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/$(curl -s https://api.github.com/repos/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 2.12.2) you determined 
+Use the below command with the version (such as 2.13.0) you determined 
 [here](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/releases/latest):
 
-`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.12.2.tar.gz --upgrade`
+`pip install https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/archive/2.13.0.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 This is not a release version and can not be considered to be stable!
@@ -307,6 +308,12 @@ This is not a release version and can not be considered to be stable!
 
 ## Examples
 - [Look here!](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/tree/master/examples/)
+
+## Related Articles
+- [How to create a Binance API Key and API Secret?](https://blog.technopathy.club/how-to-create-a-binance-api-key-and-api-secret)
+- [Why Your Binance Order Book Should Not Live Inside Your Bot](https://blog.technopathy.club/why-your-binance-order-book-should-not-live-inside-your-bot)
+- [Your Binance Order Book Is Wrong — Here's Why](https://blog.technopathy.club/your-binance-order-book-is-wrong-here-s-why)
+- [UNICORN Binance Suite Article Series](https://blog.technopathy.club/series/unicorn-binance-suite)
 
 ## Project Homepage
 [https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache)

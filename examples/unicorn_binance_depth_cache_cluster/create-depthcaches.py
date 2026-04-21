@@ -24,7 +24,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 async def main():
-    with BinanceRestApiManager(exchange=exchange, warn_on_update=False) as ubra:
+    with BinanceRestApiManager(exchange=exchange, warn_on_update=True) as ubra:
         if exchange == "binance.com" or exchange == "binance.us":
             exchange_info = ubra.get_exchange_info()
         elif exchange == "binance.com-futures":
@@ -53,7 +53,7 @@ async def main():
 
 try:
     with BinanceLocalDepthCacheManager(exchange=exchange, ubdcc_address=ubdcc_address, ubdcc_port=ubdcc_port,
-                                       warn_on_update=False) as ubldc:
+                                       warn_on_update=True) as ubldc:
         try:
             asyncio.run(main())
         except KeyboardInterrupt:

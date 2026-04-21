@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>unicorn_binance_local_depth_cache.manager &#8212; unicorn-binance-local-depth-cache 2.12.2 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unicorn_binance_local_depth_cache.manager &#8212; unicorn-binance-local-depth-cache 2.13.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="../../_static/pydoctheme.css?v=fdf8e9ae" />
@@ -183,7 +183,7 @@
 
 
 <span class="n">__app_name__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unicorn-binance-local-depth-cache&quot;</span>
-<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2.12.2.dev&quot;</span>
+<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2.13.0&quot;</span>
 <span class="n">__logger__</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;unicorn_binance_local_depth_cache&quot;</span><span class="p">)</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">__logger__</span>
@@ -286,6 +286,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">websocket_ping_interval</span> <span class="o">=</span> <span class="n">websocket_ping_interval</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">websocket_ping_timeout</span> <span class="o">=</span> <span class="n">websocket_ping_timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_colorama</span> <span class="o">=</span> <span class="n">disable_colorama</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warn_on_update</span> <span class="o">=</span> <span class="n">warn_on_update</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ubdcc_address</span> <span class="o">=</span> <span class="n">ubdcc_address</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ubdcc_port</span> <span class="o">=</span> <span class="n">ubdcc_port</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">last_update_check_github</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;tag_name&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}</span>
@@ -795,19 +796,66 @@
                     <span class="k">continue</span>
                 <span class="c1"># Replay buffered events from the init phase</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;init_buffer&#39;</span><span class="p">):</span>
-                    <span class="n">buffered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;init_buffer&#39;</span><span class="p">)</span>
+                    <span class="n">buffered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;init_buffer&#39;</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;init_buffer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
                     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id=</span><span class="si">{</span><span class="n">stream_id</span><span class="si">}</span><span class="s2">) - &quot;</span>
                                 <span class="sa">f</span><span class="s2">&quot;Replaying </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">buffered</span><span class="p">)</span><span class="si">}</span><span class="s2"> buffered events for </span><span class="si">{</span><span class="n">market</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                     <span class="n">buffered</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stream_data</span><span class="p">)</span>
+                    <span class="n">snapshot_last_update_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_id&#39;</span><span class="p">]</span>
+                    <span class="n">post_sync_applied</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">post_sync_gap</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="k">for</span> <span class="n">buffered_event</span> <span class="ow">in</span> <span class="n">buffered</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;is_synchronized&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-                            <span class="k">break</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_process_init_event</span><span class="p">(</span><span class="n">stream_id</span><span class="o">=</span><span class="n">stream_id</span><span class="p">,</span> <span class="n">stream_data</span><span class="o">=</span><span class="n">buffered_event</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="n">market</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;is_synchronized&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;is_synchronized&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_process_init_event</span><span class="p">(</span><span class="n">stream_id</span><span class="o">=</span><span class="n">stream_id</span><span class="p">,</span> <span class="n">stream_data</span><span class="o">=</span><span class="n">buffered_event</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="n">market</span><span class="p">)</span>
+                            <span class="k">continue</span>
+                        <span class="c1"># Already synced earlier in this loop: apply remaining events with gap detection</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-testnet&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.us&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;trbinance.com&quot;</span><span class="p">:</span>
+                            <span class="n">expected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">buffered_event</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;U&#39;</span><span class="p">])</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">:</span>
+                                <span class="n">post_sync_gap</span> <span class="o">=</span> <span class="kc">True</span>
+                                <span class="k">break</span>
+                        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-futures&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-futures-testnet&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-vanilla-options&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-vanilla-options-testnet&quot;</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">buffered_event</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;pu&#39;</span><span class="p">])</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_id&#39;</span><span class="p">]:</span>
+                                <span class="n">post_sync_gap</span> <span class="o">=</span> <span class="kc">True</span>
+                                <span class="k">break</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_apply_updates</span><span class="p">(</span><span class="n">asks</span><span class="o">=</span><span class="n">buffered_event</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;a&#39;</span><span class="p">],</span>
+                                            <span class="n">bids</span><span class="o">=</span><span class="n">buffered_event</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="n">market</span><span class="o">=</span><span class="n">market</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">buffered_event</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;u&#39;</span><span class="p">])</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+                        <span class="n">post_sync_applied</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">post_sync_gap</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id=</span><span class="si">{</span><span class="n">stream_id</span><span class="si">}</span><span class="s2">) &quot;</span>
+                                     <span class="sa">f</span><span class="s2">&quot;- Gap detected while replaying post-sync buffered events for `</span><span class="si">{</span><span class="n">market</span><span class="si">}</span><span class="s2">`, &quot;</span>
+                                     <span class="sa">f</span><span class="s2">&quot;requesting resync&quot;</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">set_resync_request</span><span class="p">(</span><span class="n">market</span><span class="o">=</span><span class="n">market</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;is_synchronized&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+                        <span class="c1"># Keep buffered events for the next snapshot attempt. Required for exchanges</span>
+                        <span class="c1"># with a cached REST snapshot (Binance European Options) where the snapshot&#39;s</span>
+                        <span class="c1"># lastUpdateId can lag the stream by ~30s. Dropping the buffer on every failed</span>
+                        <span class="c1"># try would create an endless resync loop. Prune events definitely before the</span>
+                        <span class="c1"># snapshot (u &lt; L) and cap the buffer size as a safeguard.</span>
+                        <span class="k">if</span> <span class="n">snapshot_last_update_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">buffered</span>
+                                    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;u&#39;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">snapshot_last_update_id</span><span class="p">]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">keep</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">buffered</span><span class="p">)</span>
+                        <span class="n">max_buffer</span> <span class="o">=</span> <span class="mi">10000</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keep</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_buffer</span><span class="p">:</span>
+                            <span class="n">keep</span> <span class="o">=</span> <span class="n">keep</span><span class="p">[</span><span class="o">-</span><span class="n">max_buffer</span><span class="p">:]</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;init_buffer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">keep</span>
                         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id=</span><span class="si">{</span><span class="n">stream_id</span><span class="si">}</span><span class="s2">) &quot;</span>
                                     <span class="sa">f</span><span class="s2">&quot;- No sync point found in </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">buffered</span><span class="p">)</span><span class="si">}</span><span class="s2"> buffered events for </span><span class="si">{</span><span class="n">market</span><span class="si">}</span><span class="s2">, &quot;</span>
-                                    <span class="sa">f</span><span class="s2">&quot;requesting resync&quot;</span><span class="p">)</span>
+                                    <span class="sa">f</span><span class="s2">&quot;keeping </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">keep</span><span class="p">)</span><span class="si">}</span><span class="s2"> for retry, requesting resync&quot;</span><span class="p">)</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">set_resync_request</span><span class="p">(</span><span class="n">market</span><span class="o">=</span><span class="n">market</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">post_sync_applied</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BinanceLocalDepthCacheManager._manage_depth_cache_async(stream_id=</span><span class="si">{</span><span class="n">stream_id</span><span class="si">}</span><span class="s2">) &quot;</span>
+                                    <span class="sa">f</span><span class="s2">&quot;- Applied </span><span class="si">{</span><span class="n">post_sync_applied</span><span class="si">}</span><span class="s2"> post-sync buffered event(s) for `</span><span class="si">{</span><span class="n">market</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">ubwa</span><span class="o">.</span><span class="n">asyncio_queue_task_done</span><span class="p">(</span><span class="n">stream_id</span><span class="o">=</span><span class="n">stream_id</span><span class="p">)</span>
                     <span class="k">continue</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_process_init_event</span><span class="p">(</span><span class="n">stream_id</span><span class="o">=</span><span class="n">stream_id</span><span class="p">,</span> <span class="n">stream_data</span><span class="o">=</span><span class="n">stream_data</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="n">market</span><span class="p">)</span>
@@ -1361,6 +1409,36 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ubra</span></div>
 
 
+<div class="viewcode-block" id="BinanceLocalDepthCacheManager.set_credentials">
+<a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.set_credentials">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace the internal BinanceRestApiManager with a fresh instance bound to the given</span>
+<span class="sd">        credentials. Use this to rotate API keys at runtime without recreating the</span>
+<span class="sd">        BinanceLocalDepthCacheManager or interrupting the WebSocket streams — the new</span>
+<span class="sd">        credentials take effect from the next REST call (initial snapshot, resync).</span>
+
+<span class="sd">        Pass ``api_key=None`` and ``api_secret=None`` to drop credentials and fall back</span>
+<span class="sd">        to the public rate limits.</span>
+
+<span class="sd">        :param api_key: Binance API key, or ``None`` to use public rate limits</span>
+<span class="sd">        :type api_key: str</span>
+<span class="sd">        :param api_secret: Binance API secret, or ``None`` to use public rate limits</span>
+<span class="sd">        :type api_secret: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">old_ubra</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ubra</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ubra</span> <span class="o">=</span> <span class="n">BinanceRestApiManager</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+                                          <span class="n">api_secret</span><span class="o">=</span><span class="n">api_secret</span><span class="p">,</span>
+                                          <span class="n">exchange</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">exchange</span><span class="p">,</span>
+                                          <span class="n">disable_colorama</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_colorama</span><span class="p">,</span>
+                                          <span class="n">warn_on_update</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">warn_on_update</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old_ubra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">old_ubra</span><span class="o">.</span><span class="n">stop_manager</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error_msg</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;set_credentials() - failed to stop previous ubra instance: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="BinanceLocalDepthCacheManager.get_ubwa_manager">
 <a class="viewcode-back" href="../../unicorn_binance_local_depth_cache.html#unicorn_binance_local_depth_cache.manager.BinanceLocalDepthCacheManager.get_ubwa_manager">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_ubwa_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BinanceWebSocketApiManager</span><span class="p">:</span>
@@ -1745,7 +1823,7 @@
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 19 2026 at 08:20 (CET).
+    Last updated on Apr 21 2026 at 14:03 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
