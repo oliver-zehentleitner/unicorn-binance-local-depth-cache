@@ -35,7 +35,8 @@ async def main():
         for item in exchange_info['symbols']:
             if item['status'] == "TRADING":
                 markets.append(item['symbol'])
-    result = await ubldc.cluster.create_depthcaches_async(exchange=exchange, markets=markets[1200:], desired_quantity=1)
+    markets = markets[:225]
+    result = await ubldc.cluster.create_depthcaches_async(exchange=exchange, markets=markets, desired_quantity=2)
     print(f"Adding {len(markets)} DepthCaches for exchange '{exchange}' on UBDCC '{ubdcc_address}':")
     pprint(result)
 
