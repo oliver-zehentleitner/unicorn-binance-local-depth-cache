@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>unicorn_binance_local_depth_cache.manager &#8212; unicorn-binance-local-depth-cache 2.13.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unicorn_binance_local_depth_cache.manager &#8212; unicorn-binance-local-depth-cache 2.14.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="../../_static/pydoctheme.css?v=fdf8e9ae" />
@@ -183,7 +183,7 @@
 
 
 <span class="n">__app_name__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unicorn-binance-local-depth-cache&quot;</span>
-<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2.13.0.dev&quot;</span>
+<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2.14.0&quot;</span>
 <span class="n">__logger__</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;unicorn_binance_local_depth_cache&quot;</span><span class="p">)</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">__logger__</span>
@@ -200,8 +200,9 @@
 <span class="sd">        - https://binance-docs.github.io/apidocs/spot/en/#how-to-manage-a-local-order-book-correctly</span>
 <span class="sd">        - https://binance-docs.github.io/apidocs/futures/en/#diff-book-depth-streams</span>
 
-<span class="sd">    :param exchange: Select binance.com, binance.com-testnet, binance.com-futures, binance.com-futures-testnet,</span>
-<span class="sd">                     binance.com-vanilla-options, binance.com-vanilla-options-testnet,</span>
+<span class="sd">    :param exchange: Select binance.com, binance.com-testnet, binance.com-margin, binance.com-margin-testnet,</span>
+<span class="sd">                     binance.com-isolated_margin, binance.com-isolated_margin-testnet, binance.com-futures,</span>
+<span class="sd">                     binance.com-futures-testnet, binance.com-vanilla-options, binance.com-vanilla-options-testnet,</span>
 <span class="sd">                     binance.us, trbinance.com (default: binance.com)</span>
 <span class="sd">    :type exchange: str</span>
 <span class="sd">    :param default_refresh_interval: The default refresh interval in seconds, default is None. The DepthCache is reset</span>
@@ -535,6 +536,10 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com&quot;</span> \
                     <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-testnet&quot;</span> \
+                    <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin&quot;</span> \
+                    <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin-testnet&quot;</span> \
+                    <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin&quot;</span> \
+                    <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin-testnet&quot;</span> \
                     <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.us&quot;</span> \
                     <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;trbinance.com&quot;</span><span class="p">:</span>
                 <span class="n">order_book</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ubra</span><span class="o">.</span><span class="n">get_order_book</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="n">market</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -743,6 +748,10 @@
                 <span class="c1"># Gap detection</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com&quot;</span> \
                         <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-testnet&quot;</span> \
+                        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin&quot;</span> \
+                        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin-testnet&quot;</span> \
+                        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin&quot;</span> \
+                        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin-testnet&quot;</span> \
                         <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.us&quot;</span> \
                         <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;trbinance.com&quot;</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;U&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_id&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
@@ -811,6 +820,10 @@
                         <span class="c1"># Already synced earlier in this loop: apply remaining events with gap detection</span>
                         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com&quot;</span> \
                                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-testnet&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin-testnet&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin&quot;</span> \
+                                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin-testnet&quot;</span> \
                                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.us&quot;</span> \
                                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;trbinance.com&quot;</span><span class="p">:</span>
                             <span class="n">expected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
@@ -874,6 +887,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com&quot;</span> \
                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-testnet&quot;</span> \
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin&quot;</span> \
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-margin-testnet&quot;</span> \
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin&quot;</span> \
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.com-isolated_margin-testnet&quot;</span> \
                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;binance.us&quot;</span> \
                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange</span> <span class="o">==</span> <span class="s2">&quot;trbinance.com&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;u&#39;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_caches</span><span class="p">[</span><span class="n">market</span><span class="p">][</span><span class="s1">&#39;last_update_id&#39;</span><span class="p">]:</span>
@@ -1823,7 +1840,7 @@
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-suite#documentation">Index of all docs</a><br />
     &copy; <a href="/license.html">Copyright</a> 2019-2025, Oliver Zehentleitner All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Apr 23 2026 at 21:58 (CET).
+    Last updated on Apr 24 2026 at 17:20 (CET).
     <a href="https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
