@@ -9,7 +9,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.13.0.dev (development stage/unreleased/unstable)
+## 2.13.1.dev (development stage/unreleased/unstable)
+### Fixed
+- `manager.py`: REST snapshot support for Binance margin exchanges. The
+  exchange switch in `_get_order_book_from_rest()` had no case for
+  `binance.com-margin`, `binance.com-margin-testnet`,
+  `binance.com-isolated_margin` and `binance.com-isolated_margin-testnet`,
+  so the snapshot returned `None` and the DepthCache never reached the
+  `synchronized` state. Margin markets use the spot REST endpoint
+  (`/api/v3/depth`) and the spot WebSocket diff-depth format (`U/u`),
+  so they are now routed through the same code path as `binance.com`
+  across all four exchange switches in `manager.py` (snapshot fetch,
+  live-update gap detection, post-sync buffer replay gap detection,
+  and init-phase sync-point detection).
 
 ## 2.13.0
 ### Added
