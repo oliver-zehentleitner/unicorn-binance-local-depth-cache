@@ -31,9 +31,9 @@ logging.basicConfig(level=logging.ERROR,
 async def main():
     if api_key and api_secret:
         print(f"Adding credential for account_group '{account_group}' ...")
-        add_result = await ubldc.cluster.ubdcc_add_credentials_async(account_group=account_group,
-                                                                     api_key=api_key,
-                                                                     api_secret=api_secret)
+        add_result = await ubldc.cluster.add_credentials_async(account_group=account_group,
+                                                               api_key=api_key,
+                                                               api_secret=api_secret)
         pprint(add_result)
         new_id = add_result.get('id')
     else:
@@ -41,11 +41,11 @@ async def main():
         new_id = None
 
     print("\nCurrent credentials (keys masked):")
-    pprint(await ubldc.cluster.ubdcc_get_credentials_list_async())
+    pprint(await ubldc.cluster.get_credentials_list_async())
 
     if new_id:
         print(f"\nRemoving credential '{new_id}' ...")
-        pprint(await ubldc.cluster.ubdcc_remove_credentials_async(credential_id=new_id))
+        pprint(await ubldc.cluster.remove_credentials_async(credential_id=new_id))
 
 
 try:
