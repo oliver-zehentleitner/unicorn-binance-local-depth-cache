@@ -9,7 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/readme.html#installation-and-upgrade)
 
-## 2.13.1.dev (development stage/unreleased/unstable)
+## 2.14.0.dev (development stage/unreleased/unstable)
+
+## 2.14.0
 ### Fixed
 - `manager.py`: REST snapshot support for Binance margin exchanges. The
   exchange switch in `_get_order_book_from_rest()` had no case for
