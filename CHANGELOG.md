@@ -12,6 +12,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.14.0.dev (development stage/unreleased/unstable)
 
 ## 2.14.0
+### Changed
+- **Breaking**: renamed the cluster client's credential methods to drop the
+  redundant `ubdcc_` prefix and align with the rest of the API:
+  `ubdcc_add_credentials()` → `add_credentials()`,
+  `ubdcc_remove_credentials()` → `remove_credentials()`,
+  `ubdcc_get_credentials_list()` → `get_credentials_list()` (each with its
+  `_async` variant). The matching UBDCC REST endpoints were renamed too
+  (`/ubdcc_*_credentials*` → `/*_credentials*`) — use UBDCC ≥ 0.7.0.
+  Examples under `examples/unicorn_binance_depth_cache_cluster/` updated.
 ### Fixed
 - `manager.py`: REST snapshot support for Binance margin exchanges. The
   exchange switch in `_get_order_book_from_rest()` had no case for

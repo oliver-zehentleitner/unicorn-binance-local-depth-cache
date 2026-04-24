@@ -41,9 +41,9 @@ try:
                                        ubdcc_port=ubdcc_port) as ubldc:
         if api_key and api_secret:
             print(f"Adding credential for account_group '{account_group}' ...")
-            add_result = ubldc.cluster.ubdcc_add_credentials(account_group=account_group,
-                                                             api_key=api_key,
-                                                             api_secret=api_secret)
+            add_result = ubldc.cluster.add_credentials(account_group=account_group,
+                                                       api_key=api_key,
+                                                       api_secret=api_secret)
             pprint(add_result)
             new_id = add_result.get('id')
         else:
@@ -51,11 +51,11 @@ try:
             new_id = None
 
         print("\nCurrent credentials (keys masked):")
-        pprint(ubldc.cluster.ubdcc_get_credentials_list())
+        pprint(ubldc.cluster.get_credentials_list())
 
         if new_id:
             print(f"\nRemoving credential '{new_id}' ...")
-            #pprint(ubldc.cluster.ubdcc_remove_credentials(credential_id=new_id))
+            #pprint(ubldc.cluster.remove_credentials(credential_id=new_id))
 
 except DepthCacheClusterNotReachableError as error_msg:
     print(f"ERROR: {error_msg}")
