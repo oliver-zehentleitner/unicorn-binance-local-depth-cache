@@ -56,7 +56,7 @@ else:
     shutil.rmtree(os.path.join(stubs_dir))
     print("Stub files generated and moved successfully.")
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     print("Using README.md content as `long_description` ...")
     long_description = fh.read()
 
