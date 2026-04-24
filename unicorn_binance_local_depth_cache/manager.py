@@ -69,8 +69,9 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         - https://binance-docs.github.io/apidocs/spot/en/#how-to-manage-a-local-order-book-correctly
         - https://binance-docs.github.io/apidocs/futures/en/#diff-book-depth-streams
 
-    :param exchange: Select binance.com, binance.com-testnet, binance.com-futures, binance.com-futures-testnet,
-                     binance.com-vanilla-options, binance.com-vanilla-options-testnet,
+    :param exchange: Select binance.com, binance.com-testnet, binance.com-margin, binance.com-margin-testnet,
+                     binance.com-isolated_margin, binance.com-isolated_margin-testnet, binance.com-futures,
+                     binance.com-futures-testnet, binance.com-vanilla-options, binance.com-vanilla-options-testnet,
                      binance.us, trbinance.com (default: binance.com)
     :type exchange: str
     :param default_refresh_interval: The default refresh interval in seconds, default is None. The DepthCache is reset
@@ -401,6 +402,10 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         try:
             if self.exchange == "binance.com" \
                     or self.exchange == "binance.com-testnet" \
+                    or self.exchange == "binance.com-margin" \
+                    or self.exchange == "binance.com-margin-testnet" \
+                    or self.exchange == "binance.com-isolated_margin" \
+                    or self.exchange == "binance.com-isolated_margin-testnet" \
                     or self.exchange == "binance.us" \
                     or self.exchange == "trbinance.com":
                 order_book = self.ubra.get_order_book(symbol=market.upper(), limit=1000)
@@ -609,6 +614,10 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                 # Gap detection
                 if self.exchange == "binance.com" \
                         or self.exchange == "binance.com-testnet" \
+                        or self.exchange == "binance.com-margin" \
+                        or self.exchange == "binance.com-margin-testnet" \
+                        or self.exchange == "binance.com-isolated_margin" \
+                        or self.exchange == "binance.com-isolated_margin-testnet" \
                         or self.exchange == "binance.us" \
                         or self.exchange == "trbinance.com":
                     if stream_data['data']['U'] != self.depth_caches[market]['last_update_id']+1:
@@ -677,6 +686,10 @@ class BinanceLocalDepthCacheManager(threading.Thread):
                         # Already synced earlier in this loop: apply remaining events with gap detection
                         if self.exchange == "binance.com" \
                                 or self.exchange == "binance.com-testnet" \
+                                or self.exchange == "binance.com-margin" \
+                                or self.exchange == "binance.com-margin-testnet" \
+                                or self.exchange == "binance.com-isolated_margin" \
+                                or self.exchange == "binance.com-isolated_margin-testnet" \
                                 or self.exchange == "binance.us" \
                                 or self.exchange == "trbinance.com":
                             expected = self.depth_caches[market]['last_update_id'] + 1
@@ -740,6 +753,10 @@ class BinanceLocalDepthCacheManager(threading.Thread):
         """
         if self.exchange == "binance.com" \
                 or self.exchange == "binance.com-testnet" \
+                or self.exchange == "binance.com-margin" \
+                or self.exchange == "binance.com-margin-testnet" \
+                or self.exchange == "binance.com-isolated_margin" \
+                or self.exchange == "binance.com-isolated_margin-testnet" \
                 or self.exchange == "binance.us" \
                 or self.exchange == "trbinance.com":
             if int(stream_data['data']['u']) <= self.depth_caches[market]['last_update_id']:
