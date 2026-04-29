@@ -128,6 +128,11 @@ Returns: `list` of `[price, quantity]` pairs. Raises `DepthCacheOutOfSync` if ca
 - [UBRA](https://github.com/oliver-zehentleitner/unicorn-binance-rest-api) — REST client used internally for depth snapshots. Share via `ubra_manager=...`.
 - [UBDCC](https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster) — distributed, horizontally scalable cluster of UBLDC instances with load balancing, failover and REST API. Use UBLDC's `ubdcc_address=...` parameter to connect as a client.
 
+## Related Articles
+
+- [Your Binance DepthCache Is Rotting — Here's the Proof in 25 Hours](https://blog.technopathy.club/your-binance-depthcache-is-rotting-here-s-the-proof-in-25-hours) — 25-hour experiment with a naive depth cache that does not prune levels beyond the top-1000 window; shows how orphaned/stale levels accumulate over time. UBLDC removes those automatically.
+- [UBDCC Deep Dive: Building a Trust Layer for Binance Order Books](https://blog.technopathy.club/ubdcc-deep-dive-building-a-trust-layer-for-binance-order-books) — architecture write-up of the multi-node trust-layer (UBDCC) on top of UBLDC.
+
 ## Docs
 
 - Repo: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
