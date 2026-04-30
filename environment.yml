@@ -10,4 +10,4 @@ dependencies:
   - orjson
   - requests>=2.32.3
   - unicorn-binance-rest-api>=2.10.0
-  - unicorn-binance-websocket-api>=2.12.2
+  - unicorn-binance-websocket-api>=2.13.0
