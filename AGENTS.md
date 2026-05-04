@@ -106,7 +106,7 @@ Version management helper: `dev/set_version.py`
 
 ## Code Conventions
 
-- **File header:** Full MIT license block with author/copyright (2019-2025)
+- **File header:** Full MIT license block with author/copyright (2019-2026)
 - **Encoding:** UTF-8, UNIX line endings
 - **Logging:** `logging.getLogger("unicorn_binance_local_depth_cache")`
 - **Type hints:** Present throughout; `typing` stdlib
