@@ -11,6 +11,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 2.14.0.dev (development stage/unreleased/unstable)
 
+## 2.14.1
+### Changed
+- Bumped minimum `unicorn-binance-websocket-api` dependency from
+  `>=2.12.2` to `>=2.13.0` in `setup.py`, `requirements.txt`,
+  `pyproject.toml`, `environment.yml` and `meta.yaml`. UBWA 2.13.0
+  introduces the per-category Futures WebSocket routing
+  (`/public`, `/market`, `/private`) required by Binance since
+  2026-04-23 and raises `ValueError` on mixed-category streams.
+  See
+  [unicorn-binance-websocket-api#437](https://github.com/oliver-zehentleitner/unicorn-binance-websocket-api/issues/437).
+
 ## 2.14.0
 ### Changed
 - **Breaking**: renamed the cluster client's credential methods to drop the
