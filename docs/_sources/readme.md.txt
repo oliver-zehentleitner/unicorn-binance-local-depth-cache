@@ -331,9 +331,9 @@ This is not a release version and can not be considered to be stable!
 
 ## Social
 - [Discussions](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/discussions)
-- [https://t.me/unicorndevs](https://t.me/unicorndevs)
+- [Telegram](https://t.me/unicorndevs) 
+- [Reddit Community](https://www.reddit.com/r/UNICORNBinanceSuite/) 
 - [https://dev.binance.vision](https://dev.binance.vision)
-
 
 ## Receive Notifications
 To receive notifications on available updates you can 
