@@ -44,6 +44,7 @@ async def main():
         print(f"Successful working caches: {len(working_caches)}")
         for error in errors:
             print(f"ERROR: {error}: {errors[error]}")
+        exit(0)
         await asyncio.sleep(1)
 
 try:
