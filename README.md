@@ -98,8 +98,10 @@ ubldc.stop_manager()
 
 ## Connect to a UNICORN Binance DepthCache Cluster
 The [UNICORN Binance DepthCache Cluster (UBDCC)](https://github.com/oliver-zehentleitner/unicorn-binance-depth-cache-cluster) 
-manages hundreds of DepthCaches with load balancing, automatic failover and self-healing state. It runs locally on a 
-single machine (`pip install ubdcc`) or scales across a Kubernetes cluster. Access is via REST API from any language — 
+manages thousands of DepthCaches with load balancing, automatic failover and self-healing state. It runs 
+[locally on a single machine](https://blog.technopathy.club/from-pip-install-to-a-redundant-binance-order-book-cluster-ubdcc-dashboard-quickstart) 
+(`pip install ubdcc`) or 
+[scales across a Kubernetes cluster](https://blog.technopathy.club/install-ubdcc-on-kubernetes-with-helm-a-redundant-binance-order-book-cluster-in-20-minutes). Access is via REST API from any language — 
 Python users can use the built-in cluster module shown below.
 
 ### Synchronous
