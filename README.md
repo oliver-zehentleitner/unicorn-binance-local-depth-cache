@@ -321,6 +321,8 @@ This is not a release version and can not be considered to be stable!
 - [Your Binance Order Book Is Wrong — Here's Why](https://blog.technopathy.club/your-binance-order-book-is-wrong-here-s-why)
 - [Your Binance DepthCache Is Rotting — Here's the Proof in 25 Hours](https://blog.technopathy.club/your-binance-depthcache-is-rotting-here-s-the-proof-in-25-hours)
 - [UBDCC Deep Dive: Building a Trust Layer for Binance Order Books](https://blog.technopathy.club/ubdcc-deep-dive-building-a-trust-layer-for-binance-order-books)
+- [Install UBDCC on Kubernetes with Helm: A Redundant Binance Order Book Cluster in 20 Minutes](https://blog.technopathy.club/install-ubdcc-on-kubernetes-with-helm-a-redundant-binance-order-book-cluster-in-20-minutes)
+- [I Created 2013 Binance Order Books on Kubernetes with 2 Replicas in 25 Minutes — Then Stress-Tested the REST API](https://blog.technopathy.club/i-created-2013-binance-order-books-on-kubernetes-with-2-replicas-in-25-minutes-then-stress-tested-the-rest-api)
 - [UNICORN Binance Suite Article Series](https://blog.technopathy.club/series/unicorn-binance-suite)
 
 ## Project Homepage
