@@ -33,7 +33,7 @@ The organization of the DepthCache takes place in the same asyncio loop as the r
 full stack of the UBS modules (REST, WebSocket and DepthCache) can be downloaded and installed by PyPi and Anaconda 
 as a Python C extension for maximum performance.
 
-Part of '[UNICORN Binance Suite](https://github.com/oliver-zehentleitner/unicorn-binance-suite)'.
+Part of '[UNICORN Binance Suite](https://blog.technopathy.club/page/unicorn-binance-suite)'.
 
 ## Using a DepthCache
 
