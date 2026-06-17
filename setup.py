@@ -75,6 +75,7 @@ setup(
                        'unicorn-binance-websocket-api>=2.13.0', 'unicorn-binance-rest-api>=2.10.0'],
      keywords='binance, depth cache',
      project_urls={
+         'Howto': 'https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache#related-articles',
          'Documentation': 'https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache#related-articles',
          'Wiki': 'https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/wiki',
          'Author': 'https://www.linkedin.com/in/oliver-zehentleitner',
