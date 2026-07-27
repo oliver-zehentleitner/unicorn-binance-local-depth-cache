@@ -3,7 +3,8 @@
 ## Options depth cache: endless resync from a stale REST snapshot
 
 **Status:** active
-**Confirmed** (commit `f57089f`)
+**Evidence:** confirmed
+**Source:** commit `f57089f`
 
 Binance's `/eapi/v1/depth` REST endpoint (used for `binance.com-vanilla-options` snapshots) can serve a cached response whose `lastUpdateId` lags the live WebSocket diff stream by up to ~25–30 seconds. The standard Binance sync algorithm requires finding a diff event where `U <= lastUpdateId <= u`; with a snapshot that stale, that predicate could never match, and the old code discarded the init buffer on every resync attempt — producing an endless "out of sync" loop for options markets specifically.
 
@@ -14,7 +15,8 @@ Binance's `/eapi/v1/depth` REST endpoint (used for `binance.com-vanilla-options`
 ## Init-race: buffer WS events instead of dropping them
 
 **Status:** active
-**Confirmed** (commit `fc7afdd`)
+**Evidence:** confirmed
+**Source:** commit `fc7afdd`
 
 During the snapshot-fetch window (before `last_update_id` is known), WebSocket diff events arriving in that gap were previously dropped rather than buffered — risking a missed sync point, especially on fast-moving markets where several diffs can arrive before the REST snapshot response comes back.
 
@@ -23,7 +25,8 @@ During the snapshot-fetch window (before `last_update_id` is known), WebSocket d
 ## Margin/isolated-margin: falling through to the wrong path in four places
 
 **Status:** active
-**Confirmed** (commit `106b73c`)
+**Evidence:** confirmed
+**Source:** commit `106b73c`
 
 Margin and isolated-margin exchanges were falling through to an `else` branch in four separate places: `_get_order_book_from_rest()`, live-update gap detection, post-sync replay gap detection, and `_process_init_event()` — none of which routed them into the actual sync logic.
 

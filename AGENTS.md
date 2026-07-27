@@ -198,4 +198,6 @@ ubldc = BinanceLocalDepthCacheManager(exchange="binance.com", ubra_manager=ubra)
 <!-- keep-the-why:config -->
 - context: `context/`
 - init: complete
+- context-schema: 0.5.1
+- capture-confirmation: confirm-when-unsure
 <!-- /keep-the-why:config -->
