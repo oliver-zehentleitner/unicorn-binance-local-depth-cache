@@ -1,14 +1,18 @@
-from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync
+from unicorn_binance_local_depth_cache import (
+    BinanceLocalDepthCacheManager,
+    DepthCacheOutOfSync,
+)
 import time
 
-
-coins = ['ethusdt', 'DYDXUSDT', "ALGOUSDT", "btcusdt"]
+coins = ["ethusdt", "DYDXUSDT", "ALGOUSDT", "btcusdt"]
 test_coin = "btcusdt"
 
-with BinanceLocalDepthCacheManager(exchange="binance.com-futures",
-                                   init_interval=0.5,
-                                   init_time_window=1,
-                                   depth_cache_update_interval=100) as ubldc:
+with BinanceLocalDepthCacheManager(
+    exchange="binance.com-futures",
+    init_interval=0.5,
+    init_time_window=1,
+    depth_cache_update_interval=100,
+) as ubldc:
     ubldc.create_depthcache(coins)
     print(f"DCs created: {coins}")
     time.sleep(1)

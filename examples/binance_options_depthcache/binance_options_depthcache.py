@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 # ¯\_(ツ)_/¯
 
-from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync
+from unicorn_binance_local_depth_cache import (
+    BinanceLocalDepthCacheManager,
+    DepthCacheOutOfSync,
+)
 import asyncio
 import logging
 import os
@@ -14,10 +17,12 @@ exchange = "binance.com-vanilla-options"
 limit_count = 5
 
 logging.getLogger("unicorn_binance_local_depth_cache")
-logging.basicConfig(level=logging.DEBUG,
-                    filename=os.path.basename(__file__) + '.log',
-                    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
-                    style="{")
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename=os.path.basename(__file__) + ".log",
+    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
+    style="{",
+)
 
 
 async def main():
@@ -32,7 +37,9 @@ async def main():
             except DepthCacheOutOfSync:
                 top_asks = "Out of sync!"
                 top_bids = "Out of sync!"
-            print(f"[{market}] synced={ubldc.is_depth_cache_synchronized(market=market)}")
+            print(
+                f"[{market}] synced={ubldc.is_depth_cache_synchronized(market=market)}"
+            )
             print(f"  asks: {top_asks}")
             print(f"  bids: {top_bids}")
         print()
@@ -40,8 +47,9 @@ async def main():
 
 
 # depth_cache_update_interval=500 → depth@500ms stream (recommended for Options)
-with BinanceLocalDepthCacheManager(exchange=exchange,
-                                   depth_cache_update_interval=500) as ubldc:
+with BinanceLocalDepthCacheManager(
+    exchange=exchange, depth_cache_update_interval=500
+) as ubldc:
     try:
         asyncio.run(main())
     except KeyboardInterrupt:

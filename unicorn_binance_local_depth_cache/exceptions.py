@@ -43,6 +43,7 @@ class DepthCacheClusterNotReachableError(Exception):
     """
     Exception raised when the UBDCC is not reachable.
     """
+
     def __init__(self, url=None):
         if url is None:
             self.message = f"Connection with UBDCC could not be established!"
@@ -55,6 +56,7 @@ class DepthCacheOutOfSync(Exception):
     """
     Exception raised when an attempt is made to use a depth_cache that is out of sync.
     """
+
     def __init__(self, market=None):
         if market is None:
             self.message = f"The depth_cache is out of sync, please try again later"
@@ -67,6 +69,7 @@ class DepthCacheAlreadyStopped(Exception):
     """
     Exception raised when an attempt is made to use a depth_cache that has already been stopped.
     """
+
     def __init__(self, market=None):
         if market is None:
             self.message = f"The depth_cache is already stopped!"
@@ -79,6 +82,7 @@ class DepthCacheNotFound(Exception):
     """
     Exception raised when an attempt is made to use an instance that does not exist.
     """
+
     def __init__(self, market=None):
         if market is None:
             self.message = f"The depth_cache does not exist!"

@@ -59,7 +59,9 @@ class Cluster:
         self.url: str
         self._build_url()
         if self.test_connection():
-            logger.info(f"Connection with UBDCC {self.url} successfully established! Activate cluster mode ...")
+            logger.info(
+                f"Connection with UBDCC {self.url} successfully established! Activate cluster mode ..."
+            )
         else:
             raise DepthCacheClusterNotReachableError(url=self.url)
 
@@ -70,229 +72,316 @@ class Cluster:
         else:
             self.url = f"{protocol}://{self.address}:{self.port}/"
 
-    def _request(self,
-                 endpoint: str,
-                 method: str,
-                 params: dict = None,
-                 headers: dict = None,
-                 timeout: int = 10,
-                 debug: bool = False) -> dict:
+    def _request(
+        self,
+        endpoint: str,
+        method: str,
+        params: dict = None,
+        headers: dict = None,
+        timeout: int = 10,
+        debug: bool = False,
+    ) -> dict:
         start_time: float = 0.0
         if debug is True:
             start_time = time.time()
             if params is None:
-                params = {'debug': 'true'}
+                params = {"debug": "true"}
             else:
-                params.update({'debug': 'true'})
+                params.update({"debug": "true"})
         try:
             if method == "get":
-                response = requests.get(self.url+endpoint, params=params, headers=headers, timeout=timeout)
+                response = requests.get(
+                    self.url + endpoint, params=params, headers=headers, timeout=timeout
+                )
             elif method == "post":
-                response = requests.post(self.url+endpoint, json=params)
+                response = requests.post(self.url + endpoint, json=params)
             else:
                 raise ValueError("Allowed 'method' values: get, post")
             response.raise_for_status()
             result = response.json()
-            if debug is True and result.get('debug') is not None:
+            if debug is True and result.get("debug") is not None:
                 request_time = time.time() - start_time
-                result['debug']['request_time'] = request_time
-                result['debug']['transmission_time'] = request_time - result['debug']['cluster_execution_time']
+                result["debug"]["request_time"] = request_time
+                result["debug"]["transmission_time"] = (
+                    request_time - result["debug"]["cluster_execution_time"]
+                )
             return result
         except requests.exceptions.RequestException as error_msg:
             logger.error(f"Cluster._request() - {self.url+endpoint} - {error_msg}")
             return {"error": error_msg}
 
-    async def _request_async(self,
-                             endpoint: str,
-                             method: str,
-                             params: dict = None,
-                             headers: dict = None,
-                             timeout: int = 10,
-                             debug: bool = False) -> dict:
+    async def _request_async(
+        self,
+        endpoint: str,
+        method: str,
+        params: dict = None,
+        headers: dict = None,
+        timeout: int = 10,
+        debug: bool = False,
+    ) -> dict:
         start_time: float = 0.0
         if params is not None:
             params = {k: v for k, v in params.items() if v is not None}
         if debug is True:
             start_time = time.time()
             if params is None:
-                params = {'debug': 'true'}
+                params = {"debug": "true"}
             else:
-                params.update({'debug': 'true'})
+                params.update({"debug": "true"})
         try:
             async with aiohttp.ClientSession() as session:
                 if method == "get":
-                    async with session.get(self.url+endpoint, params=params, headers=headers, timeout=timeout) as response:
+                    async with session.get(
+                        self.url + endpoint,
+                        params=params,
+                        headers=headers,
+                        timeout=timeout,
+                    ) as response:
                         response.raise_for_status()
                         result = await response.json()
                 elif method == "post":
-                    async with session.post(self.url+endpoint, json=params,
-                                            headers={"Content-Type": "application/json"},
-                                            timeout=timeout) as response:
+                    async with session.post(
+                        self.url + endpoint,
+                        json=params,
+                        headers={"Content-Type": "application/json"},
+                        timeout=timeout,
+                    ) as response:
                         response.raise_for_status()
                         result = await response.json()
                 else:
                     raise ValueError("Allowed 'method' values: get, post")
-            if debug is True and result.get('debug') is not None:
+            if debug is True and result.get("debug") is not None:
                 request_time = time.time() - start_time
-                result['debug']['request_time'] = request_time
-                result['debug']['transmission_time'] = \
-                    request_time - result['debug']['cluster_execution_time']
+                result["debug"]["request_time"] = request_time
+                result["debug"]["transmission_time"] = (
+                    request_time - result["debug"]["cluster_execution_time"]
+                )
             return result
         except asyncio.CancelledError as error_msg:
-            logger.warning(f"Cluster._request_async() - asyncio.CancelledError - {self.url+endpoint} - {error_msg}")
-            return {"error": f"asyncio.CancelledError - {self.url+endpoint} - {str(error_msg)}"}
+            logger.warning(
+                f"Cluster._request_async() - asyncio.CancelledError - {self.url+endpoint} - {error_msg}"
+            )
+            return {
+                "error": f"asyncio.CancelledError - {self.url+endpoint} - {str(error_msg)}"
+            }
         except asyncio.TimeoutError:
-            logger.warning(f"Cluster._request_async() - asyncio.TimeoutError - {self.url+endpoint}")
+            logger.warning(
+                f"Cluster._request_async() - asyncio.TimeoutError - {self.url+endpoint}"
+            )
             return {"error": f"asyncio.TimeoutError - {self.url+endpoint}"}
         except aiohttp.ClientError as error_msg:
-            logger.error(f"Cluster._request_async() - aiohttp.ClientError - {self.url+endpoint} - {error_msg}")
-            return {"error": f"aiohttp.ClientError - {self.url+endpoint} - {str(error_msg)}"}
+            logger.error(
+                f"Cluster._request_async() - aiohttp.ClientError - {self.url+endpoint} - {error_msg}"
+            )
+            return {
+                "error": f"aiohttp.ClientError - {self.url+endpoint} - {str(error_msg)}"
+            }
 
-    def create_depthcache(self,
-                          exchange: str = None,
-                          market: str = None,
-                          desired_quantity: int = None,
-                          update_interval: int = None,
-                          refresh_interval: int = None,
-                          debug: bool = False) -> dict:
+    def create_depthcache(
+        self,
+        exchange: str = None,
+        market: str = None,
+        desired_quantity: int = None,
+        update_interval: int = None,
+        refresh_interval: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market,
-                  "desired_quantity": desired_quantity,
-                  "update_interval": update_interval,
-                  "refresh_interval": refresh_interval}
-        return self._request(self.endpoints.create_depthcache, method="post", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "market": market,
+            "desired_quantity": desired_quantity,
+            "update_interval": update_interval,
+            "refresh_interval": refresh_interval,
+        }
+        return self._request(
+            self.endpoints.create_depthcache, method="post", params=params, debug=debug
+        )
 
-    async def create_depthcache_async(self,
-                                      exchange: str = None,
-                                      market: str = None,
-                                      desired_quantity: int = None,
-                                      update_interval: int = None,
-                                      refresh_interval: int = None,
-                                      debug: bool = False) -> dict:
+    async def create_depthcache_async(
+        self,
+        exchange: str = None,
+        market: str = None,
+        desired_quantity: int = None,
+        update_interval: int = None,
+        refresh_interval: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market,
-                  "desired_quantity": desired_quantity,
-                  "update_interval": update_interval,
-                  "refresh_interval": refresh_interval}
-        return await self._request_async(self.endpoints.create_depthcache, method="post", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "market": market,
+            "desired_quantity": desired_quantity,
+            "update_interval": update_interval,
+            "refresh_interval": refresh_interval,
+        }
+        return await self._request_async(
+            self.endpoints.create_depthcache, method="post", params=params, debug=debug
+        )
 
-    def create_depthcaches(self,
-                           exchange: str = None,
-                           markets: list = None,
-                           desired_quantity: int = None,
-                           update_interval: int = None,
-                           refresh_interval: int = None,
-                           debug: bool = False) -> dict:
+    def create_depthcaches(
+        self,
+        exchange: str = None,
+        markets: list = None,
+        desired_quantity: int = None,
+        update_interval: int = None,
+        refresh_interval: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or markets is None:
             raise ValueError("Missing mandatory parameter: exchange, markets")
-        params = {"exchange": exchange,
-                  "markets": markets,
-                  "desired_quantity": desired_quantity,
-                  "update_interval": update_interval,
-                  "refresh_interval": refresh_interval}
-        return self._request(self.endpoints.create_depthcaches, method="post", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "markets": markets,
+            "desired_quantity": desired_quantity,
+            "update_interval": update_interval,
+            "refresh_interval": refresh_interval,
+        }
+        return self._request(
+            self.endpoints.create_depthcaches, method="post", params=params, debug=debug
+        )
 
-    async def create_depthcaches_async(self,
-                                       exchange: str = None,
-                                       markets: list = None,
-                                       desired_quantity: int = None,
-                                       update_interval: int = None,
-                                       refresh_interval: int = None,
-                                       debug: bool = False) -> dict:
+    async def create_depthcaches_async(
+        self,
+        exchange: str = None,
+        markets: list = None,
+        desired_quantity: int = None,
+        update_interval: int = None,
+        refresh_interval: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or markets is None:
             raise ValueError("Missing mandatory parameter: exchange, markets")
-        params = {"exchange": exchange,
-                  "markets": markets,
-                  "desired_quantity": desired_quantity,
-                  "update_interval": update_interval,
-                  "refresh_interval": refresh_interval}
-        return await self._request_async(self.endpoints.create_depthcaches, method="post", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "markets": markets,
+            "desired_quantity": desired_quantity,
+            "update_interval": update_interval,
+            "refresh_interval": refresh_interval,
+        }
+        return await self._request_async(
+            self.endpoints.create_depthcaches, method="post", params=params, debug=debug
+        )
 
-    def get_asks(self,
-                 exchange: str = None,
-                 market: str = None,
-                 limit_count: int = None,
-                 threshold_volume: int = None,
-                 debug: bool = False) -> dict:
+    def get_asks(
+        self,
+        exchange: str = None,
+        market: str = None,
+        limit_count: int = None,
+        threshold_volume: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market,
-                  "limit_count": limit_count,
-                  "threshold_volume": threshold_volume}
-        return self._request(self.endpoints.get_asks, method="get", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "market": market,
+            "limit_count": limit_count,
+            "threshold_volume": threshold_volume,
+        }
+        return self._request(
+            self.endpoints.get_asks, method="get", params=params, debug=debug
+        )
 
-    async def get_asks_async(self,
-                             exchange: str = None,
-                             market: str = None,
-                             limit_count: int = None,
-                             threshold_volume: int = None,
-                             debug: bool = False) -> dict:
+    async def get_asks_async(
+        self,
+        exchange: str = None,
+        market: str = None,
+        limit_count: int = None,
+        threshold_volume: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market,
-                  "limit_count": limit_count,
-                  "threshold_volume": threshold_volume}
-        return await self._request_async(self.endpoints.get_asks, method="get", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "market": market,
+            "limit_count": limit_count,
+            "threshold_volume": threshold_volume,
+        }
+        return await self._request_async(
+            self.endpoints.get_asks, method="get", params=params, debug=debug
+        )
 
-    def get_bids(self,
-                 exchange: str = None,
-                 market: str = None,
-                 limit_count: int = None,
-                 threshold_volume: int = None,
-                 debug: bool = False) -> dict:
+    def get_bids(
+        self,
+        exchange: str = None,
+        market: str = None,
+        limit_count: int = None,
+        threshold_volume: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market,
-                  "limit_count": limit_count,
-                  "threshold_volume": threshold_volume}
-        return self._request(self.endpoints.get_bids, method="get", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "market": market,
+            "limit_count": limit_count,
+            "threshold_volume": threshold_volume,
+        }
+        return self._request(
+            self.endpoints.get_bids, method="get", params=params, debug=debug
+        )
 
-    async def get_bids_async(self,
-                             exchange: str = None,
-                             market: str = None,
-                             limit_count: int = None,
-                             threshold_volume: int = None,
-                             debug: bool = False) -> dict:
+    async def get_bids_async(
+        self,
+        exchange: str = None,
+        market: str = None,
+        limit_count: int = None,
+        threshold_volume: int = None,
+        debug: bool = False,
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market,
-                  "limit_count": limit_count,
-                  "threshold_volume": threshold_volume}
-        return await self._request_async(self.endpoints.get_bids, method="get", params=params, debug=debug)
+        params = {
+            "exchange": exchange,
+            "market": market,
+            "limit_count": limit_count,
+            "threshold_volume": threshold_volume,
+        }
+        return await self._request_async(
+            self.endpoints.get_bids, method="get", params=params, debug=debug
+        )
 
     def get_cluster_info(self, debug: bool = False) -> dict:
         return self._request(self.endpoints.get_cluster_info, method="get", debug=debug)
 
     async def get_cluster_info_async(self, debug: bool = False) -> dict:
-        return await self._request_async(self.endpoints.get_cluster_info, method="get", debug=debug)
+        return await self._request_async(
+            self.endpoints.get_cluster_info, method="get", debug=debug
+        )
 
     def get_depthcache_list(self, debug: bool = False) -> dict:
-        return self._request(self.endpoints.get_depthcache_list, method="get", debug=debug)
+        return self._request(
+            self.endpoints.get_depthcache_list, method="get", debug=debug
+        )
 
     async def get_depthcache_list_async(self, debug: bool = False) -> dict:
-        return await self._request_async(self.endpoints.get_depthcache_list, method="get", debug=debug)
+        return await self._request_async(
+            self.endpoints.get_depthcache_list, method="get", debug=debug
+        )
 
-    def get_depthcache_info(self, exchange: str = None, market: str = None, debug: bool = False) -> dict:
+    def get_depthcache_info(
+        self, exchange: str = None, market: str = None, debug: bool = False
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market}
-        return self._request(self.endpoints.get_depthcache_info, method="get", params=params, debug=debug)
+        params = {"exchange": exchange, "market": market}
+        return self._request(
+            self.endpoints.get_depthcache_info, method="get", params=params, debug=debug
+        )
 
-    async def get_depthcache_info_async(self, exchange: str = None, market: str = None, debug: bool = False) -> dict:
+    async def get_depthcache_info_async(
+        self, exchange: str = None, market: str = None, debug: bool = False
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market}
-        return await self._request_async(self.endpoints.get_depthcache_info, method="get", params=params, debug=debug)
+        params = {"exchange": exchange, "market": market}
+        return await self._request_async(
+            self.endpoints.get_depthcache_info, method="get", params=params, debug=debug
+        )
 
     def get_test(self) -> dict:
         return self._request(self.endpoints.test, method="get")
@@ -300,82 +389,114 @@ class Cluster:
     async def get_test_async(self) -> dict:
         return await self._request_async(self.endpoints.test, method="get")
 
-    def stop_depthcache(self, exchange: str = None, market: str = None, debug: bool = False) -> dict:
+    def stop_depthcache(
+        self, exchange: str = None, market: str = None, debug: bool = False
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market}
-        return self._request(self.endpoints.stop_depthcache, method="get", params=params, debug=debug)
+        params = {"exchange": exchange, "market": market}
+        return self._request(
+            self.endpoints.stop_depthcache, method="get", params=params, debug=debug
+        )
 
-    async def stop_depthcache_async(self, exchange: str = None, market: str = None, debug: bool = False) -> dict:
+    async def stop_depthcache_async(
+        self, exchange: str = None, market: str = None, debug: bool = False
+    ) -> dict:
         if exchange is None or market is None:
             raise ValueError("Missing mandatory parameter: exchange, market")
-        params = {"exchange": exchange,
-                  "market": market}
-        return await self._request_async(self.endpoints.stop_depthcache, method="get", params=params, debug=debug)
+        params = {"exchange": exchange, "market": market}
+        return await self._request_async(
+            self.endpoints.stop_depthcache, method="get", params=params, debug=debug
+        )
 
-    def add_credentials(self,
-                        account_group: str = None,
-                        api_key: str = None,
-                        api_secret: str = None,
-                        debug: bool = False) -> dict:
+    def add_credentials(
+        self,
+        account_group: str = None,
+        api_key: str = None,
+        api_secret: str = None,
+        debug: bool = False,
+    ) -> dict:
         """Store a Binance API key pair in the cluster for a given account group
         (binance.com, binance.com-testnet, binance.com-futures-testnet,
         binance.us, binance.tr). Multiple pairs per group are allowed and get
         load-balanced across DCNs. Returns the generated credential id."""
         if account_group is None or api_key is None or api_secret is None:
-            raise ValueError("Missing mandatory parameter: account_group, api_key, api_secret")
-        params = {"account_group": account_group,
-                  "api_key": api_key,
-                  "api_secret": api_secret}
-        return self._request(self.endpoints.add_credentials, method="post", params=params, debug=debug)
+            raise ValueError(
+                "Missing mandatory parameter: account_group, api_key, api_secret"
+            )
+        params = {
+            "account_group": account_group,
+            "api_key": api_key,
+            "api_secret": api_secret,
+        }
+        return self._request(
+            self.endpoints.add_credentials, method="post", params=params, debug=debug
+        )
 
-    async def add_credentials_async(self,
-                                    account_group: str = None,
-                                    api_key: str = None,
-                                    api_secret: str = None,
-                                    debug: bool = False) -> dict:
+    async def add_credentials_async(
+        self,
+        account_group: str = None,
+        api_key: str = None,
+        api_secret: str = None,
+        debug: bool = False,
+    ) -> dict:
         if account_group is None or api_key is None or api_secret is None:
-            raise ValueError("Missing mandatory parameter: account_group, api_key, api_secret")
-        params = {"account_group": account_group,
-                  "api_key": api_key,
-                  "api_secret": api_secret}
-        return await self._request_async(self.endpoints.add_credentials, method="post", params=params,
-                                         debug=debug)
+            raise ValueError(
+                "Missing mandatory parameter: account_group, api_key, api_secret"
+            )
+        params = {
+            "account_group": account_group,
+            "api_key": api_key,
+            "api_secret": api_secret,
+        }
+        return await self._request_async(
+            self.endpoints.add_credentials, method="post", params=params, debug=debug
+        )
 
-    def remove_credentials(self, credential_id: str = None, debug: bool = False) -> dict:
+    def remove_credentials(
+        self, credential_id: str = None, debug: bool = False
+    ) -> dict:
         """Remove a stored API key pair by id."""
         if credential_id is None:
             raise ValueError("Missing mandatory parameter: credential_id")
         params = {"id": credential_id}
-        return self._request(self.endpoints.remove_credentials, method="post", params=params, debug=debug)
+        return self._request(
+            self.endpoints.remove_credentials, method="post", params=params, debug=debug
+        )
 
-    async def remove_credentials_async(self, credential_id: str = None, debug: bool = False) -> dict:
+    async def remove_credentials_async(
+        self, credential_id: str = None, debug: bool = False
+    ) -> dict:
         if credential_id is None:
             raise ValueError("Missing mandatory parameter: credential_id")
         params = {"id": credential_id}
-        return await self._request_async(self.endpoints.remove_credentials, method="post", params=params,
-                                         debug=debug)
+        return await self._request_async(
+            self.endpoints.remove_credentials, method="post", params=params, debug=debug
+        )
 
     def get_credentials_list(self, debug: bool = False) -> dict:
         """List stored credentials. API keys are returned masked (preview only);
         api_secret is never returned. Each entry lists the DCN UIDs it is
         currently assigned to."""
-        return self._request(self.endpoints.get_credentials_list, method="get", debug=debug)
+        return self._request(
+            self.endpoints.get_credentials_list, method="get", debug=debug
+        )
 
     async def get_credentials_list_async(self, debug: bool = False) -> dict:
-        return await self._request_async(self.endpoints.get_credentials_list, method="get", debug=debug)
+        return await self._request_async(
+            self.endpoints.get_credentials_list, method="get", debug=debug
+        )
 
     def test_connection(self) -> bool:
         test = self._request(self.endpoints.test, method="get")
-        if test.get('app') is not None and test.get('result') is not None:
-            if test['app']['name'] == "ubdcc-restapi" and test['result'] == "OK":
+        if test.get("app") is not None and test.get("result") is not None:
+            if test["app"]["name"] == "ubdcc-restapi" and test["result"] == "OK":
                 return True
         return False
 
     async def test_connection_async(self) -> bool:
         test = await self._request_async(self.endpoints.test, method="get")
-        if test.get('app') is not None and test.get('result') is not None:
-            if test['app']['name'] == "ubdcc-restapi" and test['result'] == "OK":
+        if test.get("app") is not None and test.get("result") is not None:
+            if test["app"]["name"] == "ubdcc-restapi" and test["result"] == "OK":
                 return True
         return False

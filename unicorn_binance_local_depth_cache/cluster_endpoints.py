@@ -38,6 +38,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
+
 class ClusterEndpoints:
     create_depthcache: str = "create_depthcache"
     create_depthcaches: str = "create_depthcaches"

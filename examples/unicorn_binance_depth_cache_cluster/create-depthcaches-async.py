@@ -4,7 +4,10 @@
 
 from dotenv import load_dotenv
 from pprint import pprint
-from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheClusterNotReachableError
+from unicorn_binance_local_depth_cache import (
+    BinanceLocalDepthCacheManager,
+    DepthCacheClusterNotReachableError,
+)
 from unicorn_binance_rest_api import BinanceRestApiManager
 import asyncio
 import logging
@@ -13,14 +16,16 @@ import os
 load_dotenv()
 
 exchange: str = "binance.com"
-ubdcc_address: str = os.getenv('UBDCC_ADDRESS')
-ubdcc_port: int = int(os.getenv('UBDCC_PORT'))
+ubdcc_address: str = os.getenv("UBDCC_ADDRESS")
+ubdcc_port: int = int(os.getenv("UBDCC_PORT"))
 
 logging.getLogger("unicorn_binance_local_depth_cache")
-logging.basicConfig(level=logging.ERROR,
-                    filename=os.path.basename(__file__) + '.log',
-                    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
-                    style="{")
+logging.basicConfig(
+    level=logging.ERROR,
+    filename=os.path.basename(__file__) + ".log",
+    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
+    style="{",
+)
 
 
 async def main():
@@ -32,16 +37,23 @@ async def main():
         else:
             raise ValueError(f"Unknown exchange: {exchange}")
         markets = []
-        for item in exchange_info['symbols']:
-            if item['status'] == "TRADING":
-                markets.append(item['symbol'])
+        for item in exchange_info["symbols"]:
+            if item["status"] == "TRADING":
+                markets.append(item["symbol"])
     markets = markets[:225]
-    result = await ubldc.cluster.create_depthcaches_async(exchange=exchange, markets=markets, desired_quantity=2)
-    print(f"Adding {len(markets)} DepthCaches for exchange '{exchange}' on UBDCC '{ubdcc_address}':")
+    result = await ubldc.cluster.create_depthcaches_async(
+        exchange=exchange, markets=markets, desired_quantity=2
+    )
+    print(
+        f"Adding {len(markets)} DepthCaches for exchange '{exchange}' on UBDCC '{ubdcc_address}':"
+    )
     pprint(result)
 
+
 try:
-    with BinanceLocalDepthCacheManager(exchange=exchange, ubdcc_address=ubdcc_address, ubdcc_port=ubdcc_port) as ubldc:
+    with BinanceLocalDepthCacheManager(
+        exchange=exchange, ubdcc_address=ubdcc_address, ubdcc_port=ubdcc_port
+    ) as ubldc:
         try:
             asyncio.run(main())
         except KeyboardInterrupt:

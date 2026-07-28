@@ -6,6 +6,7 @@
 [![Conda-Forge Downloads](https://img.shields.io/conda/dn/conda-forge/unicorn-binance-local-depth-cache?color=blue&label=downloads)](https://anaconda.org/conda-forge/unicorn-binance-local-depth-cache)
 [![License](https://img.shields.io/github/license/oliver-zehentleitner/unicorn-binance-local-depth-cache.svg?color=blue)](https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache/license.html)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_local_depth_cache.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_local_depth_cache.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/issues)
 [![codecov](https://codecov.io/gh/oliver-zehentleitner/unicorn-binance-local-depth-cache/branch/master/graph/badge.svg?token=5I03AZ3F5S)](https://codecov.io/gh/oliver-zehentleitner/unicorn-binance-local-depth-cache)
 [![CodeQL](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml/badge.svg)](https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache/actions/workflows/codeql.yml)
