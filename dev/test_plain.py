@@ -17,23 +17,29 @@
 # Copyright (c) 2022-2026, Oliver Zehentleitner (https://about.me/oliver-zehentleitner)
 # All rights reserved.
 
-from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync
+from unicorn_binance_local_depth_cache import (
+    BinanceLocalDepthCacheManager,
+    DepthCacheOutOfSync,
+)
 import asyncio
 import logging
 import os
 
 logging.getLogger("unicorn_binance_local_depth_cache")
-logging.basicConfig(level=logging.DEBUG,
-                    filename=os.path.basename(__file__) + '.log',
-                    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
-                    style="{")
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename=os.path.basename(__file__) + ".log",
+    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
+    style="{",
+)
 
 
 async def worker(ubldc):
-    market = 'BTCUSDT'
+    market = "BTCUSDT"
     ubldc.create_depth_cache(markets=market)
     while ubldc.is_stop_request() is False:
         await asyncio.sleep(1)
+
 
 with BinanceLocalDepthCacheManager(exchange="binance.com") as ubldc_manager:
     try:

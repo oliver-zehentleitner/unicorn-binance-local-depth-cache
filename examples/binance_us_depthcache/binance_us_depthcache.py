@@ -2,20 +2,25 @@
 # -*- coding: utf-8 -*-
 # ¯\_(ツ)_/¯
 
-from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync
+from unicorn_binance_local_depth_cache import (
+    BinanceLocalDepthCacheManager,
+    DepthCacheOutOfSync,
+)
 import asyncio
 import logging
 import os
 
 exchange: str = "binance.us"
-markets: list = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT']
+markets: list = ["BTCUSDT", "ETHUSDT", "SOLUSDT"]
 limit_count: int = 4
 
 logging.getLogger("unicorn_binance_local_depth_cache")
-logging.basicConfig(level=logging.DEBUG,
-                    filename=os.path.basename(__file__) + '.log',
-                    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
-                    style="{")
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename=os.path.basename(__file__) + ".log",
+    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
+    style="{",
+)
 
 
 async def main():
@@ -33,19 +38,23 @@ async def main():
             except DepthCacheOutOfSync:
                 top_asks = "Out of sync!"
                 top_bids = "Out of sync!"
-            depth = (f"depth_cache '{market}' is in sync: {ubldc.is_depth_cache_synchronized(market=market)}\r\n " 
-                     f" - top {limit_count} asks: {top_asks}\r\n "
-                     f" - top {limit_count} bids: {top_bids}")
+            depth = (
+                f"depth_cache '{market}' is in sync: {ubldc.is_depth_cache_synchronized(market=market)}\r\n "
+                f" - top {limit_count} asks: {top_asks}\r\n "
+                f" - top {limit_count} bids: {top_bids}"
+            )
             add_string = f"{add_string}\r\n {depth}"
 
         ubldc.print_summary(add_string=add_string)
         await asyncio.sleep(1)
 
 
-with BinanceLocalDepthCacheManager(exchange=exchange,
-                                   init_time_window=5,
-                                   websocket_ping_interval=10,
-                                   websocket_ping_timeout=15) as ubldc:
+with BinanceLocalDepthCacheManager(
+    exchange=exchange,
+    init_time_window=5,
+    websocket_ping_interval=10,
+    websocket_ping_timeout=15,
+) as ubldc:
     try:
         asyncio.run(main())
     except KeyboardInterrupt:

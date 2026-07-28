@@ -15,39 +15,46 @@ import logging
 import os
 from dotenv import load_dotenv
 from pprint import pprint
-from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheClusterNotReachableError
+from unicorn_binance_local_depth_cache import (
+    BinanceLocalDepthCacheManager,
+    DepthCacheClusterNotReachableError,
+)
 
 load_dotenv()
 
 exchange: str = "binance.com-futures"
-ubdcc_address: str = os.getenv('UBDCC_ADDRESS')
-ubdcc_port: int = int(os.getenv('UBDCC_PORT'))
+ubdcc_address: str = os.getenv("UBDCC_ADDRESS")
+ubdcc_port: int = int(os.getenv("UBDCC_PORT"))
 
 # Credentials to add — normally pulled from a vault / .env, not hard-coded
 account_group: str = "binance.com"
-api_key: str = os.getenv('BINANCE_API_KEY')
-api_secret: str = os.getenv('BINANCE_API_SECRET')
+api_key: str = os.getenv("BINANCE_API_KEY")
+api_secret: str = os.getenv("BINANCE_API_SECRET")
 
 logging.getLogger("unicorn_binance_local_depth_cache")
-logging.basicConfig(level=logging.ERROR,
-                    filename=os.path.basename(__file__) + '.log',
-                    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
-                    style="{")
+logging.basicConfig(
+    level=logging.ERROR,
+    filename=os.path.basename(__file__) + ".log",
+    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
+    style="{",
+)
 
 
 try:
-    with BinanceLocalDepthCacheManager(exchange=exchange,
-                                       ubdcc_address=ubdcc_address,
-                                       ubdcc_port=ubdcc_port) as ubldc:
+    with BinanceLocalDepthCacheManager(
+        exchange=exchange, ubdcc_address=ubdcc_address, ubdcc_port=ubdcc_port
+    ) as ubldc:
         if api_key and api_secret:
             print(f"Adding credential for account_group '{account_group}' ...")
-            add_result = ubldc.cluster.add_credentials(account_group=account_group,
-                                                       api_key=api_key,
-                                                       api_secret=api_secret)
+            add_result = ubldc.cluster.add_credentials(
+                account_group=account_group, api_key=api_key, api_secret=api_secret
+            )
             pprint(add_result)
-            new_id = add_result.get('id')
+            new_id = add_result.get("id")
         else:
-            print("No BINANCE_API_KEY / BINANCE_API_SECRET in environment — skipping add step.")
+            print(
+                "No BINANCE_API_KEY / BINANCE_API_SECRET in environment — skipping add step."
+            )
             new_id = None
 
         print("\nCurrent credentials (keys masked):")
@@ -55,7 +62,7 @@ try:
 
         if new_id:
             print(f"\nRemoving credential '{new_id}' ...")
-            #pprint(ubldc.cluster.remove_credentials(credential_id=new_id))
+            # pprint(ubldc.cluster.remove_credentials(credential_id=new_id))
 
 except DepthCacheClusterNotReachableError as error_msg:
     print(f"ERROR: {error_msg}")

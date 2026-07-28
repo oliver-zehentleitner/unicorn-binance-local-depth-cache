@@ -1,4 +1,7 @@
-from unicorn_binance_local_depth_cache import BinanceLocalDepthCacheManager, DepthCacheOutOfSync
+from unicorn_binance_local_depth_cache import (
+    BinanceLocalDepthCacheManager,
+    DepthCacheOutOfSync,
+)
 import time
 import logging
 
@@ -6,7 +9,9 @@ logging.basicConfig(level=logging.ERROR)
 
 coin = "BTCUSDT"
 
-ubldc = BinanceLocalDepthCacheManager(exchange="binance.com-futures", depth_cache_update_interval=100)
+ubldc = BinanceLocalDepthCacheManager(
+    exchange="binance.com-futures", depth_cache_update_interval=100
+)
 ubldc.create_depthcache(coin)
 time.sleep(4)
 while True:
