@@ -2,6 +2,7 @@
 
 ## LUCIT-Systems-and-Development origin
 
+**Type:** decision
 **Status:** superseded — repo now lives under `oliver-zehentleitner`, MIT-licensed
 **Evidence:** confirmed
 **Source:** git history; old LUCIT-org issue URLs in early commits, e.g. `1282d45`, `005b68f`
@@ -12,6 +13,7 @@ Same origin and cleanup pattern as the rest of the suite: de-branded from `LUCIT
 
 ## Cluster-client method rename (2.14.0)
 
+**Type:** decision
 **Status:** active
 **Evidence:** confirmed
 **Source:** commit `4b29780`
