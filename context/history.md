@@ -2,8 +2,10 @@
 
 ## LUCIT-Systems-and-Development origin
 
+> Superseded — repo now lives under `oliver-zehentleitner`, MIT-licensed.
+
 **Type:** decision
-**Status:** superseded — repo now lives under `oliver-zehentleitner`, MIT-licensed
+**Status:** superseded
 **Evidence:** confirmed
 **Source:** git history; old LUCIT-org issue URLs in early commits, e.g. `1282d45`, `005b68f`
 
