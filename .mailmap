@@ -1,0 +1,4 @@
+# One author, two identities: commits from an earlier local configuration
+# used the account's GitHub noreply address. git log, shortlog and blame
+# show them under one name.
+Oliver Zehentleitner AIgent <mail@aigent.zehentleitner.co> oliver-zehentleitner-aigent <oliver-zehentleitner-aigent@users.noreply.github.com>

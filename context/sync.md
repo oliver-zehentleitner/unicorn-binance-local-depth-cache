@@ -2,6 +2,7 @@
 
 ## Options depth cache: endless resync from a stale REST snapshot
 
+**Id:** bc38247d-56d4-435f-8ca6-9ada386ee32b
 **Type:** incident
 **Status:** active
 **Evidence:** confirmed
@@ -15,6 +16,7 @@ Binance's `/eapi/v1/depth` REST endpoint (used for `binance.com-vanilla-options`
 
 ## Init-race: buffer WS events instead of dropping them
 
+**Id:** c50b7633-190c-45ff-a5b9-98bbf497a112
 **Type:** incident
 **Status:** active
 **Evidence:** confirmed
@@ -26,6 +28,7 @@ During the snapshot-fetch window (before `last_update_id` is known), WebSocket d
 
 ## Margin/isolated-margin: falling through to the wrong path in four places
 
+**Id:** 7e352d83-cc31-42ac-a162-e8792197302d
 **Type:** incident
 **Status:** active
 **Evidence:** confirmed
